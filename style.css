@@ -1,0 +1,25 @@
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+body{background:#f5f6fa}
+header{background:#001a4d;color:white;padding:12px 18px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:1000}
+.logo{display:flex;align-items:center;gap:10px;color:#ffc300;font-weight:bold;font-size:14px}
+.logo img{width:50px;height:50px;border-radius:50%;border:2px solid #ffc300;object-fit:cover;background:white}
+nav a{color:white;text-decoration:none;margin:0 10px;font-size:14px}
+nav a.active,nav a:hover{color:#ffc300}
+.btn-gold{background:#ffc300;color:#001a4d;padding:8px 18px;border-radius:20px;text-decoration:none;font-weight:bold;font-size:13px}
+.hero{background:linear-gradient(135deg,#001a4d,#002366);color:white;padding:40px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px}
+.hero-text{flex:1;min-width:280px}
+.hero-text h1{font-size:36px;line-height:1.2;margin:10px 0}
+.hero-text span{color:#ffc300}
+.hero-img{flex:1;min-width:280px;text-align:center}
+.hero-img img{width:100%;max-width:380px;border-radius:12px;border:3px solid #ffc300;background:white}
+.title{text-align:center;padding:30px 15px 10px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding:18px;max-width:1200px;margin:0 auto}
+.card{background:white;border-radius:10px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,0.07);display:flex;flex-direction:column}
+.card img{width:100%;height:360px;object-fit:contain;background:white}
+.info{padding:12px;text-align:center;border-top:1px solid #eee}
+.info h3{font-size:13px;color:#001a4d;margin-bottom:8px}
+.btn-order{background:#001a4d;color:#ffc300;padding:7px 15px;border-radius:20px;text-decoration:none;font-size:12px;font-weight:bold}
+footer{background:#001a4d;color:#ccc;text-align:center;padding:25px;margin-top:25px;font-size:13px}
+.content{max-width:900px;margin:0 auto;padding:30px 20px;background:white;border-radius:10px;box-shadow:0 3px 10px rgba(0,0,0,0.05);margin-top:20px}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.card img{height:300px}}
+@media(max-width:600px){.grid{grid-template-columns:1fr}.card img{height:380px}header{flex-direction:column;gap:8px}.hero-text h1{font-size:28px}}
