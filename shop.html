@@ -72,21 +72,60 @@
 </div>
 
 <!-- MODAL -->
-<div id="imageModal">
-<span id="modalClose" onclick="closeModal()">&times;</span>
-<span class="arrow prev" onclick="changeImg(-1)">&#10094;</span>
-<img id="modalImg" src="">
-<span class="arrow next" onclick="changeImg(1)">&#10095;</span>
-<div id="imgCounter"></div>
-</div>
+let currentImages = [];
+let currentIndex = 0;
+let autoPlay = null;
+let isZoomed = false;
 
-<script>
-let currentImages=[]; let currentIndex=0;
-function openGallery(images){currentImages=images; currentIndex=0; document.getElementById('modalImg').src=currentImages[0]; document.getElementById('imgCounter').innerText=(currentIndex+1)+'/'+currentImages.length; document.getElementById('imageModal').style.display='flex';}
-function closeModal(){document.getElementById('imageModal').style.display='none';}
-function changeImg(step){currentIndex+=step; if(currentIndex<0) currentIndex=currentImages.length-1; if(currentIndex>=currentImages.length) currentIndex=0; document.getElementById('modalImg').src=currentImages[currentIndex]; document.getElementById('imgCounter').innerText=(currentIndex+1)+'/'+currentImages.length;}
-document.getElementById('imageModal').onclick=function(e){if(e.target.id=='imageModal') closeModal();}
-</script>
+function openGallery(images){
+  currentImages = images;
+  currentIndex = 0;
+  isZoomed = false;
+  document.getElementById('imageModal').style.display = 'flex';
+  updateImage();
+
+  // AUTO-PLAY - changes every 3 seconds
+  clearInterval(autoPlay);
+  autoPlay = setInterval(() => changeImg(1), 3000);
+}
+
+function updateImage(){
+  document.getElementById('modalImg').src = currentImages[currentIndex];
+  document.getElementById('imgCounter').innerText = (currentIndex+1) + '/' + currentImages.length;
+  document.getElementById('modalImg').style.transform = 'scale(1)';
+  isZoomed = false;
+}
+
+function changeImg(step){
+  currentIndex += step;
+  if(currentIndex < 0) currentIndex = currentImages.length -1;
+  if(currentIndex >= currentImages.length) currentIndex = 0;
+  updateImage();
+}
+
+function closeModal(){
+  document.getElementById('imageModal').style.display = 'none';
+  clearInterval(autoPlay); // stop auto-play when closed
+}
+
+// ZOOM - click image to zoom in/out
+document.getElementById('modalImg').onclick = function(){
+  if(!isZoomed){
+    this.style.transform = 'scale(2)';
+    this.style.cursor = 'zoom-out';
+    isZoomed = true;
+    clearInterval(autoPlay); // pause auto-play when zoomed
+  } else {
+    this.style.transform = 'scale(1)';
+    this.style.cursor = 'zoom-in';
+    isZoomed = false;
+    autoPlay = setInterval(() => changeImg(1), 3000);
+  }
+}
+
+document.getElementById('imageModal').onclick = function(e){
+  if(e.target.id == 'imageModal') closeModal();
+}
 
 <footer><p>Ayegun Olomi, Ibadan - 07081632713 | WhatsApp | Facebook | Instagram</p></footer>
 </body>
