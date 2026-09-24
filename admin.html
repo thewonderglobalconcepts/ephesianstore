@@ -11,31 +11,32 @@ body{background:#f5f5f5}
 .header a{color:#d4af37;text-decoration:none;font-weight:700}
 .wrap{padding:20px 4%}
 .card{background:#fff;padding:20px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.08);margin-bottom:15px}
-.row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:12px;margin-bottom:10px}
-input,select,textarea{width:100%;padding:12px;border:1px solid #ddd;border-radius:6px}
+.row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:8px;margin-bottom:10px}
+label{font-size:11px;font-weight:700;color:#0f1e42;display:block;margin-bottom:3px}
+input,select,textarea{width:100%;padding:11px;border:1px solid #ddd;border-radius:6px}
 .img-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:15px 0}
 .box{border:2px dashed #d4af37;height:100px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:#fffbf0;cursor:pointer;font-size:28px;color:#d4af37;font-weight:700;position:relative;overflow:hidden}
 .box img{width:100%;height:100%;object-fit:cover}
 .btn{width:100%;padding:14px;background:#ff6a00;color:#fff;border:none;border-radius:8px;font-weight:700;cursor:pointer;margin-top:10px}
-.btn2{background:#0f1e42;margin-top:8px}
 .note{background:#fff3cd;padding:10px;border-radius:6px;font-size:12px;margin:10px 0;border-left:4px solid #ff6a00}
 @media(max-width:700px){.row{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
-<div class="header"><div>Ephesian Store - Admin</div><a href="index.html">Back to Shop</a></div>
+<div class="header"><div>Ephesian Store - Admin</div><a href="shop.html">Back to Shop</a></div>
 <div class="wrap">
 <div class="card">
-<h3 style="margin-bottom:12px">Add Product</h3>
+<h3>Add Product</h3>
 <div class="row">
-<input id="n" placeholder="Product Name">
-<input id="p" type="number" placeholder="Price ₦">
-<input id="stock" type="number" placeholder="Stock Qty (0=Out of Stock)" value="20">
-<input id="d" type="number" value="20" placeholder="Discount %">
+<div><label>Product Name</label><input id="n" placeholder="e.g Easypie Powerbank"></div>
+<div><label>Price ₦</label><input id="p" type="number" placeholder="17000"></div>
+<div><label>Stock Qty (0=Out of Stock)</label><input id="stock" type="number" value="20"></div>
+<div><label>Discount %</label><input id="d" type="number" value="20"></div>
 </div>
 <textarea id="desc" placeholder="Description" style="height:50px;margin-bottom:10px"></textarea>
+<label>Category</label>
 <select id="cat" style="margin-bottom:15px"><option>Chargers & Cables</option><option>Power Banks</option><option>Extension Boxes</option><option>Torches & Lighting</option><option>Laptop Accessories</option><option>Gas Items</option><option>Bags & Travel</option><option>Other Essentials</option></select>
-<div class="note"><b>Use max 2 pictures!</b> Stock 0 = OUT OF STOCK red badge.</div>
+<div class="note"><b>NEW: You can add 4 pictures now!</b> Click + to add. Stock 0 = OUT OF STOCK badge.</div>
 <div class="img-grid" id="grid"></div>
 <input type="file" id="file" accept="image/*" multiple style="display:none">
 <button class="btn" onclick="pub()"># Publish Product</button>
@@ -47,22 +48,24 @@ input,select,textarea{width:100%;padding:12px;border:1px solid #ddd;border-radiu
 let imgs=[], editIndex=-1;
 const grid=document.getElementById('grid'), file=document.getElementById('file');
 function draw(){grid.innerHTML='';for(let i=0;i<4;i++){let h=imgs[i];grid.innerHTML+=`<div class="box" onclick="file.click()">${h?`<img src="${h}"><span style="position:absolute;top:2px;right:2px;background:red;color:#fff;width:18px;height:18px;border-radius:50%;font-size:11px;display:flex;align-items:center;justify-content:center" onclick="event.stopPropagation();imgs.splice(${i},1);draw()">x</span>`:`+`}</div>`;}}
-file.onchange=e=>{for(let f of e.target.files){if(imgs.length>=2){alert('Max 2 images');break;}let r=new FileReader();r.onload=v=>{imgs.push(v.target.result);draw();};r.readAsDataURL(f);}};
+file.onchange=e=>{for(let f of e.target.files){if(imgs.length>=4){alert('Max 4 images');break;}let r=new FileReader();r.onload=v=>{imgs.push(v.target.result);draw();};r.readAsDataURL(f);}};
 function pub(){
- let name=document.getElementById('n').value.trim(), price=document.getElementById('p').value.trim(), stock=document.getElementById('stock').value.trim(), discount=document.getElementById('d').value.trim();
- if(!name||!price){alert('Enter Name and Price');return;} if(!imgs.length){alert('Upload picture');return;}
+ let name=document.getElementById('n').value.trim(), price=document.getElementById('p').value.trim();
+ if(!name||!price){alert('Enter Name and Price');return;} if(!imgs.length){alert('Upload at least 1 picture');return;}
  let all=JSON.parse(localStorage.getItem('wgc_products')||'[]');
- let prod={name,price:Number(price),discount:Number(discount||20),stock:Number(stock||20),category:document.getElementById('cat').value,desc:document.getElementById('desc').value,images:[...imgs],id:Date.now()};
- if(editIndex>=0){all[editIndex]=prod;editIndex=-1;} else {all.push(prod);}
+ let prod={name,price:Number(price),discount:Number(document.getElementById('d').value||20),stock:Number(document.getElementById('stock').value),category:document.getElementById('cat').value,desc:document.getElementById('desc').value,images:[...imgs],id:Date.now()};
+ if(editIndex>=0){all[editIndex]=prod;editIndex=-1;}else{all.push(prod);}
  localStorage.setItem('wgc_products',JSON.stringify(all));
  document.getElementById('ok').innerText='✅ Published: '+name; alert('Published!'); document.getElementById('n').value='';document.getElementById('p').value='';imgs=[];draw();show();
 }
 function show(){
  let all=JSON.parse(localStorage.getItem('wgc_products')||'[]');
  document.getElementById('c').innerText=all.length;
- document.getElementById('list').innerHTML=all.map((x,i)=>`<div style="display:flex;gap:8px;padding:8px;border-bottom:1px solid #eee;align-items:center"><img src="${x.images[0]}" style="width:40px;height:40px;object-fit:contain"><div style="flex:1;font-size:11px"><b>${x.name}</b><br>₦${x.price} | Stock:<b style="color:${(x.stock||20)===0?'red':'green'}">${x.stock===undefined?20:x.stock} ${(x.stock||0)===0?'(OUT OF STOCK)':''}</b> | ${x.category}</div><button onclick="editProd(${i})" style="background:#0f1e42;color:#fff;border:none;padding:4px 8px;border-radius:4px">Edit</button><button onclick="let a=JSON.parse(localStorage.getItem('wgc_products')||'[]');a.splice(${i},1);localStorage.setItem('wgc_products',JSON.stringify(a));show();" style="background:red;color:#fff;border:none;padding:4px 8px;border-radius:4px">X</button></div>`).join('')||'No products';
+ document.getElementById('list').innerHTML=all.map((x,i)=>{
+  let isOut = Number(x.stock)===0;
+  return `<div style="display:flex;gap:8px;padding:8px;border-bottom:1px solid #eee;align-items:center"><img src="${x.images[0]}" style="width:40px;height:40px;object-fit:contain"><div style="flex:1;font-size:11px"><b>${x.name}</b><br>₦${x.price} | Stock:<b style="color:${isOut?'red':'green'}">${x.stock} ${isOut?'(OUT OF STOCK)':'(In Stock)'}</b> | ${x.category} | ${x.images.length} pics</div><button onclick="editProd(${i})" style="background:#0f1e42;color:#fff;border:none;padding:4px 8px;border-radius:4px">Edit</button><button onclick="let a=JSON.parse(localStorage.getItem('wgc_products')||'[]');a.splice(${i},1);localStorage.setItem('wgc_products',JSON.stringify(a));show();" style="background:red;color:#fff;border:none;padding:4px 8px;border-radius:4px">X</button></div>`}).join('')||'No products';
 }
-function editProd(i){let all=JSON.parse(localStorage.getItem('wgc_products')||'[]');let x=all[i];document.getElementById('n').value=x.name;document.getElementById('p').value=x.price;document.getElementById('stock').value=x.stock!==undefined?x.stock:20;document.getElementById('d').value=x.discount||20;document.getElementById('cat').value=x.category;document.getElementById('desc').value=x.desc||'';imgs=[...x.images];editIndex=i;draw();window.scrollTo(0,0);}
+function editProd(i){let all=JSON.parse(localStorage.getItem('wgc_products')||'[]');let x=all[i];document.getElementById('n').value=x.name;document.getElementById('p').value=x.price;document.getElementById('stock').value=x.stock;document.getElementById('d').value=x.discount||20;document.getElementById('cat').value=x.category;document.getElementById('desc').value=x.desc||'';imgs=[...x.images];editIndex=i;draw();window.scrollTo(0,0);alert('Now add more pictures and Publish again');}
 draw();show();
 </script>
 </body>
