@@ -27,6 +27,9 @@
       <img src="logo.jpg" style="width:40px; height:40px; border-radius:50%; border:2px solid gold;">
       <b style="color:gold;">Ephesian Store</b>
     </div>
+    <div onclick="openCart()" style="cursor:pointer; font-weight:bold; 
+    background:#FFD700; color:#000; padding:8px 15px; border-radius:20px;">
+      🛒 Cart (<span id="cart-count">0</span>)</div>
     <nav style="display:flex; gap:10px;flex-wrap; font-size:14px;">
       <a href="index.html" style="color:white; text-decoration:none;">Home</a>
       <a href="shop.html" style="color:gold; text-decoration:none; font-weight:bold;">Shop</a>
@@ -41,16 +44,17 @@
 <div class="grid">
 
 <div class="card">
-<img src="p1.jpg" onclick="openGallery(['p1.jpg','p1a.jpg','p1b.jpg'])">
-<h3>Hair Clipper Gold</h3>
-<p>₦15,000</p>
-<a class="btn-order" href="https://wa.me/2347081632713?text=I want Hair Clipper Gold - p1">Order on WhatsApp</a>
+  <img src="p1.jpg" onclick="openGallery(['p1.jpg','p1a.jpg','p1b.jpg'])">
+  <h3>Hair Clipper Gold</h3>
+  <p>₦15,000</p>
+  <button onclick="addToCart('Hair Clipper Gold', 15000)" style="background:#FFD700; color:#000; padding:10px; width:100%; border:none; border-radius:8px; font-weight:bold; cursor:pointer; margin-bottom:5px;">Add to Cart 🛒</button>
+  <a class="btn-order" href="https://wa.me/2347081632713?text=I want Hair Clipper Gold - p1">Order on WhatsApp</a>
 </div>
-
 <div class="card">
 <img src="T1.jpg" onclick="openGallery(['T1.jpg','T2.jpg','T3.jpg','T4.jpg','T5.jpg','T6.jpg','T7.jpg','T8.jpg'])">
 <h3>Tooth brush set</h3>
 <p>₦5,000</p>
+<button onclick="addToCart('Toothbrush Set', 5000)" style="background:#FFD700; color:#000; padding:10px; width:100%; border:none; border-radius:8px; font-weight:bold; cursor:pointer; margin-bottom:5px;">Add to Cart 🛒</button>
 <a class="btn-order" href="https://wa.me/2347081632713?text=I want Power Bank - p2">Order on WhatsApp</a>
 </div>
 
@@ -58,6 +62,7 @@
 <img src="p3.jpg" onclick="openGallery(['p3.jpg','p3a.jpg','p3b.jpg'])">
 <h3>Shaving Clipper</h3>
 <p>₦4,000</p>
+<button onclick="addToCart('Shaving Clipper ', 4000)" style="background:#FFD700; color:#000; padding:10px; width:100%; border:none; border-radius:8px; font-weight:bold; cursor:pointer; margin-bottom:5px;">Add to Cart 🛒</button>
 <a class="btn-order" href="https://wa.me/2347081632713?text=I want Smart Watch - p3">Order on WhatsApp</a>
 </div>
 
@@ -65,6 +70,7 @@
 <img src="p4.jpg" onclick="openGallery(['p4.jpg','p4a.jpg'])">
 <h3>Easypie powerbank</h3>
 <p>₦17,000</p>
+<button onclick="addToCart('Easypie powerbank', 17000)" style="background:#FFD700; color:#000; padding:10px; width:100%; border:none; border-radius:8px; font-weight:bold; cursor:pointer; margin-bottom:5px;">Add to Cart 🛒</button>
 <a class="btn-order" href="https://wa.me/2347081632713?text=I want Earbuds - p4">Order on WhatsApp</a>
 </div>
 
@@ -160,5 +166,39 @@ document.getElementById('imageModal').onclick = function(e){
 </script>
 
 <footer><p>Ayegun Olomi, Ibadan - 07081632713 | WhatsApp | Facebook | Instagram</p></footer>
+
+
+<div id="cartModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:9999; justify-content:center; align-items:center;">
+  <div style="background:white; padding:20px; border-radius:15px; width:90%; max-width:400px;">
+    <h3>Your Cart 🛒</h3>
+    <div id="cart-items"></div>
+    <h4 id="cart-total">Total: ₦0</h4>
+    <button onclick="checkoutWhatsApp()" style="background:#25D366; color:white; padding:12px; width:100%; border:none; border-radius:10px; font-weight:bold;">Checkout on WhatsApp 📲</button>
+    <button onclick="closeCart()" style="background:#ccc; padding:10px; width:100%; border:none; border-radius:10px; margin-top:10px;">Close</button>
+  </div>
+</div>
+<script>
+let cart = [];
+function addToCart(name, price){
+  cart.push({name, price});
+  document.getElementById('cart-count').innerText = cart.length;
+  alert(name + ' added to cart!');
+}
+function openCart(){
+  document.getElementById('cartModal').style.display='flex';
+  let itemsDiv = document.getElementById('cart-items');
+  let total = 0; itemsDiv.innerHTML = '';
+  cart.forEach(i => { total+=i.price; itemsDiv.innerHTML+=`<p>${i.name} - ₦${i.price}</p>`; });
+  document.getElementById('cart-total').innerText = 'Total: ₦' + total;
+}
+function closeCart(){ document.getElementById('cartModal').style.display='none'; }
+function checkoutWhatsApp(){
+  let total = cart.reduce((s,i)=>s+i.price,0);
+  let msg = "Hello Ephesian Store! I want to order:%0A";
+  cart.forEach(i => { msg+=`- ${i.name} (₦${i.price})%0A`; });
+  msg+=`%0ATotal: ₦${total}`;
+  window.open(`https://wa.me/2347081632713?text=${msg}`, '_blank');
+}
+</script>
 </body
 </html>
