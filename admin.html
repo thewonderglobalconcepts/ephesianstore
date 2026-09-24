@@ -23,6 +23,11 @@ input,select,textarea{width:100%;padding:11px;border:1px solid #ddd;border-radiu
 </style>
 </head>
 <body>
+  <script>
+const ADMIN_PASS = "Araoluwa_1";
+let p = prompt("🔒 Admin Password:");
+if(p !== ADMIN_PASS){ alert("Wrong!"); window.location.href="/index.html"; }
+</script>
 <div class="header"><div>Ephesian Store - Admin (INTERNET)</div><a href="shop.html">Back to Shop</a></div>
 <div class="wrap">
 <div class="card">
