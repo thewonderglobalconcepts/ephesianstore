@@ -6,30 +6,40 @@
 <link rel="stylesheet" href="style.css">
 <style>
 .grid{display:grid; grid-template-columns:repeat(2,1fr); gap:15px; padding:15px;}
+#ephesian-live-products{
+  display:grid !important;
+  grid-template-columns:repeat(2,1fr) !important;
+  gap:15px !important;
+  padding:15px !important;
+  background:#f9f9f9;
+}
+#ephesian-live-products .card{
+  width:auto !important;
+}
+#ephesian-live-products img{
+  object-fit:contain !important;
+  background:white;
+  height:180px !important;
+}
 .card{border:1px solid #ddd; border-radius:10px; padding:10px; text-align:center; background:white;}
 .card img{width:100%; border-radius:8px; cursor:pointer; height:180px; object-fit:cover;}
 .card h3{font-size:16px; margin:10px 0 5px;}
 .card p{color:green; font-weight:bold;}
 .btn-order{display:block; background:#0b5394; color:white; padding:8px; border-radius:5px; text-decoration:none; margin-top:8px;}
-/* BIG VIEWER */
 #imageModal{display:none; position:fixed; z-index:9999; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.92); justify-content:center; align-items:center; flex-direction:column;}
-#imageModal img{max-width:92%; max-height:75%; border-radius:12px;}
+#imageModal img{max-width:92%; max-height:70%; border-radius:12px;}
 #modalClose{position:absolute; top:20px; right:30px; color:white; font-size:40px; cursor:pointer;}
-.arrow{position:absolute; top:50%; color:white; font-size:45px; cursor:pointer; background:rgba(0,0,0,0.3); padding:10px; border-radius:50%;}
-.prev{left:15px;}.next{right:15px;}
 #imgCounter{color:white; margin-top:10px; font-size:14px;}
 </style>
 </head>
 <body>
-  <div id="ephesian-live-products" style="display:flex;flex-wrap:wrap;justify-content:center;padding:20px;background:#f9f9f9;"></div>
 <header style="background:#0d1b3e; padding:15px; position:sticky; top:0; z-index:1000;">
   <div style="max-width:1200px; margin:auto; display:flex; justify-content:space-between; align-items:center;">
     <div style="display:flex; align-items:center; gap:10px;">
       <img src="logo.jpg" style="width:40px; height:40px; border-radius:50%; border:2px solid gold;">
       <b style="color:gold;">Ephesian Store</b>
     </div>
-    
-    <nav style="display:flex; gap:10px;flex-wrap; font-size:14px;">
+    <nav style="display:flex; gap:10px; flex-wrap; font-size:14px;">
       <a href="index.html" style="color:white; text-decoration:none;">Home</a>
       <a href="shop.html" style="color:gold; text-decoration:none; font-weight:bold;">Shop</a>
       <a href="about.html" style="color:white; text-decoration:none;">About</a>
@@ -38,136 +48,73 @@
   </div>
 </header>
 
-<div class="title"><h1>SHOP OUR PRODUCTS</h1></div>
-
-<div class="grid">
-
+<div class="title" style="text-align:center; padding:20px 10px;"><h1>SHOP OUR PRODUCTS</h1></div>
+<div id="ephesian-live-products" style="display:grid; grid-template-columns:repeat(2,1fr); gap:12px; padding:15px; max-width:1200px; margin:0 auto;"></div>
+<div class="grid" style="display:grid; grid-template-columns:repeat(2,1fr); gap:12px; padding:15px; max-width:1200px; margin:0 auto;">
 <div class="card">
-  <img src="p1.jpg" onclick="openGallery(['p1.jpg','p1a.jpg','p1b.jpg'])">
+  <img src="p1.jpg" onclick="openGallery(['p1.jpg','p1a.jpg','p1b.jpg'], 'Hair Clipper Gold')">
   <h3>Hair Clipper Gold</h3>
   <p>₦15,000</p>
-  <button onclick="addToCart('Hair Clipper Gold', 15000)" style="background:#FFD700; color:#000; padding:10px; width:100%; border:none; border-radius:8px; font-weight:bold; cursor:pointer; margin-bottom:5px;">Add to Cart 🛒</button>
+  <button onclick="addToCart('Hair Clipper Gold', 15000, 'p1.jpg')" style="background:#FFD700; color:#000; padding:10px; width:100%; border:none; border-radius:8px; font-weight:bold; cursor:pointer; margin-bottom:5px;">Add to Cart 🛒</button>
   <a class="btn-order" href="https://wa.me/2347081632713?text=I want Hair Clipper Gold - p1">Order on WhatsApp</a>
 </div>
+
 <div class="card">
-<img src="T1.jpg" onclick="openGallery(['T1.jpg','T2.jpg','T3.jpg','T4.jpg','T5.jpg','T6.jpg','T7.jpg','T8.jpg'])">
+<img src="T1.jpg" onclick="openGallery(['T1.jpg','T2.jpg','T3.jpg','T4.jpg','T5.jpg','T6.jpg','T7.jpg','T8.jpg'], 'Tooth brush set - 8 pictures gallery with auto-slide')">
 <h3>Tooth brush set</h3>
 <p>₦5,000</p>
-<button onclick="addToCart('Toothbrush Set', 5000)" style="background:#FFD700; color:#000; padding:10px; width:100%; border:none; border-radius:8px; font-weight:bold; cursor:pointer; margin-bottom:5px;">Add to Cart 🛒</button>
-<a class="btn-order" href="https://wa.me/2347081632713?text=I want Power Bank - p2">Order on WhatsApp</a>
+<button onclick="addToCart('Toothbrush Set', 5000, 'T1.jpg')" style="background:#FFD700; color:#000; padding:10px; width:100%; border:none; border-radius:8px; font-weight:bold; cursor:pointer; margin-bottom:5px;">Add to Cart 🛒</button>
+<a class="btn-order" href="https://wa.me/2347081632713?text=I want Toothbrush Set">Order on WhatsApp</a>
 </div>
 
 <div class="card">
-<img src="p3.jpg" onclick="openGallery(['p3.jpg','p3a.jpg','p3b.jpg'])">
+<img src="p3.jpg" onclick="openGallery(['p3.jpg','p3a.jpg','p3b.jpg'], 'Shaving Clipper')">
 <h3>Shaving Clipper</h3>
 <p>₦4,000</p>
-<button onclick="addToCart('Shaving Clipper ', 4000)" style="background:#FFD700; color:#000; padding:10px; width:100%; border:none; border-radius:8px; font-weight:bold; cursor:pointer; margin-bottom:5px;">Add to Cart 🛒</button>
-<a class="btn-order" href="https://wa.me/2347081632713?text=I want Smart Watch - p3">Order on WhatsApp</a>
+<button onclick="addToCart('Shaving Clipper', 4000, 'p3.jpg')" style="background:#FFD700; color:#000; padding:10px; width:100%; border:none; border-radius:8px; font-weight:bold; cursor:pointer; margin-bottom:5px;">Add to Cart 🛒</button>
+<a class="btn-order" href="https://wa.me/2347081632713?text=I want Shaving Clipper">Order on WhatsApp</a>
 </div>
 
 <div class="card">
-<img src="p4.jpg" onclick="openGallery(['p4.jpg','p4a.jpg'])">
+<img src="p4.jpg" onclick="openGallery(['p4.jpg','p4a.jpg'], 'Easypie powerbank')">
 <h3>Easypie powerbank</h3>
 <p>₦17,000</p>
-<button onclick="addToCart('Easypie powerbank', 17000)" style="background:#FFD700; color:#000; padding:10px; width:100%; border:none; border-radius:8px; font-weight:bold; cursor:pointer; margin-bottom:5px;">Add to Cart 🛒</button>
-<a class="btn-order" href="https://wa.me/2347081632713?text=I want Earbuds - p4">Order on WhatsApp</a>
+<button onclick="addToCart('Easypie powerbank', 17000, 'p4.jpg')" style="background:#FFD700; color:#000; padding:10px; width:100%; border:none; border-radius:8px; font-weight:bold; cursor:pointer; margin-bottom:5px;">Add to Cart 🛒</button>
+<a class="btn-order" href="https://wa.me/2347081632713?text=I want Easypie powerbank">Order on WhatsApp</a>
 </div>
 
 <div class="card">
-<img src="p5.jpg" onclick="openGallery(['p5.jpg','p5a.jpg'],'Professional clipper - rechargeable, very sharp, lasts 5 hours, low noise')">
+<img src="p5.jpg" onclick="openGallery(['p5.jpg','p5a.jpg'], 'Professional clipper - rechargeable, very sharp, lasts 5 hours, low noise')">
 <h3>Professional clipper</h3>
 <p>₦10,000</p>
-<a class="btn-order" href="https://wa.me/2347081632713?text=I want Phone Stand - p5">Order on WhatsApp</a>
+<button onclick="addToCart('Professional clipper', 10000, 'p5.jpg')" style="background:#FFD700; color:#000; padding:10px; width:100%; border:none; border-radius:8px; font-weight:bold; cursor:pointer; margin-bottom:5px;">Add to Cart 🛒</button>
+<a class="btn-order" href="https://wa.me/2347081632713?text=I want Professional clipper - p5">Order on WhatsApp</a>
 </div>
 
 <div class="card">
-<img src="p6.jpg" onclick="openGallery(['p6.jpg','p6a.jpg'])">
-<h3>Easypie powerbank</h3>
+<img src="p6.jpg" onclick="openGallery(['p6.jpg','p6a.jpg'], 'Easypie powerbank')">
+<h3>Easypie powerbank Small</h3>
 <p>₦9,500</p>
-<a class="btn-order" href="https://wa.me/2347081632713?text=I want USB Cable - p6">Order on WhatsApp</a>
+<button onclick="addToCart('Easypie powerbank Small', 9500, 'p6.jpg')" style="background:#FFD700; color:#000; padding:10px; width:100%; border:none; border-radius:8px; font-weight:bold; cursor:pointer; margin-bottom:5px;">Add to Cart 🛒</button>
+<a class="btn-order" href="https://wa.me/2347081632713?text=I want Easypie powerbank Small">Order on WhatsApp</a>
 </div>
 
 </div>
+
+<!-- SINGLE MODAL FOR ALL GALLERY -->
+<div id="imageModal">
+  <span id="modalClose" onclick="closeModal()">&times;</span>
+  <span class="arrow prev" onclick="changeImg(-1)" style="position:absolute; left:20px; color:white; font-size:50px; cursor:pointer;">&#10094;</span>
+  <img id="modalImg" src="">
+  <span class="arrow next" onclick="changeImg(1)" style="position:absolute; right:20px; color:white; font-size:50px; cursor:pointer;">&#10095;</span>
+  <p id="imgCounter"></p>
+  <p id="productDesc" style="color:white; text-align:center; padding:12px; font-size:15px; background:rgba(255,255,255,0.1); border-radius:8px; max-width:85%; margin-top:10px;"></p>
+  <div id="modalDots" style="display:flex; gap:6px; justify-content:center; margin-top:10px;"></div>
+  <button id="modalAddCart" style="margin-top:15px; background:#FFD700; color:black; border:none; padding:12px 25px; border-radius:25px; font-weight:bold; cursor:pointer;">Add to Cart 🛒</button>
 </div>
 
-<!-- MODAL - this is the popup gallery -->
-<div id="imageModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:9999; justify-content:center; align-items:center; flex-direction:column;">
-  <span id="modalClose" onclick="closeModal()" style="position:absolute; top:20px; right:30px; color:white; font-size:40px; cursor:pointer;">&times;</span>
-  
-  <span onclick="changeImg(-1)" style="position:absolute; left:20px; color:white; font-size:50px; cursor:pointer;">&#10094;</span>
-  
-  <img id="modalImg" src="" style="max-width:90%; max-height:70%; cursor:zoom-in; transition:transform 0.3s;">
-  
-  <p id="imgCounter" style="color:white; margin-top:10px;"></p>
+<footer style="text-align:center; padding:20px; background:#0d1b3e; color:white; margin-top:20px;"><p>Ayegun Olomi, Ibadan - 07081632713 | WhatsApp | Facebook | Instagram</p></footer>
 
-  <!-- DESCRIPTION WILL SHOW HERE -->
-  <p id="productDesc" style="color:white; text-align:center; padding:15px; font-size:16px; background:rgba(255,255,255,0.1); border-radius:8px; max-width:80%; margin-top:10px;"></p>
-
-  <span onclick="changeImg(1)" style="position:absolute; right:20px; color:white; font-size:50px; cursor:pointer;">&#10095;</span>
-</div>
-
-<script>
-let currentImages = [];
-let currentIndex = 0;
-let autoPlay = null;
-let isZoomed = false;
-
-function openGallery(images, desc){
-  document.getElementById('productDesc').innerText = desc;
-  currentImages = images;
-  currentIndex = 0;
-  isZoomed = false;
-  document.getElementById('imageModal').style.display = 'flex';
-  updateImage();
-
-  // AUTO-PLAY - changes every 3 seconds
-  clearInterval(autoPlay);
-  autoPlay = setInterval(() => changeImg(1), 3000);
-}
-
-function updateImage(){
-  document.getElementById('modalImg').src = currentImages[currentIndex];
-  document.getElementById('imgCounter').innerText = (currentIndex+1) + '/' + currentImages.length;
-  document.getElementById('modalImg').style.transform = 'scale(1)';
-  isZoomed = false;
-}
-
-function changeImg(step){
-  currentIndex += step;
-  if(currentIndex < 0) currentIndex = currentImages.length -1;
-  if(currentIndex >= currentImages.length) currentIndex = 0;
-  updateImage();
-}
-
-function closeModal(){
-  document.getElementById('imageModal').style.display = 'none';
-  clearInterval(autoPlay); // stop auto-play when closed
-}
-
-// ZOOM - click image to zoom in/out
-document.getElementById('modalImg').onclick = function(){
-  if(!isZoomed){
-    this.style.transform = 'scale(2)';
-    this.style.cursor = 'zoom-out';
-    isZoomed = true;
-    clearInterval(autoPlay); // pause auto-play when zoomed
-  } else {
-    this.style.transform = 'scale(1)';
-    this.style.cursor = 'zoom-in';
-    isZoomed = false;
-    autoPlay = setInterval(() => changeImg(1), 3000);
-  }
-}
-
-document.getElementById('imageModal').onclick = function(e){
-  if(e.target.id == 'imageModal') closeModal();
-}
-</script>
-
-<footer><p>Ayegun Olomi, Ibadan - 07081632713 | WhatsApp | Facebook | Instagram</p></footer>
-
-
-<!-- FLOATING CART BUTTON FOR CORNER -->
 <div onclick="openCart()" style="position:fixed; bottom:20px; right:20px; background:#FFD700; color:#000; padding:15px 20px; border-radius:50px; font-weight:bold; box-shadow:0 4px 15px rgba(0,0,0,0.3); cursor:pointer; z-index:9998; display:flex; align-items:center; gap:8px;">
   🛒 <span id="cart-count">0</span> Items
 </div>
@@ -185,100 +132,105 @@ document.getElementById('imageModal').onclick = function(e){
 </div>
 
 <script>
+const PRODUCTS_KEY='ephesian_products';
+const HIDDEN_KEY='ephesian_hidden_products';
+const CART_KEY='ephesian_cart';
 let cart = [];
-function addToCart(name, price){
-  cart.push({name, price});
-  updateCartCount();
-  alert(name + ' added to cart!');
+try{ cart = JSON.parse(localStorage.getItem(CART_KEY)||'[]'); }catch(e){ cart=[]; }
+function saveCart(){ localStorage.setItem(CART_KEY, JSON.stringify(cart)); updateCartCount(); }
+function addToCart(name, price, image=''){
+  cart.push({name, price:Number(price), image});
+  saveCart();
+  alert(name + ' added to cart! 🛒 Total: ' + cart.length + ' items');
 }
-function updateCartCount(){
-  document.getElementById('cart-count').innerText = cart.length;
-}
-function openCart(){
-  document.getElementById('cartModal').style.display='flex';
-  renderCart();
-}
+function updateCartCount(){ let el=document.getElementById('cart-count'); if(el) el.innerText = cart.length; }
+function openCart(){ document.getElementById('cartModal').style.display='flex'; renderCart(); }
 function renderCart(){
   let itemsDiv = document.getElementById('cart-items');
-  let total = 0; 
-  itemsDiv.innerHTML = '';
-  if(cart.length === 0){
-    itemsDiv.innerHTML = '<p style="text-align:center; color:#777;">Your cart is empty 😔</p>';
-  } else {
+  let total = 0; itemsDiv.innerHTML = '';
+  if(cart.length === 0){ itemsDiv.innerHTML = '<p style="text-align:center; color:#777;">Your cart is empty 😔</p>'; }
+  else {
     cart.forEach((item, index) => { 
-      total+=item.price; 
-      itemsDiv.innerHTML+=`
-        <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid #eee;">
-          <div><b>${item.name}</b><br><span style="color:green;">₦${item.price}</span></div>
-          <button onclick="removeItem(${index})" style="background:#ff4444; color:white; border:none; padding:5px 10px; border-radius:5px; cursor:pointer;">Remove ❌</button>
-        </div>`;
+      total+=Number(item.price); 
+      itemsDiv.innerHTML+=`<div style="display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid #eee;"><div><b>${item.name}</b><br><span style="color:green;">₦${Number(item.price).toLocaleString()}</span></div><button onclick="removeItem(${index})" style="background:#ff4444; color:white; border:none; padding:5px 10px; border-radius:5px; cursor:pointer;">Remove ❌</button></div>`;
     });
   }
-  document.getElementById('cart-total').innerText = 'Total: ₦' + total;
+  document.getElementById('cart-total').innerText = 'Total: ₦' + total.toLocaleString();
 }
-function removeItem(index){
-  cart.splice(index, 1);
-  updateCartCount();
-  renderCart();
-}
-function clearCart(){
-  cart = [];
-  updateCartCount();
-  renderCart();
-}
+function removeItem(index){ cart.splice(index, 1); saveCart(); renderCart(); }
+function clearCart(){ cart = []; saveCart(); renderCart(); }
 function closeCart(){ document.getElementById('cartModal').style.display='none'; }
 function checkoutWhatsApp(){
   if(cart.length === 0){ alert('Cart empty!'); return; }
-  let total = cart.reduce((s,i)=>s+i.price,0);
+  let total = cart.reduce((s,i)=>s+Number(i.price),0);
   let msg = "Hello Ephesian Store! I want to order:%0A";
   cart.forEach(i => { msg+=`- ${i.name} (₦${i.price})%0A`; });
   msg+=`%0ATotal: ₦${total}`;
   window.open(`https://wa.me/2347081632713?text=${msg}`, '_blank');
 }
+let currentImages = [];
+let currentIndex = 0;
+let autoPlay = null;
+let isZoomed = false;
+let currentProduct = null;
+function openGallery(input, desc=''){
+  if(Array.isArray(input)){
+    currentImages = input;
+    currentProduct = {name: desc || 'Product', price: 0, image: input[0]};
+  } else if(typeof input === 'object' && input !== null){
+    currentImages = input.images && input.images.length ? input.images : [input.image];
+    currentProduct = input;
+    desc = input.name + ' - ₦' + Number(input.price).toLocaleString() + ' ('+currentImages.length+' pictures)';
+  } else { return; }
+  currentIndex = 0; isZoomed = false;
+  document.getElementById('productDesc').innerText = desc;
+  document.getElementById('imageModal').style.display = 'flex';
+  document.getElementById('modalAddCart').onclick = function(){ if(currentProduct) addToCart(currentProduct.name, currentProduct.price, currentImages[0]); };
+  updateImage();
+  clearInterval(autoPlay);
+  autoPlay = setInterval(() => changeImg(1), 3000);
+}
+function updateImage(){
+  let imgEl=document.getElementById('modalImg');
+  imgEl.src = currentImages[currentIndex];
+  document.getElementById('imgCounter').innerText = (currentIndex+1) + '/' + currentImages.length;
+  imgEl.style.transform = 'scale(1)'; isZoomed = false;
+  let dots=document.getElementById('modalDots'); dots.innerHTML='';
+  currentImages.forEach((_,i)=>{
+    let d=document.createElement('div');
+    d.style.cssText=`width:8px;height:8px;border-radius:50%;background:${i==currentIndex?'#FFD700':'#777'};cursor:pointer;`;
+    d.onclick=()=>{ currentIndex=i; updateImage(); };
+    dots.appendChild(d);
+  });
+}
+function changeImg(step){
+  currentIndex += step;
+  if(currentIndex < 0) currentIndex = currentImages.length -1;
+  if(currentIndex >= currentImages.length) currentIndex = 0;
+  updateImage();
+}
+function closeModal(){ document.getElementById('imageModal').style.display = 'none'; clearInterval(autoPlay); }
+document.getElementById('modalImg').onclick = function(){
+  if(!isZoomed){ this.style.transform = 'scale(2)'; this.style.cursor = 'zoom-out'; isZoomed = true; clearInterval(autoPlay); }
+  else { this.style.transform = 'scale(1)'; this.style.cursor = 'zoom-in'; isZoomed = false; autoPlay = setInterval(() => changeImg(1), 3000); }
+}
+document.getElementById('imageModal').addEventListener('click', function(e){ if(e.target.id == 'imageModal') closeModal(); });
+function getAdminProducts(){ try{return JSON.parse(localStorage.getItem(PRODUCTS_KEY)||'[]')}catch(e){return []} }
+function getHiddenProducts(){ try{return JSON.parse(localStorage.getItem(HIDDEN_KEY)||'[]')}catch(e){return []} }
+function showAdminProducts(){
+  let prods=getAdminProducts(); let hidden=getHiddenProducts().map(s=>s.toLowerCase());
+  let container=document.getElementById('ephesian-live-products'); if(!container) return; let count=0;
+  prods.forEach(p=>{
+    if(hidden.includes(p.name.toLowerCase())) return; count++;
+    let imgs = p.images && p.images.length ? p.images : [p.image];
+    let div=document.createElement('div'); div.className='card'; div.style.width='165px';
+    div.innerHTML=`<div style="position:relative;"><span style="position:absolute;top:6px;right:6px;background:rgba(0,0,0,0.75);color:white;font-size:10px;padding:2px 6px;border-radius:10px;z-index:2;">${imgs.length} pics</span><img src="${p.image}" style="cursor:pointer;" onclick='openGallery(${JSON.stringify(p).replace(/'/g,"&#39;")})'></div><h3>${p.name}</h3><p>₦${Number(p.price).toLocaleString()}</p><button onclick='addToCart(${JSON.stringify(p.name)}, ${p.price}, ${JSON.stringify(p.image)})' style="background:#FFD700; color:#000; padding:10px; width:100%; border:none; border-radius:8px; font-weight:bold; cursor:pointer; margin-bottom:5px;">Add to Cart 🛒</button><button onclick='openGallery(${JSON.stringify(p).replace(/'/g,"&#39;")})' style="background:#0b5394; color:white; padding:8px; width:100%; border:none; border-radius:5px; cursor:pointer; margin-bottom:5px;">View Gallery (${imgs.length})</button><a class="btn-order" href="https://wa.me/2347081632713?text=I want ${encodeURIComponent(p.name)}">Order on WhatsApp</a>`;
+    container.appendChild(div);
+  });
+  if(count===0 && prods.length===0){ container.innerHTML='<p style="color:#888; text-align:center; width:100%;">Admin products will appear here. Add from admin panel with 8 pictures!</p>'; }
+}
+window.addEventListener('load',()=>{ updateCartCount(); showAdminProducts(); setTimeout(showAdminProducts, 800); });
 </script>
-<script>
-// Gallery Modal - Show 8 pictures with auto-slide + buttons
-(function(){
-  function getAdmin(){ try{return JSON.parse(localStorage.getItem('ephesian_products')||'[]')}catch(e){return []} }
-  function getHide(){ try{return JSON.parse(localStorage.getItem('ephesian_hidden_products')||'[]')}catch(e){return []} }
 
-  window.openGallery = function(p){
-    let imgs = p.images || [p.image]; let cur = 0;
-    let m = document.createElement('div'); m.id='gm';
-    m.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:99999;display:flex;align-items:center;justify-content:center;padding:15px;';
-    m.innerHTML=`<div style="position:relative;max-width:420px;width:100%;background:white;border-radius:16px;padding:12px;">
-      <button onclick="document.getElementById('gm').remove()" style="position:absolute;top:-38px;right:0;background:white;width:32px;height:32px;border-radius:50%;border:none;font-size:18px;cursor:pointer;">✕</button>
-      <img id="gImg" src="${imgs[0]}" style="width:100%;height:360px;object-fit:contain;border-radius:12px;background:#f9f9f9;">
-      <button id="gp" style="position:absolute;left:15px;top:170px;background:rgba(0,0,0,0.6);color:white;border:none;width:38px;height:38px;border-radius:50%;font-size:22px;">‹</button>
-      <button id="gn" style="position:absolute;right:15px;top:170px;background:rgba(0,0,0,0.6);color:white;border:none;width:38px;height:38px;border-radius:50%;font-size:22px;">›</button>
-      <div style="text-align:center;margin-top:12px;"><b>${p.name}</b><br><b style="color:green;font-size:18px;">₦${Number(p.price).toLocaleString()}</b>
-      <div id="gdots" style="display:flex;gap:6px;justify-content:center;margin:10px 0;"></div>
-      <a href="https://wa.me/2347081632713?text=I want ${encodeURIComponent(p.name)}" style="display:block;background:#facc15;color:black;padding:12px;border-radius:24px;font-weight:bold;text-decoration:none;margin-top:8px;">Order via WhatsApp</a>
-      <small style="color:#888;">${imgs.length} pictures - Auto sliding</small></div></div>`;
-    document.body.appendChild(m);
-    let dc=m.querySelector('#gdots');
-    imgs.forEach((_,i)=>{ let d=document.createElement('div'); d.style.cssText=`width:8px;height:8px;border-radius:50%;background:${i==0?'#facc15':'#ddd'};`; d.onclick=()=>{cur=i;upd();}; dc.appendChild(d); });
-    function upd(){ m.querySelector('#gImg').src=imgs[cur]; [...dc.children].forEach((d,i)=>d.style.background=i==cur?'#facc15':'#ddd'); }
-    m.querySelector('#gn').onclick=()=>{cur=(cur+1)%imgs.length;upd();}
-    m.querySelector('#gp').onclick=()=>{cur=(cur-1+imgs.length)%imgs.length;upd();}
-    let auto=setInterval(()=>{cur=(cur+1)%imgs.length;upd();},3000);
-    m.onclick=e=>{ if(e.target.id=='gm'){clearInterval(auto); m.remove();} };
-  }
-
-  function show(){
-    let prods=getAdmin(); let hide=getHide().map(s=>s.toLowerCase());
-    let c=document.getElementById('ephesian-live-products');
-    if(!c){ c=document.createElement('div'); c.id='ephesian-live-products'; c.style.cssText='display:flex;flex-wrap:wrap;justify-content:center;padding:15px;gap:10px;';
-      let t=[...document.querySelectorAll('*')].find(el=>el.textContent&&el.textContent.includes('SHOP OUR PRODUCTS')); if(t) t.insertAdjacentElement('afterend',c); else document.body.appendChild(c); }
-    c.innerHTML='';
-    prods.forEach(p=>{ if(hide.includes(p.name.toLowerCase())) return;
-      let d=document.createElement('div'); d.style.cssText='background:white;border-radius:12px;padding:10px;width:165px;box-shadow:0 2px 8px rgba(0,0,0,0.1);text-align:center;cursor:pointer;position:relative;';
-      d.innerHTML=`<span style="position:absolute;top:6px;right:6px;background:rgba(0,0,0,0.7);color:white;font-size:10px;padding:2px 6px;border-radius:10px;">${p.images?p.images.length:1} pics</span><img src="${p.image}" style="width:100%;height:135px;object-fit:cover;border-radius:8px;"><p style="font-weight:bold;font-size:13px;margin:6px 0;">${p.name}</p><p style="color:green;font-weight:bold;">₦${Number(p.price).toLocaleString()}</p><p style="font-size:10px;color:#888;">Click to view</p>`;
-      d.onclick=()=>openGallery(p); c.appendChild(d);
-    });
-  }
-  window.addEventListener('load',()=>{ show(); setTimeout(show,1000); });
-})();
-</script>
-</body
+</body>
 </html>
