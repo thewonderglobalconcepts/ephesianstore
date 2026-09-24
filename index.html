@@ -144,8 +144,8 @@ function filterCat(c){
 }
 function openProd(i){
  let p=allProducts[i];
- localStorage.setItem('wgc_current',JSON.stringify(p));
- window.location.href='product.html?id='+i;
+ let msg = `Hello, I want to buy ${p.name} - ₦${Number(p.price).toLocaleString()}%0A%0A${window.location.origin}/shop.html`;
+ window.open('https://wa.me/2347081632713?text=' + msg, '_blank');
 }
 // timer
 setInterval(()=>{
