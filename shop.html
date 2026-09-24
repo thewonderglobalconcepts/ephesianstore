@@ -13,14 +13,8 @@ body{background:#f5f5f5}
 .header{background:#fff;padding:12px 4%;display:flex;align-items:center;gap:18px;position:sticky;top:0;z-index:1000;box-shadow:0 2px 10px rgba(0,0,0,.07)}
 .logo{display:flex;align-items:center;gap:8px;font-weight:700;color:#0f1e42}
 .logo img{width:38px;height:38px;border-radius:50%;border:2px solid #d4af37}
-.search{flex:1;display:flex;max-width:600px}
-.search input{flex:1;padding:11px 16px;border:1.5px solid #ddd;border-radius:25px 0 0 25px;outline:none}
-.search button{background:#ff6a00;color:#fff;border:none;padding:11px 18px;border-radius:0 25px 25px 0;font-weight:700;cursor:pointer}
 .nav{display:flex;gap:14px;align-items:center}
 .nav a{font-size:13px;text-decoration:none;color:#0f1e42;font-weight:600}
-.nav a.active{color:#ff6a00}
-.btn-gold{background:#0f1e42;color:#d4af37!important;padding:9px 16px;border-radius:20px;border:1px solid #d4af37;font-size:11px}
-
 .layout{display:grid;grid-template-columns:220px 1fr;gap:14px;padding:14px 4%}
 .filter{background:#fff;border-radius:8px;padding:14px;height:fit-content;position:sticky;top:72px}
 .filter h4{font-size:12px;color:#0f1e42;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:6px}
@@ -28,7 +22,6 @@ body{background:#f5f5f5}
 .filter div:hover{background:#fff8e1}
 .filter div.active{background:#0f1e42;color:#fff}
 .range{width:100%;margin:10px 0}
-
 .main{background:#fff;border-radius:8px;padding:12px}
 .main-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px}
 .main-head h2{font-size:15px;color:#0f1e42}
@@ -36,9 +29,11 @@ body{background:#f5f5f5}
 #shop-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
 .card{background:#fff;border:1px solid #f0f0f0;border-radius:8px;overflow:hidden;position:relative;transition:.2s}
 .card:hover{box-shadow:0 6px 18px rgba(0,0,0,.12);transform:translateY(-2px)}
+.card.out{opacity:.6}
 .card img{width:100%;height:165px;object-fit:contain;background:#fff;padding:6px;cursor:pointer}
 .badge{position:absolute;top:6px;left:6px;background:#ff3b30;color:#fff;font-size:10px;padding:3px 6px;border-radius:4px;font-weight:700;z-index:2}
 .badge-pay{position:absolute;top:6px;right:6px;background:#2a7d2a;color:#fff;font-size:9px;padding:3px 5px;border-radius:4px;font-weight:700;z-index:2}
+.badge-out{position:absolute;top:40px;left:6px;background:red;color:#fff;font-size:10px;padding:4px 7px;border-radius:4px;font-weight:700;z-index:3}
 .pics{position:absolute;bottom:78px;right:6px;background:rgba(0,0,0,.7);color:#fff;font-size:10px;padding:2px 6px;border-radius:10px}
 .info{padding:9px}
 .info h3{font-size:11.5px;height:30px;overflow:hidden;line-height:1.3;color:#333}
@@ -47,19 +42,18 @@ body{background:#f5f5f5}
 .pay70{font-size:9.5px;background:#e8f5e9;color:#2a7d2a;padding:3px 5px;border-radius:4px;margin-top:4px;display:inline-block;font-weight:600}
 .card button{width:100%;padding:8px;border:none;border-radius:6px;font-weight:700;font-size:11px;cursor:pointer;margin-top:6px}
 .btn-cart{background:#FFD700;color:#000}
+.btn-cart:disabled{background:#ddd;color:#888;cursor:not-allowed}
 .btn-wa{background:#0f1e42;color:#fff}
-
+.btn-wa:disabled{background:#aaa;cursor:not-allowed}
 #imageModal{display:none;position:fixed;z-index:9999;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,.92);justify-content:center;align-items:center;flex-direction:column}
 #imageModal img{max-width:92%;max-height:60%;border-radius:10px;transition:.3s}
 #modalClose{position:absolute;top:15px;right:25px;color:#fff;font-size:36px;cursor:pointer}
 .arrow{position:absolute;color:#fff;font-size:40px;cursor:pointer;user-select:none;padding:10px}
 .prev{left:15px}.next{right:15px}
 #imgCounter{color:#fff;margin-top:8px;font-size:13px}
-
 #cartBtn{position:fixed;bottom:20px;right:20px;background:#FFD700;color:#000;padding:14px 20px;border-radius:50px;font-weight:700;box-shadow:0 4px 15px rgba(0,0,0,.3);cursor:pointer;z-index:9998;display:flex;gap:8px;align-items:center}
 #cartModal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.8);z-index:9999;justify-content:center;align-items:center}
 .cart-box{background:#fff;padding:18px;border-radius:14px;width:90%;max-width:380px;max-height:80vh;overflow-y:auto}
-
 footer{background:#0f1e42;color:#aaa;text-align:center;padding:18px;font-size:11px;margin-top:20px}
 @media(max-width:900px){
 .layout{grid-template-columns:1fr;padding:10px}
@@ -67,42 +61,36 @@ footer{background:#0f1e42;color:#aaa;text-align:center;padding:18px;font-size:11
 .filter h4,.range,.price-filter{display:none}
 .filter div{white-space:nowrap;border:1px solid #ddd;padding:6px 12px}
 #shop-grid{grid-template-columns:repeat(2,1fr)}
-.header{flex-wrap:wrap}.search{order:3;max-width:100%;width:100%}
+.header{flex-wrap:wrap}
 }
 </style>
 </head>
 <body>
-
 <div class="top"><div>📍 Ayegun Olomi, Ibadan | RC:9874607 | <b>Pay 70% Now, Balance Later</b></div><div>07081632713</div></div>
-
 <div class="header">
 <div class="logo"><img src="logo.jpg" onerror="this.src='https://via.placeholder.com/38?text=W'"><span>EPHESIAN STORE</span></div>
-<<div class="search-wrap" style="position:relative;flex:1;max-width:420px;display:flex"><input id="search" placeholder="Search products, About, Contact..." oninput="doSearch()" autocomplete="off" style="flex:1;padding:10px 14px;border:1.5px solid #ddd;border-radius:25px 0 0 25px;outline:none"><button onclick="doSearch()" style="background:#ff6a00;color:#fff;border:none;padding:10px 16px;border-radius:0 25px 25px 0;font-weight:700">SEARCH</button><div id="suggestBox" style="position:absolute;top:100%;left:0;right:0;background:#fff;border-radius:0 0 12px 12px;box-shadow:0 10px 20px rgba(0,0,0,.15);z-index:999;display:none;border:1px solid #eee"></div></div>
+<div class="search-wrap" style="position:relative;flex:1;max-width:420px;display:flex"><input id="search" placeholder="Search products..." oninput="applyFilter()" autocomplete="off" style="flex:1;padding:10px 14px;border:1.5px solid #ddd;border-radius:25px 0 0 25px;outline:none"><button onclick="applyFilter()" style="background:#ff6a00;color:#fff;border:none;padding:10px 16px;border-radius:0 25px 25px 0;font-weight:700">SEARCH</button><div id="suggestBox" style="position:absolute;top:100%;left:0;right:0;background:#fff;border-radius:0 0 12px 12px;box-shadow:0 10px 20px rgba(0,0,0,.15);z-index:999;display:none;border:1px solid #eee"></div></div>
 <div class="nav"><a href="index.html">Home</a><a href="shop.html">Shop</a><a href="about.html">About</a><a href="contact.html">Contact</a></div>
 </div>
-
 <div class="layout">
 <div class="filter">
 <h4>📦 CATEGORIES</h4>
 <div class="active" data-cat="all" onclick="setCat('all',this)">All Products <span id="count-all">0</span></div>
-<div data-cat="Chargers" onclick="setCat('Chargers',this)">Chargers & Cables</div>
-<div data-cat="Power" onclick="setCat('Power',this)">Power Banks</div>
-<div data-cat="Extension" onclick="setCat('Extension',this)">Extension Boxes</div>
-<div data-cat="Torches" onclick="setCat('Torches',this)">Torches</div>
-<div data-cat="Laptop" onclick="setCat('Laptop',this)">Laptop Accessories</div>
-<div data-cat="Gas" onclick="setCat('Gas',this)">Gas Items</div>
-<div data-cat="Bags" onclick="setCat('Bags',this)">Bags & Travel</div>
-<div data-cat="Other" onclick="setCat('Other',this)">Other Essentials</div>
+<div data-cat="Chargers & Cables" onclick="setCat('Chargers & Cables',this)">Chargers & Cables</div>
+<div data-cat="Power Banks" onclick="setCat('Power Banks',this)">Power Banks</div>
+<div data-cat="Extension Boxes" onclick="setCat('Extension Boxes',this)">Extension Boxes</div>
+<div data-cat="Torches & Lighting" onclick="setCat('Torches & Lighting',this)">Torches</div>
+<div data-cat="Laptop Accessories" onclick="setCat('Laptop Accessories',this)">Laptop Accessories</div>
+<div data-cat="Gas Items" onclick="setCat('Gas Items',this)">Gas Items</div>
+<div data-cat="Bags & Travel" onclick="setCat('Bags & Travel',this)">Bags & Travel</div>
+<div data-cat="Other Essentials" onclick="setCat('Other Essentials',this)">Other Essentials</div>
 <div class="price-filter" style="margin-top:14px"><h4>💰 MAX PRICE</h4><input type="range" id="priceRange" min="1000" max="50000" value="50000" class="range" oninput="applyFilter()"><div style="font-size:11px">Up to ₦<span id="priceVal">50,000</span></div></div>
 </div>
-
 <div class="main">
 <div class="main-head"><h2 id="headTitle">All Products</h2><span id="headCount">Loading...</span></div>
 <div id="shop-grid"></div>
 </div>
 </div>
-
-<!-- GALLERY MODAL -->
 <div id="imageModal">
 <span id="modalClose" onclick="closeModal()">&times;</span>
 <span class="arrow prev" onclick="changeImg(-1)">&#10094;</span>
@@ -113,29 +101,23 @@ footer{background:#0f1e42;color:#aaa;text-align:center;padding:18px;font-size:11
 <div id="modalDots" style="display:flex;gap:6px;justify-content:center;margin-top:10px"></div>
 <button id="modalAddCart" style="margin-top:12px;background:#FFD700;color:#000;border:none;padding:11px 24px;border-radius:20px;font-weight:700">Add to Cart 🛒</button>
 </div>
-
-<!-- CART -->
 <div id="cartBtn" onclick="openCart()">🛒 <span id="cart-count">0</span> Items</div>
 <div id="cartModal"><div class="cart-box"><h3>Your Cart 🛒 <span onclick="closeCart()" style="float:right;background:#eee;padding:2px 10px;border-radius:10px;cursor:pointer">X</span></h3><div id="cart-items" style="margin-top:10px"></div><hr style="margin:10px 0"><h4 id="cart-total">Total: ₦0</h4><button onclick="checkoutWhatsApp()" style="background:#25D366;color:#fff;padding:12px;width:100%;border:none;border-radius:10px;font-weight:700;margin-top:10px">Checkout on WhatsApp 📲</button><button onclick="clearCart()" style="background:#ff4444;color:#fff;padding:10px;width:100%;border:none;border-radius:10px;margin-top:8px">Clear Cart</button><button onclick="closeCart()" style="background:#eee;padding:10px;width:100%;border:none;border-radius:10px;margin-top:8px">Continue Shopping</button></div></div>
-
 <footer>THE WONDER GLOBAL CONCEPT | EPHESIANS STORE RC:9874607<br>Ayegun Olomi, Ibadan - 07081632713</footer>
-
 <script>
-// LOAD PRODUCTS - SUPPORT BOTH OLD AND NEW KEY
 function getProducts(){
  let a=[],b=[];
  try{a=JSON.parse(localStorage.getItem('wgc_products')||'[]')}catch(e){}
  try{b=JSON.parse(localStorage.getItem('ephesian_products')||'[]')}catch(e){}
  let merged=[...a,...b];
- // add static fallback if empty
  if(!merged.length){
   merged=[
-   {name:"Hair Clipper Gold",price:15000,discount:20,category:"Other Essentials",images:["p1.jpg"]},
-   {name:"Tooth brush set - 8 pictures",price:5000,discount:15,category:"Other Essentials",images:["T1.jpg","T2.jpg","T3.jpg","T4.jpg","T5.jpg","T6.jpg","T7.jpg","T8.jpg"]},
-   {name:"Shaving Clipper",price:4000,discount:10,category:"Other Essentials",images:["p3.jpg"]},
-   {name:"Easypie powerbank",price:17000,discount:20,category:"Power Banks",images:["p4.jpg"]},
-   {name:"Professional clipper",price:10000,discount:15,category:"Other Essentials",images:["p5.jpg"]},
-   {name:"Easypie powerbank Small",price:9500,discount:20,category:"Power Banks",images:["p6.jpg"]}
+   {name:"Hair Clipper Gold",price:15000,discount:20,stock:20,category:"Other Essentials",images:["p1.jpg"]},
+   {name:"Tooth brush set",price:5000,discount:15,stock:10,category:"Other Essentials",images:["T1.jpg"]},
+   {name:"Shaving Clipper",price:4000,discount:10,stock:0,category:"Other Essentials",images:["p3.jpg"]},
+   {name:"Easypie powerbank",price:17000,discount:20,stock:15,category:"Power Banks",images:["p4.jpg"]},
+   {name:"Professional clipper",price:10000,discount:15,stock:5,category:"Other Essentials",images:["p5.jpg"]},
+   {name:"Easypie powerbank Small",price:9500,discount:20,stock:20,category:"Power Banks",images:["p6.jpg"]}
   ];
  }
  return merged;
@@ -143,41 +125,50 @@ function getProducts(){
 let PRODUCTS=getProducts();
 let currentCat='all';
 let cart=JSON.parse(localStorage.getItem('ephesian_cart')||'[]');
-
 function saveCart(){localStorage.setItem('ephesian_cart',JSON.stringify(cart));document.getElementById('cart-count').innerText=cart.length}
-function addToCart(name,price,image){cart.push({name,price:Number(price),image});saveCart();alert(name+' added! Total: '+cart.length)}
-
+function addToCart(name,price,image){
+ let prod = PRODUCTS.find(p=>p.name===name);
+ if(prod && (prod.stock===0)){ alert('Sorry, '+name+' is OUT OF STOCK'); return; }
+ cart.push({name,price:Number(price),image});saveCart();alert(name+' added! Total: '+cart.length)}
 function render(list){
  let grid=document.getElementById('shop-grid');
  document.getElementById('headCount').innerText=list.length+' Products found';
- document.getElementById('count-all').innerText=list.length;
- if(!list.length){grid.innerHTML='<p style="grid-column:1/-1;text-align:center;padding:30px;color:#888">No products for this filter. Try All Products or go to Admin to add.</p>';return}
- grid.innerHTML=list.map((p,i)=>`
-  <div class="card">
+ document.getElementById('count-all').innerText=PRODUCTS.length;
+ if(!list.length){grid.innerHTML='<p style="grid-column:1/-1;text-align:center;padding:30px;color:#888">No products for this category. Try All Products or go to Admin to add products for this category.</p>';return}
+ grid.innerHTML=list.map((p,i)=>{
+  let isOut = (p.stock!==undefined && p.stock===0);
+  return `
+  <div class="card ${isOut?'out':''}">
    <span class="badge">-${p.discount||20}%</span>
    <span class="badge-pay">Pay 70%</span>
+   ${isOut?'<span class="badge-out">OUT OF STOCK</span>':''}
    <span class="pics">${(p.images||[p.image]).length} pics</span>
    <img src="${(p.images||[p.image])[0]}" onerror="this.src='https://via.placeholder.com/180?text=${encodeURIComponent(p.name)}'" onclick='openGallery(${JSON.stringify(p).replace(/'/g,"&#39;")})'>
    <div class="info">
     <h3>${p.name}</h3>
     <div class="price">₦${Number(p.price).toLocaleString()}<span class="old">₦${Math.round(p.price*1.25).toLocaleString()}</span></div>
-    <div class="pay70">Pay 70%: ₦${Math.round(p.price*0.7).toLocaleString()}</div>
-    <button class="btn-cart" onclick="addToCart('${p.name.replace(/'/g,"\\'")}',${p.price},'${(p.images||[p.image])[0]}')">Add to Cart 🛒</button>
-    <button class="btn-wa" onclick="window.open('https://wa.me/2347081632713?text=I%20want%20${encodeURIComponent(p.name)}%20₦${p.price}','_blank')">Order WhatsApp</button>
+    <div class="pay70">Pay 70%: ₦${Math.round(p.price*0.7).toLocaleString()} ${isOut?'<span style="color:red;font-weight:700">- OUT OF STOCK</span>':''}</div>
+    <button class="btn-cart" ${isOut?'disabled':''} onclick="addToCart('${p.name.replace(/'/g,"\\'")}',${p.price},'${(p.images||[p.image])[0]}')">${isOut?'Out of Stock':'Add to Cart 🛒'}</button>
+    <button class="btn-wa" ${isOut?'disabled':''} onclick="window.open('https://wa.me/2347081632713?text=I%20want%20${encodeURIComponent(p.name)}%20₦${p.price}','_blank')">${isOut?'Unavailable':'Order WhatsApp'}</button>
    </div>
-  </div>`).join('');
+  </div>`}).join('');
 }
 function applyFilter(){
- let q=document.getElementById('searchInput').value.toLowerCase();
+ let q=document.getElementById('search').value.toLowerCase().trim();
  let max=Number(document.getElementById('priceRange').value);
  document.getElementById('priceVal').innerText=max.toLocaleString();
  let filtered=PRODUCTS.filter(p=>{
-  let matchCat=currentCat==='all'||(p.category||'').toLowerCase().includes(currentCat.toLowerCase())||p.name.toLowerCase().includes(currentCat.toLowerCase());
-  let matchSearch=p.name.toLowerCase().includes(q)||(p.category||'').toLowerCase().includes(q);
-  let matchPrice=Number(p.price)<=max;
-  return matchCat&&matchSearch&&matchPrice;
+  let matchCat = currentCat==='all' || (p.category||'')===currentCat;
+  let matchSearch = !q || p.name.toLowerCase().includes(q) || (p.category||'').toLowerCase().includes(q);
+  let matchPrice = Number(p.price)<=max;
+  return matchCat && matchSearch && matchPrice;
  });
  render(filtered);
+ let box=document.getElementById('suggestBox');
+ if(q){
+  let matches=PRODUCTS.filter(p=>p.name.toLowerCase().includes(q)).slice(0,4);
+  if(matches.length){ box.innerHTML=matches.map(m=>`<div onclick="document.getElementById('search').value='${m.name.replace(/'/g,"&#39;")}';applyFilter();document.getElementById('suggestBox').style.display='none'" style="padding:10px;border-bottom:1px solid #eee;cursor:pointer"><b>${m.name}</b><br><small>₦${m.price} - ${m.category}</small></div>`).join(''); box.style.display='block'; } else { box.style.display='none'; }
+ } else { box.style.display='none'; }
 }
 function setCat(cat,el){
  currentCat=cat;
@@ -186,17 +177,17 @@ function setCat(cat,el){
  document.getElementById('headTitle').innerText=cat==='all'?'All Products':cat;
  applyFilter();
 }
-
-// GALLERY
 let curImgs=[],curIdx=0,curProd=null,autoPlay=null,isZoom=false;
 function openGallery(p){
  if(typeof p==='string') return;
  curProd=p;
  curImgs=p.images&&p.images.length?p.images:[p.image];
  curIdx=0;
- document.getElementById('productDesc').innerText=p.name+' - ₦'+Number(p.price).toLocaleString()+' - '+(p.category||'')+' - Pay 70% Now Available';
+ document.getElementById('productDesc').innerText=p.name+' - ₦'+Number(p.price).toLocaleString()+' - '+(p.category||'')+' - Stock: '+(p.stock!==undefined?p.stock:'20')+(p.stock===0?' OUT OF STOCK':'')+' - Pay 70% Now';
  document.getElementById('imageModal').style.display='flex';
  document.getElementById('modalAddCart').onclick=()=>addToCart(curProd.name,curProd.price,curImgs[0]);
+ document.getElementById('modalAddCart').disabled = (curProd.stock===0);
+ document.getElementById('modalAddCart').innerText = (curProd.stock===0)?'Out of Stock':'Add to Cart 🛒';
  updateImg();
  clearInterval(autoPlay);autoPlay=setInterval(()=>changeImg(1),3000);
 }
@@ -211,8 +202,6 @@ function updateImg(){
 function changeImg(s){curIdx+=s;if(curIdx<0)curIdx=curImgs.length-1;if(curIdx>=curImgs.length)curIdx=0;updateImg();}
 function closeModal(){document.getElementById('imageModal').style.display='none';clearInterval(autoPlay);}
 document.getElementById('modalImg').onclick=function(){if(!isZoom){this.style.transform='scale(2)';this.style.cursor='zoom-out';isZoom=true;clearInterval(autoPlay);}else{this.style.transform='scale(1)';isZoom=false;autoPlay=setInterval(()=>changeImg(1),3000);}};
-
-// CART MODAL
 function openCart(){document.getElementById('cartModal').style.display='flex';renderCart();}
 function closeCart(){document.getElementById('cartModal').style.display='none';}
 function renderCart(){
@@ -229,22 +218,6 @@ function checkoutWhatsApp(){
  window.open(`https://wa.me/2347081632713?text=${msg}`,'_blank');
 }
 window.addEventListener('load',()=>{PRODUCTS=getProducts();render(PRODUCTS);saveCart();});
-const PAGES = [
-  {name:"About Us", key:"about us who we are", url:"about.html", desc:"Our Story"},
-  {name:"Contact Us", key:"contact us phone address whatsapp", url:"contact.html", desc:"07081632713 - Ayegun Olomi"},
-  {name:"Shop All Products", key:"shop products buy", url:"shop.html", desc:"All Products"}
-];
-function doSearch(){
-  let q = document.getElementById('search').value.toLowerCase().trim();
-  let box = document.getElementById('suggestBox');
-  if(!q){ box.style.display='none'; return; }
-  let pageMatches = PAGES.filter(p=> p.key.includes(q) || p.name.toLowerCase().includes(q));
-  let prodMatches = (typeof PRODUCTS!=='undefined'?PRODUCTS:[]).filter(p=> p.name.toLowerCase().includes(q)).slice(0,3);
-  let html = '';
-  pageMatches.forEach(p=>{ html+=`<div onclick="location.href='${p.url}'" style="padding:10px 14px;cursor:pointer;display:flex;justify-content:space-between;border-bottom:1px solid #f5f5f5"><span><b style="color:#0f1e42">${p.name}</b><br><small style="color:#888">${p.desc}</small></span><span style="color:#ff6a00">→</span></div>`; });
-  prodMatches.forEach(p=>{ html+=`<div onclick="location.href='shop.html'" style="padding:10px 14px;cursor:pointer;display:flex;justify-content:space-between;border-bottom:1px solid #f5f5f5"><span><b>${p.name}</b><br><small>₦${Number(p.price).toLocaleString()}</small></span><span>View</span></div>`; });
-  if(html){ box.innerHTML=html; box.style.display='block'; } else { box.style.display='none'; }
-}
 </script>
 </body>
 </html>
