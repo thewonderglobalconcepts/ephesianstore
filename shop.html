@@ -127,11 +127,20 @@ function addToCart(name,price,image){
  cart.push({name,price:Number(price),image});saveCart();alert(name+' added! Total: '+cart.length)}
 window.addToCart = addToCart;
 
+// MAP OLD CATEGORIES TO NEW 5
+function mapCategory(oldCat){
+  let c = (oldCat||'').toLowerCase();
+  if(c.includes('charger') || c.includes('cable') || c.includes('power bank') || c.includes('power') || c.includes('phone')) return 'Phone Accessories';
+  if(c.includes('laptop')) return 'Laptop Accessories';
+  if(c.includes('fashion') || c.includes('bag') || c.includes('wear') || c.includes('clothe') || c.includes('travel')) return 'Fashion and wears';
+  if(c.includes('gas') || c.includes('extension') || c.includes('torch') || c.includes('light') || c.includes('home')) return 'Home Accessories';
+  return 'Other Essentials';
+}
+
 function render(list){
  let grid=document.getElementById('shop-grid');
  document.getElementById('headCount').innerText=list.length+' Products found (Live)';
- document.getElementById('count-all').innerText=PRODUCTS.length;
- if(!list.length){grid.innerHTML='<p style="grid-column:1/-1;text-align:center;padding:30px;color:#888">No products for this category. Add from Admin.</p>';return}
+ if(!list.length){grid.innerHTML='<p style="grid-column:1/-1;text-align:center;padding:30px;color:#888">No products for this category yet.</p>';return}
  grid.innerHTML=list.map((p,i)=>{
   let isOut = (p.stock!==undefined && Number(p.stock)===0);
   let imgs = p.images || [p.image] || [];
@@ -156,7 +165,8 @@ window.applyFilter = function(){
  let max=Number(document.getElementById('priceRange').value);
  document.getElementById('priceVal').innerText=max.toLocaleString();
  let filtered=PRODUCTS.filter(p=>{
-  let matchCat = currentCat==='all' || (p.category||'')===currentCat;
+  let mapped = mapCategory(p.category);
+  let matchCat = currentCat==='all' || mapped===currentCat || (p.category||'')===currentCat;
   let matchSearch = !q || p.name.toLowerCase().includes(q) || (p.category||'').toLowerCase().includes(q);
   let matchPrice = Number(p.price)<=max;
   return matchCat && matchSearch && matchPrice;
@@ -224,7 +234,7 @@ onSnapshot(q, (snap)=>{
  applyFilter();
  if(!PRODUCTS.length){ document.getElementById('headCount').innerText='No products yet - Add from Admin!'; }
 }, (err)=>{
- document.getElementById('headCount').innerText='Error: '+err.message+' - Check Firestore rules!';
+ document.getElementById('headCount').innerText='Error: '+err.message;
 });
 
 </script>
