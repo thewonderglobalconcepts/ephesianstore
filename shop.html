@@ -21,6 +21,7 @@
 </style>
 </head>
 <body>
+  <div id="ephesian-live-products" style="display:flex;flex-wrap:wrap;justify-content:center;padding:20px;background:#f9f9f9;"></div>
 <header style="background:#0d1b3e; padding:15px; position:sticky; top:0; z-index:1000;">
   <div style="max-width:1200px; margin:auto; display:flex; justify-content:space-between; align-items:center;">
     <div style="display:flex; align-items:center; gap:10px;">
@@ -236,24 +237,43 @@ function checkoutWhatsApp(){
 }
 </script>
 <script>
-// Ephesian Store - Admin connection with delete/hide
+// FINAL FIX - Show new products & Hide old ones at HOME
 (function(){
-  const adminProducts = JSON.parse(localStorage.getItem('ephesian_products') || '[]');
-  const hiddenProducts = JSON.parse(localStorage.getItem('ephesian_hidden_products') || '[]');
-  if(typeof products!== 'undefined'){
-    // Remove hidden old products
-    for(let i=products.length-1; i>=0; i--){
-      if(hiddenProducts.includes(products[i].name)) products.splice(i,1);
+  const ADMIN_KEY='ephesian_products';
+  const HIDE_KEY='ephesian_hidden_products';
+  function getAdmin(){ try{return JSON.parse(localStorage.getItem(ADMIN_KEY)||'[]')}catch(e){return []} }
+  function getHide(){ try{return JSON.parse(localStorage.getItem(HIDE_KEY)||'[]').map(s=>s.toLowerCase())}catch(e){return []} }
+  function showAdminProducts(){
+    const products=getAdmin();
+    const hideList=getHide();
+    let container=document.getElementById('ephesian-live-products');
+    if(!container){
+      container=document.createElement('div');
+      container.id='ephesian-live-products';
+      container.style.cssText='display:flex;flex-wrap:wrap;justify-content:center;padding:20px;background:#fffbe6;';
+      document.body.insertBefore(container, document.body.firstChild);
     }
-    // Add admin products if not hidden and not duplicate
-    adminProducts.forEach(p=>{
-      if(!hiddenProducts.includes(p.name) &&!products.some(x=>x.name===p.name)){
-        products.push(p);
+    container.innerHTML='';
+    products.forEach(p=>{
+      if(hideList.includes(p.name.toLowerCase())) return;
+      const div=document.createElement('div');
+      div.style.cssText='background:white;border-radius:12px;padding:10px;margin:8px;width:160px;box-shadow:0 2px 8px rgba(0,0,0,0.1);text-align:center;';
+      div.innerHTML=`<img src="${p.image}" style="width:100%;height:140px;object-fit:cover;border-radius:8px;" onerror="this.src='https://via.placeholder.com/150'"><p style="font-weight:bold;font-size:13px;margin:6px 0;">${p.name}</p><p style="color:green;font-weight:bold;">₦${Number(p.price).toLocaleString()}</p>`;
+      container.appendChild(div);
+    });
+  }
+  function hideOldProducts(){
+    const hideList=getHide();
+    if(!hideList.length) return;
+    document.querySelectorAll('div').forEach(card=>{
+      const txt=(card.innerText||'').toLowerCase();
+      if(txt.length>5 && txt.length<300 && card.querySelector('img')){
+        hideList.forEach(h=>{ if(txt.includes(h)){ card.style.display='none'; } });
       }
     });
-    if(typeof displayProducts==='function') displayProducts(products);
-    if(typeof renderProducts==='function') renderProducts(products);
   }
+  window.addEventListener('load', ()=>{ showAdminProducts(); hideOldProducts(); setTimeout(hideOldProducts, 1500); });
+  setInterval(hideOldProducts, 2000);
 })();
 </script>
 </body
