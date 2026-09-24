@@ -1,0 +1,12 @@
+{
+  "name": "Ephesian Store - Ayegun Olomi",
+  "short_name": "Ephesian Store",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#0f1e42",
+  "theme_color": "#0f1e42",
+  "icons": [
+    { "src": "logo.jpg", "sizes": "192x192", "type": "image/jpeg" },
+    { "src": "logo.jpg", "sizes": "512x512", "type": "image/jpeg" }
+  ]
+}
