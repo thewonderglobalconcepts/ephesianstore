@@ -236,14 +236,25 @@ function checkoutWhatsApp(){
 }
 </script>
 <script>
-// Load products added from admin panel
-const adminProducts = JSON.parse(localStorage.getItem('ephesian_products')) || [];
-if(adminProducts.length > 0){
-  // Merge admin products with existing products
-  if(typeof products !== 'undefined'){
-    products.push(...adminProducts);
+// Ephesian Store - Admin connection with delete/hide
+(function(){
+  const adminProducts = JSON.parse(localStorage.getItem('ephesian_products') || '[]');
+  const hiddenProducts = JSON.parse(localStorage.getItem('ephesian_hidden_products') || '[]');
+  if(typeof products!== 'undefined'){
+    // Remove hidden old products
+    for(let i=products.length-1; i>=0; i--){
+      if(hiddenProducts.includes(products[i].name)) products.splice(i,1);
+    }
+    // Add admin products if not hidden and not duplicate
+    adminProducts.forEach(p=>{
+      if(!hiddenProducts.includes(p.name) &&!products.some(x=>x.name===p.name)){
+        products.push(p);
+      }
+    });
+    if(typeof displayProducts==='function') displayProducts(products);
+    if(typeof renderProducts==='function') renderProducts(products);
   }
-}
+})();
 </script>
 </body
 </html>
