@@ -87,7 +87,7 @@ footer{background:#0f1e42;color:#aaa;text-align:center;padding:18px;font-size:11
 <div class="price-filter" style="margin-top:14px"><h4>💰 MAX PRICE</h4><input type="range" id="priceRange" min="1000" max="50000" value="50000" class="range" oninput="applyFilter()"><div style="font-size:11px">Up to ₦<span id="priceVal">50,000</span></div></div>
 </div>
 <div class="main">
-<div class="main-head"><h2 id="headTitle">All Products</h2><span id="headCount">Loading...</span></div>
+<div class="main-head"><h2 id="headTitle">All Products - LIVE FROM INTERNET</h2><span id="headCount">Loading from internet...</span></div>
 <div id="shop-grid"></div>
 </div>
 </div>
@@ -104,25 +104,23 @@ footer{background:#0f1e42;color:#aaa;text-align:center;padding:18px;font-size:11
 <div id="cartBtn" onclick="openCart()">🛒 <span id="cart-count">0</span> Items</div>
 <div id="cartModal"><div class="cart-box"><h3>Your Cart 🛒 <span onclick="closeCart()" style="float:right;background:#eee;padding:2px 10px;border-radius:10px;cursor:pointer">X</span></h3><div id="cart-items" style="margin-top:10px"></div><hr style="margin:10px 0"><h4 id="cart-total">Total: ₦0</h4><button onclick="checkoutWhatsApp()" style="background:#25D366;color:#fff;padding:12px;width:100%;border:none;border-radius:10px;font-weight:700;margin-top:10px">Checkout on WhatsApp 📲</button><button onclick="clearCart()" style="background:#ff4444;color:#fff;padding:10px;width:100%;border:none;border-radius:10px;margin-top:8px">Clear Cart</button><button onclick="closeCart()" style="background:#eee;padding:10px;width:100%;border:none;border-radius:10px;margin-top:8px">Continue Shopping</button></div></div>
 <footer>THE WONDER GLOBAL CONCEPT | EPHESIANS STORE RC:9874607<br>Ayegun Olomi, Ibadan - 07081632713</footer>
-<script>
-function getProducts(){
- let a=[],b=[];
- try{a=JSON.parse(localStorage.getItem('wgc_products')||'[]')}catch(e){}
- try{b=JSON.parse(localStorage.getItem('ephesian_products')||'[]')}catch(e){}
- let merged=[...a,...b];
- if(!merged.length){
-  merged=[
-   {name:"Hair Clipper Gold",price:15000,discount:20,stock:20,category:"Other Essentials",images:["p1.jpg"]},
-   {name:"Tooth brush set",price:5000,discount:15,stock:10,category:"Other Essentials",images:["T1.jpg"]},
-   {name:"Shaving Clipper",price:4000,discount:10,stock:0,category:"Other Essentials",images:["p3.jpg"]},
-   {name:"Easypie powerbank",price:17000,discount:20,stock:15,category:"Power Banks",images:["p4.jpg"]},
-   {name:"Professional clipper",price:10000,discount:15,stock:5,category:"Other Essentials",images:["p5.jpg"]},
-   {name:"Easypie powerbank Small",price:9500,discount:20,stock:20,category:"Power Banks",images:["p6.jpg"]}
-  ];
- }
- return merged;
-}
-let PRODUCTS=getProducts();
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getFirestore, collection, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBjR6WNrd8ziXnegOXZv_RJtGFVbZJN8",
+  authDomain: "ephesian-store.firebaseapp.com",
+  projectId: "ephesian-store",
+  storageBucket: "ephesian-store.firebasestorage.app",
+  messagingSenderId: "109847556546",
+  appId: "1:109847556546:web:5c7f8a9b0c1d2e3f"
+};
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+let PRODUCTS=[];
 let currentCat='all';
 let cart=JSON.parse(localStorage.getItem('ephesian_cart')||'[]');
 function saveCart(){localStorage.setItem('ephesian_cart',JSON.stringify(cart));document.getElementById('cart-count').innerText=cart.length}
@@ -130,30 +128,33 @@ function addToCart(name,price,image){
  let prod = PRODUCTS.find(p=>p.name===name);
  if(prod && (prod.stock===0)){ alert('Sorry, '+name+' is OUT OF STOCK'); return; }
  cart.push({name,price:Number(price),image});saveCart();alert(name+' added! Total: '+cart.length)}
+window.addToCart = addToCart;
+
 function render(list){
  let grid=document.getElementById('shop-grid');
- document.getElementById('headCount').innerText=list.length+' Products found';
+ document.getElementById('headCount').innerText=list.length+' Products found (Live)';
  document.getElementById('count-all').innerText=PRODUCTS.length;
- if(!list.length){grid.innerHTML='<p style="grid-column:1/-1;text-align:center;padding:30px;color:#888">No products for this category. Try All Products or go to Admin to add products for this category.</p>';return}
+ if(!list.length){grid.innerHTML='<p style="grid-column:1/-1;text-align:center;padding:30px;color:#888">No products for this category. Add from Admin.</p>';return}
  grid.innerHTML=list.map((p,i)=>{
-  let isOut = (p.stock!==undefined && p.stock===0);
+  let isOut = (p.stock!==undefined && Number(p.stock)===0);
+  let imgs = p.images || [p.image] || [];
   return `
   <div class="card ${isOut?'out':''}">
    <span class="badge">-${p.discount||20}%</span>
    <span class="badge-pay">Pay 70%</span>
    ${isOut?'<span class="badge-out">OUT OF STOCK</span>':''}
-   <span class="pics">${(p.images||[p.image]).length} pics</span>
-   <img src="${(p.images||[p.image])[0]}" onerror="this.src='https://via.placeholder.com/180?text=${encodeURIComponent(p.name)}'" onclick='openGallery(${JSON.stringify(p).replace(/'/g,"&#39;")})'>
+   <span class="pics">${imgs.length} pics</span>
+   <img src="${imgs[0]}" onerror="this.src='https://via.placeholder.com/180?text=${encodeURIComponent(p.name)}'" onclick='openGallery(${JSON.stringify(p).replace(/'/g,"&#39;")})'>
    <div class="info">
     <h3>${p.name}</h3>
     <div class="price">₦${Number(p.price).toLocaleString()}<span class="old">₦${Math.round(p.price*1.25).toLocaleString()}</span></div>
     <div class="pay70">Pay 70%: ₦${Math.round(p.price*0.7).toLocaleString()} ${isOut?'<span style="color:red;font-weight:700">- OUT OF STOCK</span>':''}</div>
-    <button class="btn-cart" ${isOut?'disabled':''} onclick="addToCart('${p.name.replace(/'/g,"\\'")}',${p.price},'${(p.images||[p.image])[0]}')">${isOut?'Out of Stock':'Add to Cart 🛒'}</button>
+    <button class="btn-cart" ${isOut?'disabled':''} onclick="addToCart('${p.name.replace(/'/g,"\\'")}',${p.price},'${imgs[0]}')">${isOut?'Out of Stock':'Add to Cart 🛒'}</button>
     <button class="btn-wa" ${isOut?'disabled':''} onclick="window.open('https://wa.me/2347081632713?text=I%20want%20${encodeURIComponent(p.name)}%20₦${p.price}','_blank')">${isOut?'Unavailable':'Order WhatsApp'}</button>
    </div>
   </div>`}).join('');
 }
-function applyFilter(){
+window.applyFilter = function(){
  let q=document.getElementById('search').value.toLowerCase().trim();
  let max=Number(document.getElementById('priceRange').value);
  document.getElementById('priceVal').innerText=max.toLocaleString();
@@ -170,7 +171,7 @@ function applyFilter(){
   if(matches.length){ box.innerHTML=matches.map(m=>`<div onclick="document.getElementById('search').value='${m.name.replace(/'/g,"&#39;")}';applyFilter();document.getElementById('suggestBox').style.display='none'" style="padding:10px;border-bottom:1px solid #eee;cursor:pointer"><b>${m.name}</b><br><small>₦${m.price} - ${m.category}</small></div>`).join(''); box.style.display='block'; } else { box.style.display='none'; }
  } else { box.style.display='none'; }
 }
-function setCat(cat,el){
+window.setCat = function(cat,el){
  currentCat=cat;
  document.querySelectorAll('.filter div').forEach(d=>d.classList.remove('active'));
  el.classList.add('active');
@@ -178,7 +179,7 @@ function setCat(cat,el){
  applyFilter();
 }
 let curImgs=[],curIdx=0,curProd=null,autoPlay=null,isZoom=false;
-function openGallery(p){
+window.openGallery = function(p){
  if(typeof p==='string') return;
  curProd=p;
  curImgs=p.images&&p.images.length?p.images:[p.image];
@@ -186,8 +187,8 @@ function openGallery(p){
  document.getElementById('productDesc').innerText=p.name+' - ₦'+Number(p.price).toLocaleString()+' - '+(p.category||'')+' - Stock: '+(p.stock!==undefined?p.stock:'20')+(p.stock===0?' OUT OF STOCK':'')+' - Pay 70% Now';
  document.getElementById('imageModal').style.display='flex';
  document.getElementById('modalAddCart').onclick=()=>addToCart(curProd.name,curProd.price,curImgs[0]);
- document.getElementById('modalAddCart').disabled = (curProd.stock===0);
- document.getElementById('modalAddCart').innerText = (curProd.stock===0)?'Out of Stock':'Add to Cart 🛒';
+ document.getElementById('modalAddCart').disabled = (Number(curProd.stock)===0);
+ document.getElementById('modalAddCart').innerText = (Number(curProd.stock)===0)?'Out of Stock':'Add to Cart 🛒';
  updateImg();
  clearInterval(autoPlay);autoPlay=setInterval(()=>changeImg(1),3000);
 }
@@ -199,25 +200,36 @@ function updateImg(){
  let dots=document.getElementById('modalDots');dots.innerHTML='';
  curImgs.forEach((_,i)=>{let d=document.createElement('div');d.style.cssText=`width:8px;height:8px;border-radius:50%;background:${i==curIdx?'#FFD700':'#777'};cursor:pointer`;d.onclick=()=>{curIdx=i;updateImg()};dots.appendChild(d);});
 }
-function changeImg(s){curIdx+=s;if(curIdx<0)curIdx=curImgs.length-1;if(curIdx>=curImgs.length)curIdx=0;updateImg();}
-function closeModal(){document.getElementById('imageModal').style.display='none';clearInterval(autoPlay);}
+window.changeImg = function(s){curIdx+=s;if(curIdx<0)curIdx=curImgs.length-1;if(curIdx>=curImgs.length)curIdx=0;updateImg();}
+window.closeModal = function(){document.getElementById('imageModal').style.display='none';clearInterval(autoPlay);}
 document.getElementById('modalImg').onclick=function(){if(!isZoom){this.style.transform='scale(2)';this.style.cursor='zoom-out';isZoom=true;clearInterval(autoPlay);}else{this.style.transform='scale(1)';isZoom=false;autoPlay=setInterval(()=>changeImg(1),3000);}};
-function openCart(){document.getElementById('cartModal').style.display='flex';renderCart();}
-function closeCart(){document.getElementById('cartModal').style.display='none';}
+window.openCart = function(){document.getElementById('cartModal').style.display='flex';renderCart();}
+window.closeCart = function(){document.getElementById('cartModal').style.display='none';}
 function renderCart(){
  let div=document.getElementById('cart-items');let total=0;div.innerHTML='';
  if(!cart.length){div.innerHTML='<p style="text-align:center;color:#777">Cart empty 😔</p>'}
  else{cart.forEach((it,i)=>{total+=Number(it.price);div.innerHTML+=`<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #eee"><div><b style="font-size:12px">${it.name}</b><br><span style="color:green;font-size:11px">₦${Number(it.price).toLocaleString()}</span></div><button onclick="cart.splice(${i},1);saveCart();renderCart()" style="background:#ff4444;color:#fff;border:none;padding:4px 8px;border-radius:4px">X</button></div>`})}
  document.getElementById('cart-total').innerText='Total: ₦'+total.toLocaleString();
 }
-function clearCart(){cart=[];saveCart();renderCart();}
-function checkoutWhatsApp(){
+window.clearCart = function(){cart=[];saveCart();renderCart();}
+window.checkoutWhatsApp = function(){
  if(!cart.length){alert('Cart empty');return}
  let total=cart.reduce((s,i)=>s+Number(i.price),0);
  let msg="Hello Ephesian Store! I want to order:%0A";cart.forEach(i=>{msg+=`- ${i.name} (₦${i.price})%0A`});msg+=`%0ATotal: ₦${total}%0APay 70% Now?`;
  window.open(`https://wa.me/2347081632713?text=${msg}`,'_blank');
 }
-window.addEventListener('load',()=>{PRODUCTS=getProducts();render(PRODUCTS);saveCart();});
+
+const q = query(collection(db,"products"), orderBy("createdAt","desc"));
+onSnapshot(q, (snap)=>{
+ PRODUCTS=[];
+ snap.forEach(d=>{ PRODUCTS.push(d.data()); });
+ saveCart();
+ applyFilter();
+ if(!PRODUCTS.length){ document.getElementById('headCount').innerText='No products yet - Add from Admin!'; }
+}, (err)=>{
+ document.getElementById('headCount').innerText='Error: '+err.message+' - Check Firestore rules!';
+});
+
 </script>
 </body>
 </html>
