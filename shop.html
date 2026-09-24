@@ -235,5 +235,15 @@ function checkoutWhatsApp(){
   window.open(`https://wa.me/2347081632713?text=${msg}`, '_blank');
 }
 </script>
+<script>
+// Load products added from admin panel
+const adminProducts = JSON.parse(localStorage.getItem('ephesian_products')) || [];
+if(adminProducts.length > 0){
+  // Merge admin products with existing products
+  if(typeof products !== 'undefined'){
+    products.push(...adminProducts);
+  }
+}
+</script>
 </body
 </html>
