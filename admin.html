@@ -18,20 +18,21 @@ input,select,textarea{width:100%;padding:11px;border:1px solid #ddd;border-radiu
 .box{border:2px dashed #d4af37;height:100px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:#fffbf0;cursor:pointer;font-size:28px;color:#d4af37;font-weight:700;position:relative;overflow:hidden}
 .box img{width:100%;height:100%;object-fit:cover}
 .btn{width:100%;padding:14px;background:#ff6a00;color:#fff;border:none;border-radius:8px;font-weight:700;cursor:pointer;margin-top:10px}
+.btn-edit{background:#0f1e42!important}
 .note{background:#fff3cd;padding:10px;border-radius:6px;font-size:12px;margin:10px 0;border-left:4px solid #ff6a00}
 @media(max-width:700px){.row{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
-  <script>
+<script>
 const ADMIN_PASS = "Araoluwa_1";
 let p = prompt("🔒 Admin Password:");
-if(p !== ADMIN_PASS){ alert("Wrong!"); window.location.href="/index.html"; }
+if(p!== ADMIN_PASS){ alert("Wrong!"); window.location.href="/index.html"; }
 </script>
-<div class="header"><div>Ephesian Store - Admin (INTERNET)</div><a href="shop.html">Back to Shop</a></div>
+<div class="header"><div>Ephesian Store - Admin</div><a href="shop.html">Back to Shop</a></div>
 <div class="wrap">
 <div class="card">
-<h3>Add Product - Now saves to ALL phones!</h3>
+<h3 id="formTitle">Add Product - Now saves to ALL phones!</h3>
 <div class="row">
 <div><label>Product Name</label><input id="n" placeholder="e.g Easypie Powerbank"></div>
 <div><label>Price ₦</label><input id="p" type="number" placeholder="17000"></div>
@@ -41,10 +42,11 @@ if(p !== ADMIN_PASS){ alert("Wrong!"); window.location.href="/index.html"; }
 <textarea id="desc" placeholder="Description" style="height:50px;margin-bottom:10px"></textarea>
 <label>Category</label>
 <select id="cat" style="margin-bottom:15px"><option>Chargers & Cables</option><option>Power Banks</option><option>Extension Boxes</option><option>Torches & Lighting</option><option>Laptop Accessories</option><option>Gas Items</option><option>Bags & Travel</option><option>Other Essentials</option></select>
-<div class="note"><b>FIXED: Now saves to internet!</b> Add 4 pictures, click Publish - e go show for phone instantly!</div>
+<div class="note"><b>FIXED:</b> Pictures now auto-compress! No more 1MB error. You fit upload 4 pictures.</div>
 <div class="img-grid" id="grid"></div>
 <input type="file" id="file" accept="image/*" multiple style="display:none">
 <button class="btn" id="pubBtn">Publish Product - Show for Everyone</button>
+<button class="btn btn-edit" id="cancelEdit" style="display:none;background:#666">Cancel Edit</button>
 <p id="ok" style="color:green;font-size:12px;margin-top:10px"></p>
 </div>
 <div class="card"><h4>Your Products (From Internet): <span id="c">0</span></h4><div id="list">Loading...</div></div>
@@ -52,7 +54,7 @@ if(p !== ADMIN_PASS){ alert("Wrong!"); window.location.href="/index.html"; }
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, doc, serverTimestamp, query, orderBy } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, doc, serverTimestamp, query, orderBy, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBjR6WNrd8ziXnegOXZv_RJtGFVbZJN8",
@@ -68,22 +70,64 @@ const db = getFirestore(app);
 
 let imgs=[], editingId=null;
 const grid=document.getElementById('grid'), file=document.getElementById('file');
+
 function draw(){grid.innerHTML='';for(let i=0;i<4;i++){let h=imgs[i];grid.innerHTML+=`<div class="box" onclick="document.getElementById('file').click()">${h?`<img src="${h}"><span style="position:absolute;top:2px;right:2px;background:red;color:#fff;width:18px;height:18px;border-radius:50%;font-size:11px;display:flex;align-items:center;justify-content:center" onclick="event.stopPropagation();imgs.splice(${i},1);draw()">x</span>`:`+`}</div>`;}}
-file.onchange=e=>{for(let f of e.target.files){if(imgs.length>=4){alert('Max 4');break;}let r=new FileReader();r.onload=v=>{imgs.push(v.target.result);draw();};r.readAsDataURL(f);}};
+
+function compressImage(file){
+  return new Promise((resolve)=>{
+    const reader = new FileReader();
+    reader.onload = (e)=>{
+      const img = new Image();
+      img.onload = ()=>{
+        const canvas = document.createElement("canvas");
+        let w = img.width, h = img.height;
+        const maxWidth = 600;
+        if(w > maxWidth){ h = h*(maxWidth/w); w = maxWidth; }
+        canvas.width = w; canvas.height = h;
+        canvas.getContext("2d").drawImage(img,0,0,w,h);
+        resolve(canvas.toDataURL("image/jpeg", 0.6));
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+file.onchange = async (e)=>{
+  for(let f of e.target.files){
+    if(imgs.length>=4){alert('Max 4');break;}
+    document.getElementById('ok').innerText='Compressing...';
+    let compressed = await compressImage(f);
+    imgs.push(compressed);
+    draw();
+    document.getElementById('ok').innerText='';
+  }
+};
 
 document.getElementById('pubBtn').onclick = async ()=>{
  let name=document.getElementById('n').value.trim(), price=document.getElementById('p').value.trim();
  if(!name||!price){alert('Enter Name and Price');return;} if(!imgs.length){alert('Upload at least 1 picture');return;}
  document.getElementById('ok').innerText='Saving to internet...';
  try{
-  await addDoc(collection(db,"products"),{
+  let data = {
     name, price:Number(price), discount:Number(document.getElementById('d').value||20),
     stock:Number(document.getElementById('stock').value), category:document.getElementById('cat').value,
-    desc:document.getElementById('desc').value, images:[...imgs], createdAt:serverTimestamp()
-  });
-  document.getElementById('ok').innerText='✅ Published to internet! Check phone now: '+name;
-  document.getElementById('n').value='';document.getElementById('p').value='';imgs=[];draw();
- }catch(err){document.getElementById('ok').innerText='Error: '+err.message;}
+    desc:document.getElementById('desc').value, images:[...imgs], updatedAt:serverTimestamp()
+  };
+  if(editingId){
+    await updateDoc(doc(db,"products",editingId), data);
+    document.getElementById('ok').innerText='✅ UPDATED: '+name;
+    editingId=null;
+    document.getElementById('formTitle').innerText='Add Product';
+    document.getElementById('pubBtn').innerText='Publish Product - Show for Everyone';
+    document.getElementById('cancelEdit').style.display='none';
+  }else{
+    data.createdAt=serverTimestamp();
+    await addDoc(collection(db,"products"), data);
+    document.getElementById('ok').innerText='✅ Published to internet! '+name;
+  }
+  document.getElementById('n').value='';document.getElementById('p').value='';document.getElementById('desc').value='';imgs=[];draw();
+ }catch(err){document.getElementById('ok').innerText='Error: '+err.message; alert(err.message);}
 };
 
 const q = query(collection(db,"products"), orderBy("createdAt","desc"));
@@ -92,11 +136,36 @@ onSnapshot(q,(snap)=>{
  let html='';
  snap.forEach(d=>{
   let x=d.data(); let isOut=Number(x.stock)===0;
-  html+=`<div style="display:flex;gap:8px;padding:8px;border-bottom:1px solid #eee;align-items:center"><img src="${x.images[0]}" style="width:40px;height:40px;object-fit:contain"><div style="flex:1;font-size:11px"><b>${x.name}</b><br>₦${x.price} | Stock:<b style="color:${isOut?'red':'green'}">${x.stock}</b> | ${x.category}</div><button onclick="deleteProd('${d.id}')" style="background:red;color:#fff;border:none;padding:4px 8px;border-radius:4px">X</button></div>`;
+  html+=`<div style="display:flex;gap:8px;padding:8px;border-bottom:1px solid #eee;align-items:center"><img src="${x.images[0]}" style="width:40px;height:40px;object-fit:contain"><div style="flex:1;font-size:11px"><b>${x.name}</b><br>₦${x.price} | Stock:<b style="color:${isOut?'red':'green'}">${x.stock}</b></div><button onclick="editProd('${d.id}')" style="background:blue;color:#fff;border:none;padding:5px 8px;border-radius:4px;margin-right:3px">Edit</button><button onclick="deleteProd('${d.id}')" style="background:red;color:#fff;border:none;padding:5px 8px;border-radius:4px">X</button></div>`;
  });
  document.getElementById('list').innerHTML=html||'No products yet';
 });
-window.deleteProd = async (id)=>{ if(confirm('Delete?')){ await deleteDoc(doc(db,"products",id)); } };
+
+window.deleteProd = async (id)=>{ if(confirm('Delete this product?')){ await deleteDoc(doc(db,"products",id)); } };
+
+window.editProd = async (id)=>{
+  let snap = await getDoc(doc(db,"products",id));
+  if(!snap.exists()) return;
+  let x = snap.data();
+  document.getElementById('n').value = x.name;
+  document.getElementById('p').value = x.price;
+  document.getElementById('d').value = x.discount||20;
+  document.getElementById('stock').value = x.stock||0;
+  document.getElementById('cat').value = x.category;
+  document.getElementById('desc').value = x.desc||'';
+  imgs = x.images||[];
+  draw();
+  editingId = id;
+  document.getElementById('formTitle').innerText = 'EDITING: '+x.name;
+  document.getElementById('pubBtn').innerText = 'UPDATE PRODUCT';
+  document.getElementById('cancelEdit').style.display='block';
+  window.scrollTo(0,0);
+};
+
+document.getElementById('cancelEdit').onclick = ()=>{
+  editingId=null; document.getElementById('n').value='';document.getElementById('p').value='';imgs=[];draw();
+  document.getElementById('formTitle').innerText='Add Product'; document.getElementById('pubBtn').innerText='Publish Product'; document.getElementById('cancelEdit').style.display='none';
+};
 
 draw();
 </script>
