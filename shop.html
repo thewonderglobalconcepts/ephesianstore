@@ -237,43 +237,47 @@ function checkoutWhatsApp(){
 }
 </script>
 <script>
-// FINAL FIX - Show new products & Hide old ones at HOME
+// Gallery Modal - Show 8 pictures with auto-slide + buttons
 (function(){
-  const ADMIN_KEY='ephesian_products';
-  const HIDE_KEY='ephesian_hidden_products';
-  function getAdmin(){ try{return JSON.parse(localStorage.getItem(ADMIN_KEY)||'[]')}catch(e){return []} }
-  function getHide(){ try{return JSON.parse(localStorage.getItem(HIDE_KEY)||'[]').map(s=>s.toLowerCase())}catch(e){return []} }
-  function showAdminProducts(){
-    const products=getAdmin();
-    const hideList=getHide();
-    let container=document.getElementById('ephesian-live-products');
-    if(!container){
-      container=document.createElement('div');
-      container.id='ephesian-live-products';
-      container.style.cssText='display:flex;flex-wrap:wrap;justify-content:center;padding:20px;background:#fffbe6;';
-      document.body.insertBefore(container, document.body.firstChild);
-    }
-    container.innerHTML='';
-    products.forEach(p=>{
-      if(hideList.includes(p.name.toLowerCase())) return;
-      const div=document.createElement('div');
-      div.style.cssText='background:white;border-radius:12px;padding:10px;margin:8px;width:160px;box-shadow:0 2px 8px rgba(0,0,0,0.1);text-align:center;';
-      div.innerHTML=`<img src="${p.image}" style="width:100%;height:140px;object-fit:cover;border-radius:8px;" onerror="this.src='https://via.placeholder.com/150'"><p style="font-weight:bold;font-size:13px;margin:6px 0;">${p.name}</p><p style="color:green;font-weight:bold;">₦${Number(p.price).toLocaleString()}</p>`;
-      container.appendChild(div);
+  function getAdmin(){ try{return JSON.parse(localStorage.getItem('ephesian_products')||'[]')}catch(e){return []} }
+  function getHide(){ try{return JSON.parse(localStorage.getItem('ephesian_hidden_products')||'[]')}catch(e){return []} }
+
+  window.openGallery = function(p){
+    let imgs = p.images || [p.image]; let cur = 0;
+    let m = document.createElement('div'); m.id='gm';
+    m.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:99999;display:flex;align-items:center;justify-content:center;padding:15px;';
+    m.innerHTML=`<div style="position:relative;max-width:420px;width:100%;background:white;border-radius:16px;padding:12px;">
+      <button onclick="document.getElementById('gm').remove()" style="position:absolute;top:-38px;right:0;background:white;width:32px;height:32px;border-radius:50%;border:none;font-size:18px;cursor:pointer;">✕</button>
+      <img id="gImg" src="${imgs[0]}" style="width:100%;height:360px;object-fit:contain;border-radius:12px;background:#f9f9f9;">
+      <button id="gp" style="position:absolute;left:15px;top:170px;background:rgba(0,0,0,0.6);color:white;border:none;width:38px;height:38px;border-radius:50%;font-size:22px;">‹</button>
+      <button id="gn" style="position:absolute;right:15px;top:170px;background:rgba(0,0,0,0.6);color:white;border:none;width:38px;height:38px;border-radius:50%;font-size:22px;">›</button>
+      <div style="text-align:center;margin-top:12px;"><b>${p.name}</b><br><b style="color:green;font-size:18px;">₦${Number(p.price).toLocaleString()}</b>
+      <div id="gdots" style="display:flex;gap:6px;justify-content:center;margin:10px 0;"></div>
+      <a href="https://wa.me/2347081632713?text=I want ${encodeURIComponent(p.name)}" style="display:block;background:#facc15;color:black;padding:12px;border-radius:24px;font-weight:bold;text-decoration:none;margin-top:8px;">Order via WhatsApp</a>
+      <small style="color:#888;">${imgs.length} pictures - Auto sliding</small></div></div>`;
+    document.body.appendChild(m);
+    let dc=m.querySelector('#gdots');
+    imgs.forEach((_,i)=>{ let d=document.createElement('div'); d.style.cssText=`width:8px;height:8px;border-radius:50%;background:${i==0?'#facc15':'#ddd'};`; d.onclick=()=>{cur=i;upd();}; dc.appendChild(d); });
+    function upd(){ m.querySelector('#gImg').src=imgs[cur]; [...dc.children].forEach((d,i)=>d.style.background=i==cur?'#facc15':'#ddd'); }
+    m.querySelector('#gn').onclick=()=>{cur=(cur+1)%imgs.length;upd();}
+    m.querySelector('#gp').onclick=()=>{cur=(cur-1+imgs.length)%imgs.length;upd();}
+    let auto=setInterval(()=>{cur=(cur+1)%imgs.length;upd();},3000);
+    m.onclick=e=>{ if(e.target.id=='gm'){clearInterval(auto); m.remove();} };
+  }
+
+  function show(){
+    let prods=getAdmin(); let hide=getHide().map(s=>s.toLowerCase());
+    let c=document.getElementById('ephesian-live-products');
+    if(!c){ c=document.createElement('div'); c.id='ephesian-live-products'; c.style.cssText='display:flex;flex-wrap:wrap;justify-content:center;padding:15px;gap:10px;';
+      let t=[...document.querySelectorAll('*')].find(el=>el.textContent&&el.textContent.includes('SHOP OUR PRODUCTS')); if(t) t.insertAdjacentElement('afterend',c); else document.body.appendChild(c); }
+    c.innerHTML='';
+    prods.forEach(p=>{ if(hide.includes(p.name.toLowerCase())) return;
+      let d=document.createElement('div'); d.style.cssText='background:white;border-radius:12px;padding:10px;width:165px;box-shadow:0 2px 8px rgba(0,0,0,0.1);text-align:center;cursor:pointer;position:relative;';
+      d.innerHTML=`<span style="position:absolute;top:6px;right:6px;background:rgba(0,0,0,0.7);color:white;font-size:10px;padding:2px 6px;border-radius:10px;">${p.images?p.images.length:1} pics</span><img src="${p.image}" style="width:100%;height:135px;object-fit:cover;border-radius:8px;"><p style="font-weight:bold;font-size:13px;margin:6px 0;">${p.name}</p><p style="color:green;font-weight:bold;">₦${Number(p.price).toLocaleString()}</p><p style="font-size:10px;color:#888;">Click to view</p>`;
+      d.onclick=()=>openGallery(p); c.appendChild(d);
     });
   }
-  function hideOldProducts(){
-    const hideList=getHide();
-    if(!hideList.length) return;
-    document.querySelectorAll('div').forEach(card=>{
-      const txt=(card.innerText||'').toLowerCase();
-      if(txt.length>5 && txt.length<300 && card.querySelector('img')){
-        hideList.forEach(h=>{ if(txt.includes(h)){ card.style.display='none'; } });
-      }
-    });
-  }
-  window.addEventListener('load', ()=>{ showAdminProducts(); hideOldProducts(); setTimeout(hideOldProducts, 1500); });
-  setInterval(hideOldProducts, 2000);
+  window.addEventListener('load',()=>{ show(); setTimeout(show,1000); });
 })();
 </script>
 </body

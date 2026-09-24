@@ -3,83 +3,56 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ephesian Admin - Manage Store</title>
+<title>Admin - Ephesian</title>
 <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 min-h-screen">
-<!-- LOGIN -->
-<div id="loginPage" class="flex items-center justify-center min-h-screen p-4">
-  <div class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-sm">
-    <h1 class="text-2xl font-bold text-center mb-1">Ephesian Store</h1>
-    <p class="text-center text-gray-500 mb-6">Admin Login</p>
-    <input id="user" type="text" placeholder="Username" class="w-full p-3 border rounded-xl mb-3 outline-none focus:border-black">
-    <input id="pass" type="password" placeholder="Password" class="w-full p-3 border rounded-xl mb-4 outline-none focus:border-black">
-    <button onclick="login()" class="w-full bg-black text-white p-3 rounded-xl font-bold hover:bg-gray-800">Login</button>
-    <p id="err" class="text-red-500 text-sm mt-3 hidden text-center">Wrong username or password</p>
+<body class="bg-gray-100 min-h-screen p-4">
+
+<div class="max-w-2xl mx-auto">
+  <h1 class="text-2xl font-bold text-center mb-6">Ephesian Admin - Add Product</h1>
+
+  <div class="bg-white p-6 rounded-xl shadow mb-6">
+    <h2 class="font-bold mb-4">Add New Product (With 8 Pictures Gallery)</h2>
+    <input id="pName" placeholder="Product Name e.g Toothbrush Set" class="w-full p-3 border rounded-xl mb-3">
+    <input id="pPrice" placeholder="Price e.g 5000" type="number" class="w-full p-3 border rounded-xl mb-3">
+
+    <p class="font-bold text-sm mb-2">Product Images (Add up to 8 - like toothbrush set)</p>
+    <input id="pImage" placeholder="Image 1 - Main Image Required" class="w-full p-3 border rounded-xl mb-2">
+    <input id="pImage2" placeholder="Image 2 - Optional" class="w-full p-3 border rounded-xl mb-2">
+    <input id="pImage3" placeholder="Image 3 - Optional" class="w-full p-3 border rounded-xl mb-2">
+    <input id="pImage4" placeholder="Image 4 - Optional" class="w-full p-3 border rounded-xl mb-2">
+    <input id="pImage5" placeholder="Image 5 - Optional" class="w-full p-3 border rounded-xl mb-2">
+    <input id="pImage6" placeholder="Image 6 - Optional" class="w-full p-3 border rounded-xl mb-2">
+    <input id="pImage7" placeholder="Image 7 - Optional" class="w-full p-3 border rounded-xl mb-2">
+    <input id="pImage8" placeholder="Image 8 - Optional" class="w-full p-3 border rounded-xl mb-3">
+
+    <select id="pCat" class="w-full p-3 border rounded-xl mb-3">
+      <option>General</option>
+      <option>Home</option>
+      <option>Kitchen</option>
+      <option>Beauty</option>
+      <option>Toothbrush</option>
+    </select>
+
+    <button onclick="addProduct()" class="w-full bg-black text-white py-3 rounded-xl font-bold">Add Product With Gallery</button>
   </div>
-</div>
 
-<!-- ADMIN PANEL -->
-<div id="adminPage" class="hidden">
-  <div class="bg-black text-white p-4 flex justify-between items-center">
-    <h1 class="font-bold text-lg">Ephesian Admin Panel</h1>
-    <button onclick="logout()" class="bg-white text-black px-4 py-1 rounded-full text-sm font-bold">Logout</button>
+  <div class="bg-white p-6 rounded-xl shadow mb-6">
+    <h2 class="font-bold mb-4">Hide Product</h2>
+    <input id="hideName" placeholder="Type product name" class="w-full p-3 border rounded-xl mb-3">
+    <button onclick="hideProduct()" class="w-full bg-red-600 text-white py-3 rounded-xl font-bold">Hide From Shop</button>
+    <div id="list" class="mt-4"></div>
   </div>
 
-  <div class="max-w-4xl mx-auto p-4 space-y-6">
-    <!-- ADD PRODUCT -->
-    <div class="bg-white p-6 rounded-2xl shadow">
-      <h2 class="font-bold text-lg mb-4">Add New Product</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-        <input id="pName" placeholder="Product Name e.g Louis Vuitton Shoe" class="p-3 border rounded-xl">
-        <input id="pPrice" type="number" placeholder="Price e.g 45000" class="p-3 border rounded-xl">
-        <input id="pImage" placeholder="Image URL e.g images/p1.jpg or https://..." class="p-3 border rounded-xl">
-        <select id="pCat" class="p-3 border rounded-xl">
-          <option>Shoes</option><option>Clothes</option><option>Bags</option><option>Watches</option><option>Accessories</option>
-        </select>
-      </div>
-      <button onclick="addProduct()" class="w-full mt-4 bg-yellow-400 p-3 rounded-xl font-bold">Add Product To Shop</button>
-    </div>
-
-    <!-- PRODUCTS YOU ADDED -->
-    <div class="bg-white p-6 rounded-2xl shadow">
-      <h2 class="font-bold text-lg mb-4">Products You Added (<span id="count">0</span>)</h2>
-      <div id="adminList" class="space-y-3"></div>
-    </div>
-
-    <!-- HIDE ORIGINAL PRODUCTS -->
-    <div class="bg-white p-6 rounded-2xl shadow">
-      <h2 class="font-bold text-lg mb-2">Hide Old Product From Shop</h2>
-      <p class="text-sm text-gray-500 mb-3">Type exact name of old product to hide it (e.g Nike Air Max). You can unhide later.</p>
-      <div class="flex gap-2">
-        <input id="hideName" placeholder="Product name to hide" class="flex-1 p-3 border rounded-xl">
-        <button onclick="hideProduct()" class="bg-black text-white px-5 rounded-xl font-bold">Hide</button>
-      </div>
-      <div id="hiddenList" class="mt-4 space-y-2"></div>
-    </div>
-
-    <div class="text-center pb-10">
-      <a href="shop.html" class="text-sm underline">Go to Shop →</a>
-    </div>
+  <div class="text-center">
+    <button onclick="logout()" class="text-red-600 underline">Logout</button>
+    <a href="shop.html" class="ml-4 text-blue-600 underline">Go to Shop</a>
   </div>
 </div>
 
 <script>
 const PRODUCTS_KEY='ephesian_products';
 const HIDDEN_KEY='ephesian_hidden_products';
-function login(){
-  if(document.getElementById('user').value==='ephesian' && document.getElementById('pass').value==='ephesian123'){
-    localStorage.setItem('ephesian_admin','yes');
-    showAdmin();
-  } else document.getElementById('err').classList.remove('hidden');
-}
-function showAdmin(){
-  document.getElementById('loginPage').classList.add('hidden');
-  document.getElementById('adminPage').classList.remove('hidden');
-  render();
-}
-function logout(){ localStorage.removeItem('ephesian_admin'); location.reload(); }
-if(localStorage.getItem('ephesian_admin')==='yes') showAdmin();
 
 function getProducts(){ return JSON.parse(localStorage.getItem(PRODUCTS_KEY)||'[]'); }
 function getHidden(){ return JSON.parse(localStorage.getItem(HIDDEN_KEY)||'[]'); }
@@ -87,20 +60,42 @@ function getHidden(){ return JSON.parse(localStorage.getItem(HIDDEN_KEY)||'[]');
 function addProduct(){
   const name=document.getElementById('pName').value.trim();
   const price=document.getElementById('pPrice').value.trim();
-  const image=document.getElementById('pImage').value.trim()||'images/p1.jpg';
   const category=document.getElementById('pCat').value;
+
+  let allImages=[];
+  for(let i=1;i<=8;i++){
+    let id=i===1?'pImage':'pImage'+i;
+    let el=document.getElementById(id);
+    if(el && el.value.trim()) allImages.push(el.value.trim());
+  }
+
   if(!name||!price){ alert('Add name and price'); return; }
+  if(allImages.length===0){ alert('Add at least 1 image'); return; }
+
   const list=getProducts();
-  list.push({name, price: Number(price), image, category, id: Date.now()});
+  list.push({
+    id: Date.now(),
+    name: name,
+    price: Number(price),
+    image: allImages[0],
+    images: allImages,
+    category: category
+  });
+
   localStorage.setItem(PRODUCTS_KEY, JSON.stringify(list));
-  document.getElementById('pName').value=''; document.getElementById('pPrice').value=''; document.getElementById('pImage').value='';
-  render(); alert('Product added! Go to shop and refresh to see it.');
+
+  document.getElementById('pName').value='';
+  document.getElementById('pPrice').value='';
+  for(let i=1;i<=8;i++){
+    let id=i===1?'pImage':'pImage'+i;
+    let el=document.getElementById(id);
+    if(el) el.value='';
+  }
+
+  render();
+  alert('✅ Added with '+allImages.length+' pictures! Like toothbrush set!');
 }
-function deleteProduct(id){
-  if(!confirm('Delete this product?')) return;
-  let list=getProducts(); list=list.filter(p=>p.id!==id);
-  localStorage.setItem(PRODUCTS_KEY, JSON.stringify(list)); render();
-}
+
 function hideProduct(){
   const n=document.getElementById('hideName').value.trim();
   if(!n){ alert('Type product name'); return; }
@@ -109,25 +104,30 @@ function hideProduct(){
   document.getElementById('hideName').value=''; render();
   alert(n+' hidden from shop. Refresh shop to see.');
 }
+
 function unhide(name){
   let h=getHidden(); h=h.filter(x=>x!==name);
-  localStorage.setItem(HIDDEN_KEY, JSON.stringify(h)); render();
+  localStorage.setItem(HIDDEN_KEY, JSON.stringify(h));
+  render();
 }
-function render(){
-  const list=getProducts(); document.getElementById('count').innerText=list.length;
-  const adminDiv=document.getElementById('adminList');
-  if(list.length===0) adminDiv.innerHTML='<p class="text-gray-400 text-sm">No products added yet</p>';
-  else adminDiv.innerHTML=list.map(p=>`
-    <div class="flex justify-between items-center border p-3 rounded-xl">
-      <div class="flex gap-3 items-center"><img src="${p.image}" class="w-12 h-12 object-cover rounded-lg bg-gray-100" onerror="this.src='https://via.placeholder.com/50'"><div><p class="font-bold text-sm">${p.name}</p><p class="text-xs text-gray-500">₦${p.price} • ${p.category}</p></div></div>
-      <button onclick="deleteProduct(${p.id})" class="bg-red-100 text-red-600 px-3 py-1 rounded-full text-xs font-bold">Delete</button>
-    </div>`).join('');
 
-  const hidden=getHidden(); const hiddenDiv=document.getElementById('hiddenList');
-  if(hidden.length===0) hiddenDiv.innerHTML='<p class="text-gray-400 text-xs">No hidden products</p>';
-  else hiddenDiv.innerHTML=hidden.map(n=>`
-    <div class="flex justify-between items-center border p-2 rounded-xl text-sm"><span>${n}</span><button onclick="unhide('${n.replace(/'/g,"\\'")}')" class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold">Unhide</button></div>`).join('');
+function render(){
+  const list=getProducts();
+  const h=getHidden();
+  const div=document.getElementById('list');
+  div.innerHTML='<p class="font-bold mb-2">Products: '+list.length+'</p>' + list.map(p=>`
+    <div class="flex justify-between items-center border-b py-2">
+      <span>${p.name} - ${p.images? p.images.length : 1} pics</span>
+      <button onclick="unhide('${p.name}')" class="text-xs bg-gray-200 px-2 py-1 rounded">Unhide</button>
+    </div>
+  `).join('') + '<p class="font-bold mt-4">Hidden: '+h.join(', ')+'</p>';
 }
+
+function logout(){ localStorage.removeItem('ephesian_admin'); location.reload(); }
+function showAdmin(){}
+
+render();
 </script>
+
 </body>
 </html>
