@@ -1,45 +1,128 @@
-<!DOCTYPE html><html><head><title>Contact - Ephesians Store</title><link rel="stylesheet" href="style.css"><meta name="viewport" content="width=device-width,initial-scale=1">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us - Ephesians Store | Ayegun Olomi Ibadan</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-.contact-hero{background:linear-gradient(135deg,#001a4d,#002366);color:white;padding:45px 20px;text-align:center}
-.contact-wrap{max-width:1100px;margin:-25px auto 0;display:grid;grid-template-columns:1fr 1fr;gap:20px;padding:20px}
-.contact-box{background:white;padding:25px;border-radius:12px;box-shadow:0 5px 20px rgba(0,0,0,0.08)}
-.contact-box h3{color:#001a4d;margin-bottom:12px;border-left:4px solid #ffc300;padding-left:10px}
-.input{width:100%;padding:12px;border:1px solid #ddd;border-radius:8px;margin:8px 0}
-.btn-send{background:#001a4d;color:#ffc300;border:none;padding:12px 25px;border-radius:25px;font-weight:bold;width:100%;cursor:pointer}
-@media(max-width:700px){.contact-wrap{grid-template-columns:1fr}}
-</style></head><body>
-<header><div class="logo"><img src="logo.jpg">THE WONDER GLOBAL CONCEPT</div><nav><a href="index.html">Home</a><a href="shop.html">Shop</a><a href="about.html">About</a><a class="active" href="contact.html">Contact</a></nav><a class="btn-gold" href="https://wa.me/2347081632713">WhatsApp Order</a></header>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+body{background:#f5f5f5}
+.top{background:#0f1e42;color:#fff;padding:6px 4%;font-size:11px;display:flex;justify-content:space-between}
+.top b{color:#d4af37}
+.header{background:#fff;padding:12px 4%;display:flex;align-items:center;gap:18px;position:sticky;top:0;z-index:1000;box-shadow:0 2px 10px rgba(0,0,0,.07);flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:8px;font-weight:700;color:#0f1e42}
+.logo img{width:38px;height:38px;border-radius:50%;border:2px solid #d4af37}
+.search{flex:1;display:flex;max-width:500px}
+.search input{flex:1;padding:10px 16px;border:1.5px solid #ddd;border-radius:25px 0 0 25px;outline:none}
+.search button{background:#ff6a00;color:#fff;border:none;padding:10px 18px;border-radius:0 25px 25px 0;font-weight:700;cursor:pointer}
+.nav{display:flex;gap:14px;align-items:center}
+.nav a{font-size:13px;text-decoration:none;color:#0f1e42;font-weight:600}
+.nav a.active{color:#ff6a00}
+.btn-gold{background:#0f1e42;color:#d4af37!important;padding:9px 16px;border-radius:20px;border:1px solid #d4af37;font-size:11px;text-decoration:none;font-weight:700}
 
-<div class="contact-hero">
-<h1>CONTACT <span style="color:#ffc300">US</span></h1>
-<p>We are here to serve you!  Your Satisfaction, Our Priority</p>
+.hero{background:linear-gradient(135deg,#0f1e42 0%,#1e3a8a 100%);color:#fff;padding:40px 4%;text-align:center}
+.hero h1{font-size:28px} .hero h1 span{color:#ffc300}
+.hero p{font-size:13px;opacity:.9;margin-top:6px}
+
+.wrap{max-width:1150px;margin:-20px auto 0;display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:16px 4%}
+.box{background:#fff;padding:22px;border-radius:12px;box-shadow:0 5px 20px rgba(0,0,0,.06)}
+.box h3{color:#0f1e42;font-size:15px;margin-bottom:14px;border-left:4px solid #ffc300;padding-left:10px}
+.info-line{display:flex;gap:10px;margin:12px 0;font-size:13px;align-items:flex-start}
+.info-line b{color:#0f1e42;min-width:65px}
+.badge{display:inline-block;background:#e8f5e9;color:#2a7d2a;padding:4px 8px;border-radius:6px;font-size:11px;font-weight:700;margin-top:6px}
+
+.input{width:100%;padding:12px 14px;border:1.5px solid #e5e5e5;border-radius:8px;margin:7px 0;font-size:13px;outline:none;transition:.2s}
+.input:focus{border-color:#0f1e42}
+.btn-send{background:#0f1e42;color:#ffc300;border:none;padding:13px;border-radius:25px;font-weight:700;width:100%;cursor:pointer;font-size:13px;margin-top:8px}
+.btn-send:hover{background:#1a2d5a}
+.btn-wa-direct{background:#25D366;color:#fff;border:none;padding:12px;border-radius:25px;font-weight:700;width:100%;cursor:pointer;margin-top:8px;display:flex;justify-content:center;gap:8px;align-items:center;text-decoration:none}
+
+.map{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 5px 20px rgba(0,0,0,.06);margin:16px 4%;max-width:1150px;margin-left:auto;margin-right:auto}
+.map iframe{width:100%;height:260px;border:0}
+
+footer{background:#0f1e42;color:#aaa;text-align:center;padding:18px;font-size:11px;margin-top:20px}
+footer b{color:#d4af37}
+
+@media(max-width:800px){
+.wrap{grid-template-columns:1fr;margin-top:0}
+.hero{padding:28px 4%}
+.hero h1{font-size:22px}
+.header{justify-content:space-between}
+.search{order:3;width:100%;max-width:100%}
+}
+</style>
+</head>
+<body>
+
+<div class="top"><div>📍 Ayegun Olomi, Ibadan | RC:9874607 | <b>Pay 70% Now, Balance Later</b></div><div>07081632713 | 08085362832</div></div>
+
+<div class="header">
+<div class="logo"><img src="logo.jpg" onerror="this.src='https://via.placeholder.com/38?text=W'">EPHESIAN STORE</div>
+<div class="search"><input id="s" placeholder="Search products..." onkeydown="if(event.key==='Enter')location.href='shop.html'"><button onclick="location.href='shop.html'">SEARCH</button></div>
+<div class="nav"><a href="index.html">Home</a><a href="shop.html">Shop</a><a href="about.html">About</a><a href="contact.html" class="active">Contact</a><a class="btn-gold" href="https://wa.me/2347081632713">WhatsApp Order</a></div>
 </div>
 
-<div class="contact-wrap">
-<div class="contact-box">
-<h3>Our Store Info</h3>
-<p>📍 <b>Address:</b> Ayegun Olomi, Ibadan, Oyo State</p><br>
-<p>📞 <b>Phone 1:</b> 07081632713</p>
-<p>📞 <b>Phone 2:</b> 08085362832</p><br>
-<p>💬 <b>WhatsApp:</b> <a href="https://wa.me/2347081632713" style="color:#001a4d;font-weight:bold">Click to Chat Now</a></p><br>
-<p>⏰ <b>Open:</b> Mon - Sat, 8am - 8pm</p><br>
-<div style="background:#f5f6fa;padding:12px;border-radius:8px">
-<p><b>Follow Us:</b></p>
-<p>WhatsApp | Facebook | Instagram</p>
-<p style="margin-top:8px;color:#001a4d;font-weight:bold">THE WONDER GLOBAL CONCEPT<br>EPHESIANS STORE RC:9874607</p>
+<div class="hero">
+<h1>CONTACT <span>US</span></h1>
+<p>We are here to serve you — Your Satisfaction, Our Priority | Fast Response on WhatsApp</p>
+</div>
+
+<div class="wrap">
+<div class="box">
+<h3>🏪 Our Store Info</h3>
+
+<div class="info-line"><b>📍 Address:</b><span>Ayegun Olomi, Ibadan, Oyo State, Nigeria<br><span class="badge">Visit us today — Open Mon-Sat 8am-8pm</span></span></div>
+
+<div class="info-line"><b>📞 Phone 1:</b><a href="tel:07081632713" style="color:#0f1e42;font-weight:600;text-decoration:none">07081632713</a></div>
+<div class="info-line"><b>📞 Phone 2:</b><a href="tel:08085362832" style="color:#0f1e42;font-weight:600;text-decoration:none">08085362832</a></div>
+<div class="info-line"><b>💬 WhatsApp:</b><a href="https://wa.me/2347081632713?text=Hello%20Ephesians%20Store" style="background:#25D366;color:#fff;padding:6px 12px;border-radius:20px;text-decoration:none;font-size:12px;font-weight:700">Click to Chat Now 📲</a></div>
+
+<div style="background:#f8f9ff;padding:12px;border-radius:8px;margin-top:14px;border:1px solid #eef">
+<p style="font-size:12px"><b>Follow Us:</b> WhatsApp | Facebook | Instagram</p>
+<p style="font-size:12px;margin-top:6px;color:#0f1e42;font-weight:700">THE WONDER GLOBAL CONCEPT<br>EPHESIANS STORE RC:9874607</p>
+<p style="font-size:11px;color:#2a7d2a;font-weight:600;margin-top:6px">✅ Pay 70% Now, Balance on Delivery | Trusted in Ibadan</p>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px">
+<a href="tel:07081632713" style="background:#0f1e42;color:#ffc300;padding:10px;border-radius:8px;text-align:center;text-decoration:none;font-weight:700;font-size:12px">📞 Call Now</a>
+<a href="https://wa.me/2347081632713?text=Hello%20Ephesians%20Store%20I%20need%20help" style="background:#25D366;color:#fff;padding:10px;border-radius:8px;text-align:center;text-decoration:none;font-weight:700;font-size:12px">💬 WhatsApp</a>
 </div>
 </div>
 
-<div class="contact-box">
-<h3>Send Us a Message</h3>
-<input class="input" placeholder="Your Name">
-<input class="input" placeholder="Your Phone Number">
-<input class="input" placeholder="What do you want to buy?">
-<textarea class="input" rows="4" placeholder="Your Message"></textarea>
-<button class="btn-send" onclick="window.location.href='https://wa.me/2347081632713'">Send via WhatsApp</button>
-<p style="text-align:center;margin-top:12px;font-size:12px;color:#666">Clicking Send will take you to WhatsApp</p>
+<div class="box">
+<h3>✉️ Send Us a Message</h3>
+<input class="input" id="cName" placeholder="Your Name *">
+<input class="input" id="cPhone" placeholder="Your Phone Number *">
+<input class="input" id="cNeed" placeholder="What do you want to buy? e.g. Power Bank 20000mAh">
+<textarea class="input" id="cMsg" rows="4" placeholder="Your Message..."></textarea>
+
+<button class="btn-send" onclick="sendWA()">Send via WhatsApp 📲</button>
+<a class="btn-wa-direct" href="https://wa.me/2347081632713?text=Hello%20Ephesians%20Store">💬 Chat Directly on WhatsApp</a>
+<p style="text-align:center;margin-top:10px;font-size:11px;color:#888">Your message will open in WhatsApp — Fast reply guaranteed!</p>
 </div>
 </div>
 
-<footer>Quality • Affordable • Trusted • Fast Delivery<br>© 2026 THE WONDER GLOBAL CONCEPT RC:9874607</footer>
-</body></html>
+<div class="map">
+<iframe src="https://maps.google.com/maps?q=Ayegun%20Olomi%20Ibadan&t=&z=15&ie=UTF8&iwloc=&output=embed" loading="lazy"></iframe>
+<div style="padding:12px 16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+<div style="font-size:12px"><b style="color:#0f1e42">Ayegun Olomi, Ibadan</b> — Easy to locate, near main road</div>
+<a href="https://maps.google.com/?q=Ayegun%20Olomi%20Ibadan" target="_blank" style="background:#0f1e42;color:#ffc300;padding:8px 14px;border-radius:20px;text-decoration:none;font-size:11px;font-weight:700">Open in Google Maps 📍</a>
+</div>
+</div>
+
+<footer><b>THE WONDER GLOBAL CONCEPT | EPHESIANS STORE RC:9874607</b><br>Quality • Affordable • Trusted • Fast Delivery in Ibadan | Pay 70% Now Available<br>© 2026 All Rights Reserved</footer>
+
+<script>
+function sendWA(){
+ let name=document.getElementById('cName').value.trim();
+ let phone=document.getElementById('cPhone').value.trim();
+ let need=document.getElementById('cNeed').value.trim();
+ let msg=document.getElementById('cMsg').value.trim();
+ if(!name||!phone){alert('Please enter your Name and Phone Number');return}
+ let text=`Hello Ephesians Store!%0A%0AName: ${encodeURIComponent(name)}%0APhone: ${encodeURIComponent(phone)}%0AWant: ${encodeURIComponent(need||'Not specified')}%0AMessage: ${encodeURIComponent(msg||'Hello, I need your products')}%0A%0AFrom: Contact Page - Ayegun Olomi`;
+ window.open(`https://wa.me/2347081632713?text=${text}`,'_blank');
+}
+</script>
+</body>
+</html>
