@@ -20,25 +20,17 @@ input,select,textarea{width:100%;padding:10px;border:1px solid #ddd;border-radiu
 .box img{width:100%;height:100%;object-fit:cover}
 .btn{width:100%;padding:13px;background:#ff6a00;color:#fff;border:none;border-radius:10px;font-weight:700;cursor:pointer;margin-top:10px}
 .btn-edit{background:#0f1e42!important}
-.note{background:#e8f5e9;padding:10px;border-radius:8px;font-size:11px;margin:10px 0;border-left:4px solid #2a7d2a}
 .order-card{background:#fff8e1;border:1px solid #ffcc00;padding:10px;border-radius:8px;margin-bottom:8px;font-size:11px}
-.tabs{display:flex;gap:8px;margin-bottom:12px}
-.tabs button{padding:8px 16px;border-radius:20px;border:1px solid #ddd;background:#fff;cursor:pointer;font-weight:700;font-size:12px}
-.tabs button.active{background:#0f1e42;color:#fff}
 @media(max-width:900px){.wrap{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <script>
 const ADMIN_PASS="Araoluwa_1";
-let p=prompt("🔒 Admin v3.1 - Password:");
+let p=prompt("🔒 Admin v3.2 - Phone + Laptop Added:");
 if(p!==ADMIN_PASS){alert("Wrong!"); location.href="index.html";}
 </script>
-<div class="header"><div>ADMIN v3.1 - CANCEL FIXED</div><div><a href="index.html">Home</a> | <a href="shop.html">Shop</a> | <a href="easy-buy.html">Easy Buy</a></div></div>
-
-<div style="padding:12px 4%">
-<div class="tabs"><button class="active">📦 Products (<span id="c">0</span>)</button></div>
-</div>
+<div class="header"><div>ADMIN v3.2 - 7 CATEGORIES</div><div><a href="index.html">Home</a> | <a href="shop.html">Shop</a> | <a href="easy-buy.html">Easy Buy</a></div></div>
 
 <div class="wrap">
 <div>
@@ -52,7 +44,17 @@ if(p!==ADMIN_PASS){alert("Wrong!"); location.href="index.html";}
 <div class="row">
 <div><label>Stock Qty</label><input id="stock" type="number" value="20"></div>
 <div><label>Discount % (Auto)</label><input id="d" type="number" value="0" readonly style="background:#e8f5e9;font-weight:700"></div>
-<div><label>Category</label><select id="cat"><option>Phone Accessories</option><option>Laptop Accessories</option><option>Fashion and wears</option><option>Home Accessories</option><option>Other Essentials</option></select></div>
+<div><label>Category - 7 NOW</label>
+<select id="cat">
+<option>Phone</option>
+<option>Laptop</option>
+<option>Phone Accessories</option>
+<option>Laptop Accessories</option>
+<option>Fashion and wears</option>
+<option>Home Accessories</option>
+<option>Other Essentials</option>
+</select>
+</div>
 </div>
 <div class="discount-preview" id="discountPreview">Enter Original and Selling → Auto -% OFF</div>
 <textarea id="desc" placeholder="Description" style="height:50px;margin-bottom:10px"></textarea>
@@ -61,11 +63,11 @@ if(p!==ADMIN_PASS){alert("Wrong!"); location.href="index.html";}
 </label>
 <div class="img-grid" id="grid"></div>
 <input type="file" id="file" accept="image/*" multiple style="display:none">
-<button class="btn" id="pubBtn" type="button">Publish Product v3.1</button>
+<button class="btn" id="pubBtn" type="button">Publish Product v3.2</button>
 <button class="btn btn-edit" id="cancelEdit" type="button" onclick="cancelEditNow()" style="display:none">❌ Cancel Edit - Back to Add</button>
 <p id="ok" style="color:green;font-size:12px;margin-top:10px"></p>
 </div>
-<div class="card"><h4>Your Products Live - v3.1</h4><div id="list">Loading...</div></div>
+<div class="card"><h4>Your Products Live - v3.2 (<span id="c">0</span>)</h4><div id="list">Loading...</div></div>
 </div>
 <div><div class="card"><h3>💳 Orders</h3><div id="ordersList">Loading...</div></div></div>
 </div>
@@ -101,10 +103,9 @@ window.cancelEditNow=()=>{
   document.getElementById('easyBuy').checked=false;
   imgs=[]; draw(); calcDiscount();
   document.getElementById('formTitle').innerText='Add Product - With Discount Auto';
-  document.getElementById('pubBtn').innerText='Publish Product v3.1';
+  document.getElementById('pubBtn').innerText='Publish Product v3.2';
   document.getElementById('cancelEdit').style.display='none';
-  document.getElementById('ok').innerText='❌ Edit cancelled - Now in Add mode';
-  console.log('Cancelled');
+  document.getElementById('ok').innerText='❌ Edit cancelled';
 };
 
 document.getElementById('pubBtn').onclick=async()=>{
@@ -114,24 +115,24 @@ document.getElementById('pubBtn').onclick=async()=>{
  document.getElementById('ok').innerText='Saving...';
  try{
   let data={name, price:Number(price), originalPrice:Number(op||0), discount:Number(document.getElementById('d').value||0), stock:Number(document.getElementById('stock').value), category:document.getElementById('cat').value, desc:document.getElementById('desc').value, images:[...imgs], easyBuy:document.getElementById('easyBuy').checked, updatedAt:serverTimestamp()};
-  if(editingId){await updateDoc(doc(db,"products",editingId),data);document.getElementById('ok').innerText='✅ UPDATED: '+name;editingId=null;document.getElementById('formTitle').innerText='Add Product - With Discount Auto';document.getElementById('pubBtn').innerText='Publish Product v3.1';document.getElementById('cancelEdit').style.display='none';}
-  else{data.createdAt=serverTimestamp();await addDoc(collection(db,"products"),data);document.getElementById('ok').innerText='✅ Published: '+name;}
+  if(editingId){await updateDoc(doc(db,"products",editingId),data);document.getElementById('ok').innerText='✅ UPDATED: '+name;editingId=null;document.getElementById('formTitle').innerText='Add Product - With Discount Auto';document.getElementById('pubBtn').innerText='Publish Product v3.2';document.getElementById('cancelEdit').style.display='none';}
+  else{data.createdAt=serverTimestamp();await addDoc(collection(db,"products"),data);document.getElementById('ok').innerText='✅ Published: '+name+' as '+data.category;}
   document.getElementById('n').value='';document.getElementById('p').value='';document.getElementById('op').value='';document.getElementById('desc').value='';document.getElementById('d').value='0';document.getElementById('easyBuy').checked=false;imgs=[];draw();calcDiscount();
  }catch(err){document.getElementById('ok').innerText='Error: '+err.message;}
 };
 
 onSnapshot(query(collection(db,"products"),orderBy("createdAt","desc")),(snap)=>{
  document.getElementById('c').innerText=snap.size;
- let html='';snap.forEach(d=>{let x=d.data();html+=`<div style="display:flex;gap:8px;padding:8px;border-bottom:1px solid #eee;align-items:center"><img src="${x.images?.[0]||''}" style="width:40px;height:40px;object-fit:contain"><div style="flex:1;font-size:11px"><b>${x.name}</b><br>₦${Number(x.price).toLocaleString()} ${x.originalPrice?`<s>₦${Number(x.originalPrice).toLocaleString()}</s> -${x.discount||0}%`:''} ${x.easyBuy?'🔥':''}</div><button onclick="editProd('${d.id}')" style="background:blue;color:#fff;border:none;padding:5px 8px;border-radius:4px">Edit</button><button onclick="deleteProd('${d.id}')" style="background:red;color:#fff;border:none;padding:5px 8px;border-radius:4px">X</button></div>`;});
+ let html='';snap.forEach(d=>{let x=d.data();html+=`<div style="display:flex;gap:8px;padding:8px;border-bottom:1px solid #eee;align-items:center"><img src="${x.images?.[0]||''}" style="width:40px;height:40px;object-fit:contain"><div style="flex:1;font-size:11px"><b>${x.name}</b><br>₦${Number(x.price).toLocaleString()} ${x.originalPrice?`<s>₦${Number(x.originalPrice).toLocaleString()}</s> -${x.discount||0}%`:''} ${x.easyBuy?'🔥':''}<br><b>${x.category}</b></div><button onclick="editProd('${d.id}')" style="background:blue;color:#fff;border:none;padding:5px 8px;border-radius:4px">Edit</button><button onclick="deleteProd('${d.id}')" style="background:red;color:#fff;border:none;padding:5px 8px;border-radius:4px">X</button></div>`;});
  document.getElementById('list').innerHTML=html||'No products';
 });
 window.deleteProd=async(id)=>{if(confirm('Delete?')) await deleteDoc(doc(db,"products",id));};
 window.editProd=async(id)=>{
   let snap=await getDoc(doc(db,"products",id)); if(!snap.exists()) return; let x=snap.data();
   document.getElementById('n').value=x.name;document.getElementById('p').value=x.price;document.getElementById('op').value=x.originalPrice||'';document.getElementById('d').value=x.discount||0;document.getElementById('stock').value=x.stock||0;document.getElementById('cat').value=x.category;document.getElementById('desc').value=x.desc||'';document.getElementById('easyBuy').checked=!!x.easyBuy;imgs=x.images||[];draw();calcDiscount();editingId=id;
-  document.getElementById('formTitle').innerText='EDITING: '+x.name;document.getElementById('pubBtn').innerText='UPDATE PRODUCT v3.1';document.getElementById('cancelEdit').style.display='block';window.scrollTo(0,0);
+  document.getElementById('formTitle').innerText='EDITING: '+x.name;document.getElementById('pubBtn').innerText='UPDATE PRODUCT v3.2';document.getElementById('cancelEdit').style.display='block';window.scrollTo(0,0);
 };
-onSnapshot(query(collection(db,"orders"),orderBy("createdAt","desc")),(snap)=>{let h='';snap.forEach(d=>{let o=d.data();h+=`<div class="order-card"><b>${o.customer||'Guest'}</b><br>Total ₦${(o.total||0).toLocaleString()}</div>`;});document.getElementById('ordersList').innerHTML=h||'No orders';});
+onSnapshot(query(collection(db,"orders"),orderBy("createdAt","desc")),(snap)=>{let h='';snap.forEach(d=>{let o=d.data();h+=`<div class="order-card"><b>${o.customer||'Guest'}</b><br>Total ₦${(o.total||0).toLocaleString()} - ${o.phone||''}</div>`;});document.getElementById('ordersList').innerHTML=h||'No orders';});
 draw(); calcDiscount();
 </script>
 </body>
