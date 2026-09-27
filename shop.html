@@ -3,22 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shop - Ephesians Store | RC:9874607 | Pay 70% Now</title>
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<title>Shop - THE WONDER GLOBAL CONCEPT | EPHESIAN STORE RC:9874607</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
 body{background:#f5f5f5;padding-bottom:80px}
 .top{background:#0f1e42;color:#fff;padding:6px 4%;font-size:11px;display:flex;justify-content:space-between}
-.top b{color:#ffcc00}
 .header{background:#fff;padding:12px 4%;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:1000;box-shadow:0 2px 10px rgba(0,0,0,.07)}
-.logo{display:flex;align-items:center;gap:8px;font-weight:700;color:#0f1e42;font-size:14px}
+.logo{display:flex;align-items:center;gap:8px;font-weight:700;color:#0f1e42;font-size:14px;line-height:1.1}
+.logo small{display:block;font-size:9px;color:#888;font-weight:600}
 .logo img{width:38px;height:38px;border-radius:50%;border:2px solid #d4af37}
 .search-wrap{flex:1;max-width:420px;display:flex;position:relative}
 .search-wrap input{flex:1;padding:10px 14px;border:1.5px solid #ddd;border-radius:25px 0 0 25px;outline:none}
 .search-wrap button{background:#ff6a00;color:#fff;border:none;padding:10px 16px;border-radius:0 25px 25px 0;font-weight:700}
-.nav{display:flex;gap:18px;align-items:center}
+.nav{display:flex;gap:12px;align-items:center}
 .nav a{font-size:13px;text-decoration:none;color:#0f1e42;font-weight:600;position:relative}
+.easyBtn{background:#ff6a00;color:#fff!important;padding:6px 12px;border-radius:20px;font-size:11px}
 .badge{position:absolute;top:-8px;right:-10px;background:#ff3b30;color:#fff;font-size:9px;padding:2px 6px;border-radius:10px}
 .layout{display:grid;grid-template-columns:220px 1fr;gap:14px;padding:14px 4%}
 .filter{background:#fff;border-radius:12px;padding:14px;height:fit-content;position:sticky;top:72px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
@@ -26,6 +26,7 @@ body{background:#f5f5f5;padding-bottom:80px}
 .filter div{padding:9px 8px;font-size:12px;cursor:pointer;border-radius:8px;display:flex;justify-content:space-between}
 .filter div:hover{background:#fff3e0}
 .filter div.active{background:#0f1e42;color:#fff}
+.filter div.easy{background:linear-gradient(90deg,#ff6a00,#0f1e42);color:#fff;font-weight:700}
 .main{background:#fff;border-radius:12px;padding:12px;min-height:300px}
 .main-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px}
 #shop-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
@@ -33,18 +34,17 @@ body{background:#f5f5f5;padding-bottom:80px}
 .card:hover{box-shadow:0 8px 20px rgba(0,0,0,.12);transform:translateY(-3px)}
 .card img{width:100%;height:165px;object-fit:contain;background:#fff;padding:6px}
 .b-off{position:absolute;top:6px;left:6px;background:#ff3b30;color:#fff;font-size:10px;padding:3px 6px;border-radius:4px;font-weight:700;z-index:2}
-.b-pay{position:absolute;top:6px;right:6px;background:#2a7d2a;color:#fff;font-size:9px;padding:3px 5px;border-radius:4px;font-weight:700;z-index:2}
-.b-out{position:absolute;top:36px;left:6px;background:#000;color:#fff;font-size:9px;padding:3px 6px;border-radius:4px;z-index:3}
+.b-out{position:absolute;top:6px;right:6px;background:#000;color:#fff;font-size:9px;padding:3px 6px;border-radius:4px;z-index:3}
 .info{padding:10px}
 .info h3{font-size:12px;height:30px;overflow:hidden;line-height:1.3;color:#333}
-.price{color:#0f1e42;font-weight:700;font-size:13px;margin-top:4px}
-.pay70{font-size:10px;background:#e8f5e9;color:#2a7d2a;padding:3px 6px;border-radius:4px;margin-top:4px;display:inline-block;font-weight:600}
+.price-row{display:flex;align-items:center;gap:6px;margin-top:4px;flex-wrap:wrap}
+.price-now{color:#0f1e42;font-weight:700;font-size:13px}
+.price-old{color:#888;font-size:10px;text-decoration:line-through}
 .btn-cart{width:100%;padding:9px;border:none;border-radius:8px;font-weight:700;font-size:11px;cursor:pointer;margin-top:6px;background:#0f1e42;color:#fff}
 .btn-wa{width:100%;padding:8px;border:1px solid #ddd;border-radius:8px;font-weight:600;font-size:11px;cursor:pointer;margin-top:6px;background:#fff;color:#333;display:flex;justify-content:space-between}
 .bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:8px 0;box-shadow:0 -2px 10px rgba(0,0,0,.08);z-index:200}
 .bottom-nav a{text-decoration:none;color:#888;font-size:10px;text-align:center;font-weight:600}
 .bottom-nav a.active{color:#ff6a00}
-/* PRODUCT MODAL - FIX CLICK */
 #productModal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:5000;justify-content:center;align-items:center;padding:12px}
 .modal-content{background:#fff;border-radius:16px;width:100%;max-width:900px;max-height:90vh;overflow:auto;display:grid;grid-template-columns:1fr 1fr;position:relative}
 .modal-img{padding:16px;display:flex;flex-direction:column;align-items:center}
@@ -58,13 +58,14 @@ body{background:#f5f5f5;padding-bottom:80px}
 </style>
 </head>
 <body>
-<div class="top"><div>📍 Ayegun Olomi, Ibadan | RC:9874607 | <b>Pay 70% Now, Balance Later</b></div><div>07081632713</div></div>
+<div class="top"><div>📍 Ayegun Olomi, Ibadan | RC:9874607 | THE WONDER GLOBAL CONCEPT</div><div>07081632713</div></div>
 <div class="header">
-<div class="logo"><img src="logo.jpg" onerror="this.src='https://via.placeholder.com/38?text=W'">EPHESIAN STORE</div>
+<div class="logo"><img src="logo.jpg" onerror="this.src='https://via.placeholder.com/38?text=W'"><div>THE WONDER<br><small>EPHESIAN STORE</small></div></div>
 <div class="search-wrap"><input id="search" placeholder="Search products..." autocomplete="off"><button onclick="applyFilter()">SEARCH</button></div>
 <div class="nav">
 <a href="index.html">Home</a>
 <a href="shop.html" style="color:#ff6a00">Shop</a>
+<a href="easy-buy.html" class="easyBtn">🔥 Easy Buy</a>
 <a href="cart.html">🛒<span id="cartBadge" class="badge" style="display:none">0</span></a>
 <a href="wishlist.html">❤️<span id="wishBadge" class="badge" style="display:none;background:#0f1e42">0</span></a>
 </div>
@@ -79,6 +80,7 @@ body{background:#f5f5f5;padding-bottom:80px}
 <div data-cat="Fashion and wears" onclick="setCat('Fashion and wears',this)">👕 Fashion and wears</div>
 <div data-cat="Home Accessories" onclick="setCat('Home Accessories',this)">🏠 Home Accessories</div>
 <div data-cat="Other Essentials" onclick="setCat('Other Essentials',this)">🛒 Other Essentials</div>
+<div class="easy" onclick="location.href='easy-buy.html'">🔥 Easy Buy 70/30</div>
 <div style="margin-top:14px"><h4>MAX PRICE</h4><input type="range" id="priceRange" min="1000" max="100000" value="100000" style="width:100%" oninput="applyFilter()"><div style="font-size:11px">Up to ₦<span id="priceVal">100,000</span></div></div>
 </div>
 <div class="main">
@@ -87,7 +89,6 @@ body{background:#f5f5f5;padding-bottom:80px}
 </div>
 </div>
 
-<!-- PRODUCT VIEW MODAL -->
 <div id="productModal">
 <div class="modal-content">
 <span class="close-modal" onclick="closeProductModal()">×</span>
@@ -98,13 +99,13 @@ body{background:#f5f5f5;padding-bottom:80px}
 <div class="modal-info">
 <h2 id="modalName" style="font-size:18px;color:#0f1e42"></h2>
 <p id="modalCat" style="font-size:11px;color:#888;margin:6px 0"></p>
-<div id="modalPrice" style="font-size:22px;font-weight:700;color:#0f1e42;margin:10px 0"></div>
-<div id="modalPay70" style="background:#e8f5e9;color:#2a7d2a;padding:8px 12px;border-radius:8px;font-size:13px;font-weight:600;display:inline-block"></div>
+<div id="modalPrice" style="margin:10px 0"></div>
 <p id="modalDesc" style="font-size:13px;color:#444;margin:14px 0;line-height:1.5"></p>
 <div style="font-size:12px;margin:8px 0"><b>Stock:</b> <span id="modalStock"></span></div>
 <button id="modalAddCart" style="width:100%;padding:14px;background:#0f1e42;color:#fff;border:none;border-radius:10px;font-weight:700;margin-top:12px;cursor:pointer">Add to Cart 🛒</button>
 <button id="modalWish" style="width:100%;padding:12px;background:#fff;border:1.5px solid #0f1e42;border-radius:10px;font-weight:700;margin-top:8px;cursor:pointer">🤍 Add to Wishlist</button>
 <button onclick="orderWhatsApp()" style="width:100%;padding:12px;background:#25D366;color:#fff;border:none;border-radius:10px;font-weight:700;margin-top:8px">Order on WhatsApp 📲</button>
+<div style="margin-top:12px;background:#fff8e1;padding:10px;border-radius:8px;font-size:11px">Want to pay 70% now? <a href="easy-buy.html" style="color:#ff6a00;font-weight:700">Go to Easy Buy →</a></div>
 </div>
 </div>
 </div>
@@ -112,25 +113,16 @@ body{background:#f5f5f5;padding-bottom:80px}
 <div class="bottom-nav">
 <a href="index.html">🏠<br>Home</a>
 <a href="shop.html" class="active">🛍️<br>Shop</a>
+<a href="easy-buy.html">🔥<br>Easy Buy</a>
 <a href="cart.html">🛒<br>Cart <span id="mCart"></span></a>
-<a href="wishlist.html">❤️<br>Wishlist</a>
 <a href="contact.html">👤<br>Account</a>
 </div>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getFirestore, collection, onSnapshot } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyBjR6WNrd8ziXnegOXZv_RJtGFVbZJN8",
-  authDomain: "ephesian-store.firebaseapp.com",
-  projectId: "ephesian-store",
-  storageBucket: "ephesian-store.firebasestorage.app",
-  messagingSenderId: "109847556546",
-  appId: "1:109847556546:web:5c7f8a9b0c1d2e3f"
-};
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+const firebaseConfig={apiKey:"AIzaSyBjR6WNrd8ziXnegOXZv_RJtGFVbZJN8",authDomain:"ephesian-store.firebaseapp.com",projectId:"ephesian-store",storageBucket:"ephesian-store.firebasestorage.app",messagingSenderId:"109847556546",appId:"1:109847556546:web:5c7f8a9b0c1d2e3f"};
+const db=getFirestore(initializeApp(firebaseConfig));
 
 function mapCategory(oldCat){
   if(!oldCat) return 'Other Essentials';
@@ -140,6 +132,16 @@ function mapCategory(oldCat){
   if(c.includes('fashion')||c.includes('wear')||c.includes('clothe')||c.includes('bag')||c.includes('shoe')) return 'Fashion and wears';
   if(c.includes('gas')||c.includes('home')||c.includes('cooker')||c.includes('pot')||c.includes('extension')) return 'Home Accessories';
   return 'Other Essentials';
+}
+function getDiscountData(p){
+ let nowPrice=Number(p.price);
+ let oldPrice=Number(p.originalPrice||p.oldPrice||0);
+ if(!oldPrice||oldPrice<=nowPrice){
+   let disc=Number(p.discount||0);
+   if(disc>0){oldPrice=Math.round(nowPrice/(1-disc/100));}else{oldPrice=nowPrice;}
+ }
+ let perc=oldPrice>nowPrice?Math.round((1-nowPrice/oldPrice)*100):(p.discount||0);
+ return {nowPrice,oldPrice,perc};
 }
 
 let PRODUCTS=[], currentCat='all', currentProduct=null;
@@ -164,14 +166,14 @@ function render(list){
   let isOut=Number(p.stock)===0;
   let imgs=p.images||[p.image]||['https://via.placeholder.com/200'];
   let isWish=wishlist.includes(p.name);
+  let {nowPrice,oldPrice,perc}=getDiscountData(p);
   return `
   <div class="card" onclick="openProduct('${p._id}')">
-   <span class="b-off">-${p.discount||20}%</span><span class="b-pay">Pay 70%</span>${isOut?'<span class="b-out">OUT</span>':''}
+   ${perc>0?`<span class="b-off">-${perc}%</span>`:''}${isOut?'<span class="b-out">OUT</span>':''}
    <img src="${imgs[0]}" onerror="this.src='https://via.placeholder.com/200?text=${encodeURIComponent(p.name)}'">
    <div class="info">
     <h3>${p.name}</h3>
-    <div class="price">₦${Number(p.price).toLocaleString()} <small style="text-decoration:line-through;color:#888;font-size:10px">₦${Math.round(p.price*1.25).toLocaleString()}</small></div>
-    <div class="pay70">Pay 70%: ₦${Math.round(p.price*0.7).toLocaleString()}</div>
+    <div class="price-row"><span class="price-now">₦${nowPrice.toLocaleString()}</span>${oldPrice>nowPrice?`<span class="price-old">₦${oldPrice.toLocaleString()}</span>`:''}</div>
     <button class="btn-cart" ${isOut?'disabled':''} onclick="event.stopPropagation(); addToCartById('${p._id}')">${isOut?'Out of Stock':'Add to Cart'}</button>
     <button class="btn-wa" onclick="event.stopPropagation(); toggleWish('${p.name.replace(/'/g,"\\'")}')"><span>${isWish?'❤️ Saved':'🤍 Wishlist'}</span><span>View</span></button>
    </div>
@@ -179,6 +181,7 @@ function render(list){
 }
 
 window.setCat=(cat,el)=>{
+  if(cat==='easy-buy'){location.href='easy-buy.html';return;}
   currentCat=cat;
   document.querySelectorAll('.filter div').forEach(d=>d.classList.remove('active'));
   el.classList.add('active');
@@ -202,8 +205,7 @@ window.addToCartById=(id)=>{
   let p=PRODUCTS.find(x=>x._id===id);
   if(!p||Number(p.stock)===0){alert('Out of stock');return;}
   cart.push({id:p._id,name:p.name,price:Number(p.price),image:(p.images||[])[0]||'',qty:1});
-  saveCart();
-  alert(p.name+' added to cart!');
+  saveCart();alert(p.name+' added!');
 }
 window.toggleWish=(name)=>{
   if(wishlist.includes(name)) wishlist=wishlist.filter(x=>x!==name); else wishlist.push(name);
@@ -211,53 +213,34 @@ window.toggleWish=(name)=>{
   updateBadges(); applyFilter();
   if(currentProduct && currentProduct.name===name){ updateModalWishBtn(); }
 }
-
-// PRODUCT MODAL
 window.openProduct=(id)=>{
-  let p=PRODUCTS.find(x=>x._id===id);
-  if(!p) return;
-  currentProduct=p;
+  let p=PRODUCTS.find(x=>x._id===id); if(!p) return; currentProduct=p;
   let imgs=p.images||[p.image]||[];
+  let {nowPrice,oldPrice,perc}=getDiscountData(p);
   document.getElementById('modalMainImg').src=imgs[0];
   document.getElementById('modalName').innerText=p.name;
-  document.getElementById('modalCat').innerText=mapCategory(p.category)+' • '+p.name;
-  document.getElementById('modalPrice').innerText='₦'+Number(p.price).toLocaleString();
-  document.getElementById('modalPay70').innerText='Pay 70% Now: ₦'+Math.round(p.price*0.7).toLocaleString()+' • Balance Later';
-  document.getElementById('modalDesc').innerText=p.desc||p.name+' - Quality product from Ephesian Store RC:9874607. Pay 70% now and balance later.';
+  document.getElementById('modalCat').innerText=mapCategory(p.category);
+  document.getElementById('modalPrice').innerHTML=`<span style="font-size:22px;font-weight:700;color:#0f1e42">₦${nowPrice.toLocaleString()}</span> ${oldPrice>nowPrice?`<span style="font-size:13px;color:#888;text-decoration:line-through;margin-left:8px">₦${oldPrice.toLocaleString()}</span> <span style="background:#ff3b30;color:#fff;font-size:11px;padding:3px 6px;border-radius:4px;margin-left:6px">-${perc}% OFF</span>`:''}`;
+  document.getElementById('modalDesc').innerText=p.desc||p.name+' - Quality product from THE WONDER GLOBAL CONCEPT.';
   document.getElementById('modalStock').innerHTML=Number(p.stock)===0?'<b style="color:red">Out of Stock</b>':'<b style="color:green">In Stock: '+p.stock+'</b>';
-  let thumbs=document.getElementById('modalThumbs');
-  thumbs.innerHTML=imgs.map((im,i)=>`<img src="${im}" class="${i===0?'active':''}" onclick="document.getElementById('modalMainImg').src='${im}';document.querySelectorAll('.modal-thumbs img').forEach(x=>x.classList.remove('active'));this.classList.add('active')">`).join('');
+  document.getElementById('modalThumbs').innerHTML=imgs.map((im,i)=>`<img src="${im}" class="${i===0?'active':''}" onclick="document.getElementById('modalMainImg').src='${im}';document.querySelectorAll('.modal-thumbs img').forEach(x=>x.classList.remove('active'));this.classList.add('active')">`).join('');
   document.getElementById('modalAddCart').onclick=()=>addToCartById(p._id);
   updateModalWishBtn();
   document.getElementById('productModal').style.display='flex';
 }
 function updateModalWishBtn(){
   let btn=document.getElementById('modalWish');
-  if(wishlist.includes(currentProduct.name)){btn.innerText='❤️ Saved in Wishlist';}
-  else{btn.innerText='🤍 Add to Wishlist';}
+  btn.innerText=wishlist.includes(currentProduct.name)?'❤️ Saved in Wishlist':'🤍 Add to Wishlist';
   btn.onclick=()=>{toggleWish(currentProduct.name); updateModalWishBtn();};
 }
-window.closeProductModal=()=>{document.getElementById('productModal').style.display='none';}
-window.orderWhatsApp=()=>{
-  if(!currentProduct) return;
-  window.open('https://wa.me/2347081632713?text=I want '+encodeURIComponent(currentProduct.name)+' ₦'+currentProduct.price,'_blank');
-}
+window.closeProductModal=()=>document.getElementById('productModal').style.display='none';
+window.orderWhatsApp=()=>{ if(!currentProduct) return; window.open('https://wa.me/2347081632713?text=I want '+encodeURIComponent(currentProduct.name)+' ₦'+currentProduct.price,'_blank'); }
 document.getElementById('productModal').onclick=(e)=>{ if(e.target.id==='productModal') closeProductModal(); }
 
-// LOAD PRODUCTS - FIXED NO ORDERBY
-const colRef = collection(db,"products");
-onSnapshot(colRef, (snap)=>{
-  PRODUCTS=[];
-  snap.forEach(d=>{let data=d.data(); data._id=d.id; PRODUCTS.push(data);});
+onSnapshot(collection(db,"products"), snap=>{
+  PRODUCTS=[]; snap.forEach(d=>{let data=d.data(); data._id=d.id; PRODUCTS.push(data);});
   applyFilter(); updateBadges();
-}, (err)=>{
-  document.getElementById('headCount').innerText='Error: '+err.message;
 });
-
-if('serviceWorker' in navigator){
-  navigator.serviceWorker.getRegistrations().then(r=>r.forEach(x=>x.unregister()));
-  caches.keys().then(k=>k.forEach(x=>caches.delete(x)));
-}
 </script>
 </body>
 </html>
