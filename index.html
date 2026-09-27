@@ -27,9 +27,11 @@ body{background:#f5f5f5;padding-bottom:70px}
 .banner h1{font-size:22px;line-height:1.2}
 .banner h1 small{display:block;font-size:12px;font-weight:400;opacity:.8;margin-top:4px}
 .easy-announce{margin-top:14px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);backdrop-filter:blur(8px);padding:10px 14px;border-radius:12px;display:flex;justify-content:space-between;align-items:center}
-.cats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 4%}
+.cats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 4%}
 .cat{background:#fff;border:1px solid #eee;border-radius:12px;padding:14px;text-align:center;font-weight:600;font-size:12px;cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.04)}
 .cat.easy{background:linear-gradient(90deg,#ff6a00,#0f1e42);color:#fff;border:none}
+.cat.phone{background:#e3f2fd;border-color:#90caf9}
+.cat.laptop{background:#f3e5f5;border-color:#ce93d8}
 .section{margin:14px 4%;background:#fff;border-radius:12px;padding:14px}
 .section-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
 .grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
@@ -62,12 +64,7 @@ footer{background:#0f1e42;color:#aaa;text-align:center;padding:20px;font-size:11
 <body>
 <div class="top"><div>📍 Ayegun Olomi, Ibadan | RC:9874607 | THE WONDER GLOBAL CONCEPT</div><div>07081632713</div></div>
 <div class="header">
-<div class="logo"><img src="logo.jpg" onerror="this.src='https://via.placeholder.com/42'">
-<div class="logo-text">
-<div class="wonder">THE WONDER GLOBAL CONCEPT</div>
-<div class="ephesian">EPHESIAN <span>STORE</span></div>
-</div>
-</div>
+<div class="logo"><img src="logo.jpg" onerror="this.src='https://via.placeholder.com/42'"><div class="logo-text"><div class="wonder">THE WONDER GLOBAL CONCEPT</div><div class="ephesian">EPHESIAN <span>STORE</span></div></div></div>
 <div class="search"><input id="search" placeholder="Search products..."><button onclick="location.href='shop.html'">SEARCH</button></div>
 <div class="nav">
 <a href="index.html" style="color:#ff6a00">Home</a>
@@ -82,21 +79,20 @@ footer{background:#0f1e42;color:#aaa;text-align:center;padding:20px;font-size:11
 <div>
 <h1>Your One Stop Store<br>Everything You Need<small>THE WONDER GLOBAL CONCEPT - EPHESIAN STORE RC:9874607</small></h1>
 <p>Quality Phone, Laptop, Fashion & Home Accessories - Best Price in Ibadan.</p>
-<div class="easy-announce">
-<div><b>🔥 Easy Buy Available!</b><br><span style="font-size:11px">Pay 70% Now, Balance 30% Later</span></div>
-<button onclick="location.href='easy-buy.html'" style="background:#fff;color:#ff6a00;border:none;padding:8px 14px;border-radius:20px;font-weight:700;font-size:11px;cursor:pointer">Shop Easy Buy →</button>
-</div>
+<div class="easy-announce"><div><b>🔥 Easy Buy Available!</b><br><span style="font-size:11px">Pay 70% Now, Balance 30% Later</span></div><button onclick="location.href='easy-buy.html'" style="background:#fff;color:#ff6a00;border:none;padding:8px 14px;border-radius:20px;font-weight:700;font-size:11px;cursor:pointer">Shop Easy Buy →</button></div>
 <button class="btn" onclick="location.href='shop.html'" style="background:#fff;color:#0f1e42;padding:10px 22px;border-radius:25px;border:none;font-weight:700;cursor:pointer;margin-top:10px">Shop Now →</button>
 </div>
 <div style="font-size:60px">🛒</div>
 </div>
 
 <div class="cats">
-<div class="cat" onclick="location.href='shop.html?cat=phone'">📱<br>Phone Accessories</div>
-<div class="cat" onclick="location.href='shop.html?cat=laptop'">💻<br>Laptop Accessories</div>
-<div class="cat" onclick="location.href='shop.html?cat=fashion'">👗<br>Fashion</div>
-<div class="cat" onclick="location.href='shop.html?cat=home'">🏠<br>Home Essentials</div>
-<div class="cat" onclick="location.href='shop.html?cat=others'">🛒<br>Others</div>
+<div class="cat phone" onclick="location.href='shop.html?cat=Phone'">📱<br>Phone</div>
+<div class="cat laptop" onclick="location.href='shop.html?cat=Laptop'">💻<br>Laptop</div>
+<div class="cat" onclick="location.href='shop.html?cat=Phone Accessories'">🎧<br>Phone Accessories</div>
+<div class="cat" onclick="location.href='shop.html?cat=Laptop Accessories'">⌨️<br>Laptop Accessories</div>
+<div class="cat" onclick="location.href='shop.html?cat=Fashion and wears'">👗<br>Fashion</div>
+<div class="cat" onclick="location.href='shop.html?cat=Home Accessories'">🏠<br>Home</div>
+<div class="cat" onclick="location.href='shop.html?cat=Other Essentials'">🛒<br>Others</div>
 <div class="cat easy" onclick="location.href='easy-buy.html'">🔥<br>Easy Buy 70/30</div>
 </div>
 
@@ -141,80 +137,15 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebas
 import { getFirestore, collection, onSnapshot } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 const firebaseConfig={apiKey:"AIzaSyBjR6WNrd8ziXnegOXZv_RJtGFVbZJN8",authDomain:"ephesian-store.firebaseapp.com",projectId:"ephesian-store",storageBucket:"ephesian-store.firebasestorage.app",messagingSenderId:"109847556546",appId:"1:109847556546:web:5c7f8a9b0c1d2e3f"};
 const db=getFirestore(initializeApp(firebaseConfig));
-
 let PRODUCTS=[], cart=JSON.parse(localStorage.getItem('ephesian_cart_v2')||'[]'), wishlist=JSON.parse(localStorage.getItem('wishlist')||'[]'), currentProduct=null;
-
-function updateBadges(){
- let c=cart.length,w=wishlist.length;
- document.getElementById('cartBadge').style.display=c?'inline':'none'; document.getElementById('cartBadge').innerText=c;
- document.getElementById('wishBadge').style.display=w?'inline':'none'; document.getElementById('wishBadge').innerText=w;
- let mc=document.getElementById('mCart'); if(mc) mc.innerText=c?`(${c})`:'';
-}
-function renderGrids(){
- let featured=PRODUCTS.slice(0,10);
- let deals=PRODUCTS.filter(p=>Number(p.discount)>=20).slice(0,10);
- if(!deals.length) deals=PRODUCTS.slice(0,10);
- document.getElementById('featured-grid').innerHTML=featured.map(cardHtml).join('');
- document.getElementById('deals-grid').innerHTML=deals.map(cardHtml).join('');
-}
-function getDiscountData(p){
- // Logic: If you put price=10000 and originalPrice=15000, it will show correctly
- let nowPrice = Number(p.price);
- let oldPrice = Number(p.originalPrice || p.oldPrice || 0);
- if(!oldPrice || oldPrice <= nowPrice){
-   // calculate from discount %
-   let disc = Number(p.discount||20);
-   oldPrice = Math.round(nowPrice / (1 - disc/100));
- }
- let perc = oldPrice>0 ? Math.round((1 - nowPrice/oldPrice)*100) : (p.discount||20);
- return {nowPrice, oldPrice, perc};
-}
-function cardHtml(p){
- let isOut=Number(p.stock)===0;
- let img=(p.images||[p.image]||['https://via.placeholder.com/200'])[0];
- let {nowPrice, oldPrice, perc} = getDiscountData(p);
- return `<div class="card" onclick="openProduct('${p._id}')">
-  <span class="b-off">-${perc}%</span>
-  <img src="${img}" onerror="this.src='https://via.placeholder.com/200'">
-  <div class="info"><h3>${p.name}</h3>
-  <div class="price-row"><span class="price-now">₦${nowPrice.toLocaleString()}</span><span class="price-old">₦${oldPrice.toLocaleString()}</span></div>
-  <button class="btn-cart" onclick="event.stopPropagation(); addToCart('${p._id}')">${isOut?'Out of Stock':'Add to Cart'}</button></div>
- </div>`;
-}
-window.addToCart=(id)=>{
- let p=PRODUCTS.find(x=>x._id===id); if(!p||Number(p.stock)===0){alert('Out of stock');return;}
- cart.push({id:p._id,name:p.name,price:Number(p.price),image:(p.images||[])[0]||'',qty:1});
- localStorage.setItem('ephesian_cart_v2',JSON.stringify(cart)); updateBadges(); alert(p.name+' added!');
-}
-window.openProduct=(id)=>{
- let p=PRODUCTS.find(x=>x._id===id); if(!p) return; currentProduct=p;
- let imgs=p.images||[p.image]||[];
- let {nowPrice, oldPrice, perc} = getDiscountData(p);
- document.getElementById('modalMainImg').src=imgs[0];
- document.getElementById('modalName').innerText=p.name;
- document.getElementById('modalPrice').innerHTML=`<span style="font-size:22px;font-weight:700;color:#0f1e42">₦${nowPrice.toLocaleString()}</span> <span style="font-size:13px;color:#888;text-decoration:line-through;margin-left:8px">₦${oldPrice.toLocaleString()}</span> <span style="background:#ff3b30;color:#fff;font-size:11px;padding:3px 6px;border-radius:4px;margin-left:6px">-${perc}% OFF</span>`;
- document.getElementById('modalDesc').innerText=p.desc||p.name+' - Quality product from THE WONDER GLOBAL CONCEPT.';
- document.getElementById('modalStock').innerHTML=Number(p.stock)===0?'<b style="color:red">Out of Stock</b>':'<b style="color:green">In Stock</b>';
- document.getElementById('modalThumbs').innerHTML=imgs.map((im,i)=>`<img src="${im}" class="${i===0?'active':''}" onclick="document.getElementById('modalMainImg').src='${im}';document.querySelectorAll('.modal-thumbs img').forEach(x=>x.classList.remove('active'));this.classList.add('active')">`).join('');
- document.getElementById('modalAddCart').onclick=()=>addToCart(p._id);
- document.getElementById('modalWish').onclick=()=>{
-   if(wishlist.includes(p.name)) wishlist=wishlist.filter(x=>x!==p.name); else wishlist.push(p.name);
-   localStorage.setItem('wishlist',JSON.stringify(wishlist)); updateBadges(); updateWishBtn();
- };
- updateWishBtn();
- document.getElementById('productModal').style.display='flex';
-}
-function updateWishBtn(){
- let btn=document.getElementById('modalWish');
- if(wishlist.includes(currentProduct.name)) btn.innerText='❤️ Saved in Wishlist'; else btn.innerText='🤍 Add to Wishlist';
-}
+function updateBadges(){let c=cart.length,w=wishlist.length;document.getElementById('cartBadge').style.display=c?'inline':'none';document.getElementById('cartBadge').innerText=c;document.getElementById('wishBadge').style.display=w?'inline':'none';document.getElementById('wishBadge').innerText=w;let mc=document.getElementById('mCart');if(mc) mc.innerText=c?`(${c})`:'';}
+function renderGrids(){let featured=PRODUCTS.slice(0,10);let deals=PRODUCTS.filter(p=>Number(p.discount)>=20).slice(0,10);if(!deals.length) deals=PRODUCTS.slice(0,10);document.getElementById('featured-grid').innerHTML=featured.map(cardHtml).join('');document.getElementById('deals-grid').innerHTML=deals.map(cardHtml).join('');}
+function getDiscountData(p){let nowPrice=Number(p.price);let oldPrice=Number(p.originalPrice||0);if(!oldPrice||oldPrice<=nowPrice){let disc=Number(p.discount||20);oldPrice=Math.round(nowPrice/(1-disc/100));}let perc=oldPrice>0?Math.round((1-nowPrice/oldPrice)*100):(p.discount||20);return {nowPrice,oldPrice,perc};}
+function cardHtml(p){let isOut=Number(p.stock)===0;let img=(p.images||[p.image]||['https://via.placeholder.com/200'])[0];let {nowPrice,oldPrice,perc}=getDiscountData(p);return `<div class="card" onclick="openProduct('${p._id}')"><span class="b-off">-${perc}%</span><img src="${img}"><div class="info"><h3>${p.name}</h3><div class="price-row"><span class="price-now">₦${nowPrice.toLocaleString()}</span><span class="price-old">₦${oldPrice.toLocaleString()}</span></div><button class="btn-cart" onclick="event.stopPropagation(); addToCart('${p._id}')">${isOut?'Out of Stock':'Add to Cart'}</button></div></div>`;}
+window.addToCart=(id)=>{let p=PRODUCTS.find(x=>x._id===id);if(!p||Number(p.stock)===0){alert('Out of stock');return;}cart.push({id:p._id,name:p.name,price:Number(p.price),image:(p.images||[])[0]||'',qty:1});localStorage.setItem('ephesian_cart_v2',JSON.stringify(cart));updateBadges();alert(p.name+' added!');}
+window.openProduct=(id)=>{let p=PRODUCTS.find(x=>x._id===id);if(!p) return;currentProduct=p;let imgs=p.images||[];let {nowPrice,oldPrice,perc}=getDiscountData(p);document.getElementById('modalMainImg').src=imgs[0];document.getElementById('modalName').innerText=p.name;document.getElementById('modalPrice').innerHTML=`<span style="font-size:22px;font-weight:700;color:#0f1e42">₦${nowPrice.toLocaleString()}</span> <span style="font-size:13px;color:#888;text-decoration:line-through;margin-left:8px">₦${oldPrice.toLocaleString()}</span> <span style="background:#ff3b30;color:#fff;font-size:11px;padding:3px 6px;border-radius:4px;margin-left:6px">-${perc}% OFF</span>`;document.getElementById('modalDesc').innerText=p.desc||'';document.getElementById('modalStock').innerHTML=Number(p.stock)===0?'<b style="color:red">Out of Stock</b>':'<b style="color:green">In Stock</b>';document.getElementById('modalThumbs').innerHTML=imgs.map((im,i)=>`<img src="${im}" class="${i===0?'active':''}" onclick="document.getElementById('modalMainImg').src='${im}'">`).join('');document.getElementById('modalAddCart').onclick=()=>addToCart(p._id);document.getElementById('productModal').style.display='flex';}
 window.closeModal=()=>document.getElementById('productModal').style.display='none';
-document.getElementById('productModal').onclick=(e)=>{ if(e.target.id==='productModal') closeModal(); }
-
-onSnapshot(collection(db,"products"), snap=>{
- PRODUCTS=[]; snap.forEach(d=>{let data=d.data(); data._id=d.id; PRODUCTS.push(data);});
- renderGrids(); updateBadges();
-});
+onSnapshot(collection(db,"products"), snap=>{PRODUCTS=[];snap.forEach(d=>{let data=d.data();data._id=d.id;PRODUCTS.push(data);});renderGrids();updateBadges();});
 </script>
 </body>
 </html>
