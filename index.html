@@ -3,236 +3,182 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>THE WONDER GLOBAL CONCEPT | Ephesians Store - RC 9874607</title>
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="manifest" href="manifest.json?v=2.0">
-<meta name="theme-color" content="#0f1e42">
+<title>Ephesian Store - Your One Stop Store | RC:9874607</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
-body{background:#f5f5f5;padding-bottom:70px}
-.top-bar{background:#0f1e42;color:#fff;padding:6px 4%;font-size:11px;display:flex;justify-content:space-between}
-.top-bar span{color:#ffcc00}
-.header{background:#fff;padding:12px 4%;display:flex;align-items:center;gap:18px;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px rgba(0,0,0,.07)}
-.logo{display:flex;align-items:center;gap:10px;font-weight:700;color:#0f1e42;font-size:14px}
-.logo img{width:42px;height:42px;border-radius:50%;object-fit:cover;border:2px solid #d4af37}
-.search-wrap{flex:1;display:flex;gap:8px;max-width:600px;position:relative}
-.search-wrap input{flex:1;padding:11px 18px;border:1.5px solid #ddd;border-radius:25px 0 0 25px;outline:none}
-.search-wrap button{background:#ff6a00;color:#fff;border:none;padding:11px 22px;border-radius:0 25px 25px 0;font-weight:700;cursor:pointer}
+body{background:#f5f5f5}
+.top{background:#0f1e42;color:#fff;padding:6px 4%;font-size:11px;display:flex;justify-content:space-between}
+.top b{color:#ffcc00}
+.header{background:#fff;padding:12px 4%;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:1000;box-shadow:0 2px 10px rgba(0,0,0,.07)}
+.logo{display:flex;align-items:center;gap:8px;font-weight:700;color:#0f1e42}
+.logo img{width:38px;height:38px;border-radius:50%;border:2px solid #d4af37}
+.search{flex:1;max-width:400px;display:flex}
+.search input{flex:1;padding:10px 14px;border:1.5px solid #ddd;border-radius:25px 0 0 25px;outline:none}
+.search button{background:#ff6a00;color:#fff;border:none;padding:10px 16px;border-radius:0 25px 25px 0;font-weight:700}
 .nav{display:flex;gap:16px;align-items:center}
-.nav a{color:#0f1e42;text-decoration:none;font-size:13px;font-weight:600;position:relative}
-.nav.badge{background:#ff3b30;color:#fff;font-size:9px;padding:2px 5px;border-radius:10px;position:absolute;top:-8px;right:-10px}
-.hero{display:grid;grid-template-columns:220px 1fr 200px;gap:14px;padding:14px 4%}
-.cat-box{background:#fff;border-radius:12px;padding:12px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
-.cat-box h4{font-size:12px;margin-bottom:10px;color:#0f1e42;border-bottom:1px solid #eee;padding-bottom:6px}
-.cat-box div{padding:10px 6px;font-size:12px;cursor:pointer;display:flex;gap:8px;align-items:center;color:#333;border-radius:6px;transition:.2s}
-.cat-box div:hover{background:#fff3e0;color:#ff6a00;transform:translateX(3px)}
-.banner{background:linear-gradient(135deg,#0f1e42 0%,#ff6a00 100%);border-radius:12px;color:#fff;padding:28px 24px;display:flex;justify-content:space-between;align-items:center;position:relative;overflow:hidden}
-.banner h1{font-size:22px;line-height:1.3}
-.banner h1 span{color:#ffcc00}
-.flash{background:#fff;border-radius:12px;padding:10px;box-shadow:0 1px 4px rgba(0,0,0,.06);text-align:center}
-.timer{display:flex;gap:4px;justify-content:center;margin-top:6px}
-.timer span{background:#0f1e42;color:#fff;padding:4px 6px;border-radius:4px;font-size:11px;font-weight:700}
-.section{padding:10px 4%}
-.sec-head{display:flex;justify-content:space-between;align-items:center;background:#fff;padding:12px 16px;border-radius:12px 12px 0 0;border-bottom:2px solid #ff6a00}
-.sec-head h3{font-size:15px;color:#0f1e42}
-.grid{background:#fff;padding:12px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;border-radius:0 0 12px 12px}
-.card{background:#fff;border:1px solid #f0f0f0;border-radius:12px;overflow:hidden;transition:.2s;cursor:pointer;position:relative}
-.card:hover{box-shadow:0 8px 20px rgba(0,0,0,.12);transform:translateY(-3px)}
-.card img{width:100%;height:160px;object-fit:contain;background:#fff;padding:8px}
-.off{position:absolute;top:6px;left:6px;background:#ff3b30;color:#fff;font-size:10px;padding:3px 6px;border-radius:4px;font-weight:700}
-.pay{position:absolute;top:6px;right:6px;background:#2a7d2a;color:#fff;font-size:9px;padding:3px 5px;border-radius:4px;font-weight:700}
-.wish{position:absolute;bottom:72px;right:8px;background:#fff;border-radius:50%;width:30px;height:30px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(0,0,0,.15)}
-.info{padding:10px}
-.info h3{font-size:12px;color:#333;height:32px;overflow:hidden;line-height:1.3}
-.price b{color:#0f1e42;font-size:14px}
-.pay70{font-size:10px;color:#2a7d2a;background:#e8f5e9;padding:3px 6px;border-radius:4px;display:inline-block;margin-top:4px;font-weight:600}
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#fff;display:none;justify-content:space-around;padding:8px 0;box-shadow:0 -2px 10px rgba(0,0,0,.08);z-index:200}
+.nav a{text-decoration:none;color:#0f1e42;font-weight:600;font-size:13px;position:relative}
+.badge{position:absolute;top:-8px;right:-10px;background:#ff3b30;color:#fff;font-size:9px;padding:2px 6px;border-radius:10px}
+.banner{margin:14px 4%;background:linear-gradient(90deg,#0f1e42 0%, #ff6a00 100%);border-radius:16px;padding:24px 30px;color:#fff;display:flex;justify-content:space-between;align-items:center}
+.banner h1{font-size:24px;line-height:1.2}
+.banner p{font-size:13px;margin:8px 0;opacity:.9}
+.banner .btn{background:#fff;color:#0f1e42;padding:10px 22px;border-radius:25px;border:none;font-weight:700;cursor:pointer;margin-top:10px}
+.section{margin:14px 4%;background:#fff;border-radius:12px;padding:14px}
+.section-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.section-head h2{font-size:16px;color:#0f1e42}
+.section-head a{color:#ff6a00;text-decoration:none;font-weight:700;font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.card{border:1px solid #f0f0f0;border-radius:12px;overflow:hidden;position:relative;cursor:pointer;transition:.2s;background:#fff}
+.card:hover{box-shadow:0 8px 20px rgba(0,0,0,.1);transform:translateY(-3px)}
+.card img{width:100%;height:150px;object-fit:contain;padding:6px;background:#fff}
+.b-off{position:absolute;top:6px;left:6px;background:#ff3b30;color:#fff;font-size:10px;padding:3px 6px;border-radius:4px;font-weight:700}
+.info{padding:8px}
+.info h3{font-size:11px;height:28px;overflow:hidden;color:#333;line-height:1.3}
+.price{font-weight:700;color:#0f1e42;font-size:13px;margin-top:4px}
+.pay70{font-size:9px;background:#e8f5e9;color:#2a7d2a;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:3px}
+.btn-cart{width:100%;padding:8px;border:none;border-radius:8px;background:#0f1e42;color:#fff;font-weight:700;font-size:11px;margin-top:6px;cursor:pointer}
+#productModal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:5000;justify-content:center;align-items:center;padding:12px}
+.modal-content{background:#fff;border-radius:16px;width:100%;max-width:900px;max-height:90vh;overflow:auto;display:grid;grid-template-columns:1fr 1fr;position:relative}
+.modal-img{padding:16px;text-align:center}
+.modal-img img{width:100%;max-height:360px;object-fit:contain}
+.modal-thumbs{display:flex;gap:6px;margin-top:10px;justify-content:center;flex-wrap:wrap}
+.modal-thumbs img{width:50px;height:50px;object-fit:contain;border:2px solid #eee;border-radius:6px;cursor:pointer}
+.modal-thumbs img.active{border-color:#ff6a00}
+.modal-info{padding:20px}
+.close-modal{position:absolute;top:10px;right:14px;font-size:28px;cursor:pointer;background:#eee;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:8px 0;box-shadow:0 -2px 10px rgba(0,0,0,.08);z-index:200}
 .bottom-nav a{text-decoration:none;color:#888;font-size:10px;text-align:center;font-weight:600}
 .bottom-nav a.active{color:#ff6a00}
-#suggestBox{position:absolute;top:100%;left:0;right:0;background:#fff;border-radius:0 0 12px 12px;box-shadow:0 10px 20px rgba(0,0,0,.15);z-index:999;display:none;border:1px solid #eee;max-height:300px;overflow:auto}
-footer{background:#0f1e42;color:#ccc;padding:22px 4%;text-align:center;font-size:11px;margin-top:20px;line-height:1.8}
-@media(max-width:900px){.hero{grid-template-columns:1fr}.cat-box,.flash{display:none}.grid{grid-template-columns:repeat(2,1fr)}.header{flex-wrap:wrap}.search-wrap{order:3;width:100%;max-width:100%}.bottom-nav{display:flex}}
+footer{background:#0f1e42;color:#aaa;text-align:center;padding:20px;font-size:11px;margin-top:20px;padding-bottom:70px}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.banner{flex-direction:column;text-align:center}.modal-content{grid-template-columns:1fr}.header{flex-wrap:wrap}}
 </style>
 </head>
 <body>
-<div class="top-bar"><div>📍 Ayegun Olomi, Ibadan | RC:9874607 | <span>Pay 70% Now, Balance Later</span></div><div>07081632713</div></div>
+<div class="top"><div>📍 Ayegun Olomi, Ibadan | RC:9874607 | Pay 70% Now, Balance Later</div><div>07081632713</div></div>
 <div class="header">
-<div class="logo"><img src="logo.jpg" onerror="this.src='https://via.placeholder.com/42?text=WGC'">THE WONDER GLOBAL</div>
-<div class="search-wrap"><input id="search" placeholder="Search products, brands..." oninput="doSearch()" autocomplete="off"><button onclick="doSearch()">SEARCH</button><div id="suggestBox"></div></div>
+<div class="logo"><img src="logo.jpg" onerror="this.src='https://via.placeholder.com/38'"> EPHESIAN STORE</div>
+<div class="search"><input id="search" placeholder="Search products..."><button onclick="location.href='shop.html'">SEARCH</button></div>
 <div class="nav">
-<a href="index.html">Home</a>
+<a href="index.html" style="color:#ff6a00">Home</a>
 <a href="shop.html">Shop</a>
-<a href="#" onclick="showWishlist()">❤️<span id="wishCount" class="badge" style="display:none">0</span></a>
-<a href="#" onclick="showCart()">🛒<span id="cartCount" class="badge" style="display:none">0</span></a>
+<a href="cart.html">🛒<span id="cartBadge" class="badge" style="display:none">0</span></a>
+<a href="wishlist.html">❤️<span id="wishBadge" class="badge" style="display:none;background:#0f1e42">0</span></a>
 </div>
 </div>
 
-<div class="hero">
-<div class="cat-box">
-<h4>📦 CATEGORIES (5)</h4>
-<div onclick="filterCat('Phone Accessories')">📱 Phone Accessories</div>
-<div onclick="filterCat('Laptop Accessories')">💻 Laptop Accessories</div>
-<div onclick="filterCat('Fashion and wears')">👕 Fashion and wears</div>
-<div onclick="filterCat('Home Accessories')">🏠 Home Accessories</div>
-<div onclick="filterCat('Other Essentials')">🛒 Other Essentials</div>
-</div>
 <div class="banner">
-<div><p style="color:#ffcc00;font-weight:700;letter-spacing:1px">EPHESIANS STORE v2.0</p><h1>Your One Stop Store<br><span>Everything You Need</span></h1><p style="font-size:12px;opacity:.9;margin-top:6px">Quality • Affordable • Trusted in Ibadan • RC 9874607</p><div style="margin-top:14px"><a href="#products" style="background:#ffcc00;color:#0f1e42;padding:10px 20px;border-radius:20px;text-decoration:none;font-weight:700;font-size:12px">Shop Now →</a> <a href="https://wa.me/2347081632713" style="border:1px solid #ffcc00;color:#ffcc00;padding:10px 18px;border-radius:20px;text-decoration:none;font-size:12px;margin-left:6px">WhatsApp</a></div></div>
-<div style="font-size:50px">🛒</div>
-</div>
 <div>
-<div class="flash"><h5 style="color:#ff3b30">⚡ Flash Sales v2.0</h5><p style="font-size:10px;color:#666">New Upgrade</p><div class="timer"><span id="h">02</span>:<span id="m">45</span>:<span id="s">30</span></div><a href="#products" style="display:block;margin-top:8px;background:#ff3b30;color:#fff;padding:6px;border-radius:4px;text-decoration:none;font-size:11px;font-weight:700">SHOP NOW</a></div>
-<div style="background:#fff;border-radius:12px;padding:14px;box-shadow:0 1px 4px rgba(0,0,0,.06);font-size:11px;line-height:1.8;margin-top:10px"><b>📞 Need Help?</b><br>07081632713<br>WhatsApp 24/7<br><br><b>💳 Pay 70% Now</b><br>Transfer or Pay on Delivery</div>
+<h1>Your One Stop Store<br>Everything You Need</h1>
+<p>Quality Phone, Laptop, Fashion & Home Accessories. Pay 70% now.</p>
+<button class="btn" onclick="location.href='shop.html'">Shop Now →</button>
 </div>
+<div style="font-size:60px">🛒</div>
 </div>
 
-<div class="section" id="products">
-<div class="sec-head"><h3>🔥 Featured Products - <b>Pay 70% Now</b></h3><a href="shop.html" style="color:#ff6a00;text-decoration:none;font-size:12px;font-weight:700">SEE ALL →</a></div>
-<div class="grid" id="grid"><p style="grid-column:1/-1;text-align:center;padding:20px">Loading v2.0... ⏳</p></div>
+<div class="section">
+<div class="section-head"><h2>Featured Products</h2><a href="shop.html">See All →</a></div>
+<div class="grid" id="featured-grid">Loading products...</div>
+</div>
+
+<div class="section">
+<div class="section-head"><h2>Best Deals - Pay 70% Now</h2><a href="shop.html">See All →</a></div>
+<div class="grid" id="deals-grid"></div>
+</div>
+
+<div id="productModal">
+<div class="modal-content">
+<span class="close-modal" onclick="closeModal()">×</span>
+<div class="modal-img">
+<img id="modalMainImg" src="">
+<div class="modal-thumbs" id="modalThumbs"></div>
+</div>
+<div class="modal-info">
+<h2 id="modalName" style="color:#0f1e42"></h2>
+<div id="modalPrice" style="font-size:22px;font-weight:700;margin:10px 0"></div>
+<div id="modalPay70" style="background:#e8f5e9;color:#2a7d2a;padding:8px 12px;border-radius:8px;font-size:13px;font-weight:600;display:inline-block"></div>
+<p id="modalDesc" style="font-size:13px;color:#444;margin:14px 0;line-height:1.5"></p>
+<div id="modalStock" style="font-size:12px;margin:8px 0"></div>
+<button id="modalAddCart" style="width:100%;padding:14px;background:#0f1e42;color:#fff;border:none;border-radius:10px;font-weight:700;margin-top:12px">Add to Cart 🛒</button>
+<button id="modalWish" style="width:100%;padding:12px;background:#fff;border:1.5px solid #0f1e42;border-radius:10px;font-weight:700;margin-top:8px">🤍 Add to Wishlist</button>
+<button onclick="location.href='shop.html'" style="width:100%;padding:12px;background:#ff6a00;color:#fff;border:none;border-radius:10px;font-weight:700;margin-top:8px">View in Shop →</button>
+</div>
+</div>
 </div>
 
 <div class="bottom-nav">
 <a href="index.html" class="active">🏠<br>Home</a>
 <a href="shop.html">🛍️<br>Shop</a>
-<a href="#" onclick="showCart()">🛒<br>Cart <span id="mCartCount"></span></a>
-<a href="#" onclick="showWishlist()">❤️<br>Wishlist</a>
+<a href="cart.html">🛒<br>Cart <span id="mCart"></span></a>
+<a href="wishlist.html">❤️<br>Wishlist</a>
 <a href="contact.html">👤<br>Account</a>
 </div>
 
-<footer><b>THE WONDER GLOBAL CONCEPT | EPHESIANS STORE RC:9874607</b><br>Ayegun Olomi, Ibadan | 07081632713 | Tax: Pay 70% System<br>© 2026 Upgraded to v2.0 — No More Category Revert</footer>
+<footer>THE WONDER GLOBAL CONCEPT | EPHESIANS STORE RC:9874607<br>📍 Ayegun Olomi, Ibadan • 07081632713 • Pay 70% Now, Balance on Delivery</footer>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getFirestore, collection, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getFirestore, collection, onSnapshot } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+const firebaseConfig={apiKey:"AIzaSyBjR6WNrd8ziXnegOXZv_RJtGFVbZJN8",authDomain:"ephesian-store.firebaseapp.com",projectId:"ephesian-store",storageBucket:"ephesian-store.firebasestorage.app",messagingSenderId:"109847556546",appId:"1:109847556546:web:5c7f8a9b0c1d2e3f"};
+const app=initializeApp(firebaseConfig); const db=getFirestore(app);
 
-const firebaseConfig = {
-  apiKey: "AIzaSyBjR6WNrd8ziXnegOXZv_RJtGFVbZJN8",
-  authDomain: "ephesian-store.firebaseapp.com",
-  projectId: "ephesian-store",
-  storageBucket: "ephesian-store.firebasestorage.app",
-  messagingSenderId: "109847556546",
-  appId: "1:109847556546:web:5c7f8a9b0c1d2e3f"
-};
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+let PRODUCTS=[], cart=JSON.parse(localStorage.getItem('ephesian_cart_v2')||'[]'), wishlist=JSON.parse(localStorage.getItem('wishlist')||'[]'), currentProduct=null;
 
-// --- v2.0 CATEGORY MAPPER - FIXES REVERT FOREVER ---
-function mapCategory(cat){
-  if(!cat) return 'Other Essentials';
-  let c = cat.toLowerCase();
-  if(c.includes('phone') || c.includes('charger') || c.includes('power') || c.includes('torch') || c.includes('cable') || c.includes('earpod')) return 'Phone Accessories';
-  if(c.includes('laptop') || c.includes('mouse') || c.includes('keyboard')) return 'Laptop Accessories';
-  if(c.includes('fashion') || c.includes('clothe') || c.includes('wear') || c.includes('bag') || c.includes('shoe') || c.includes('hoodie')) return 'Fashion and wears';
-  if(c.includes('gas') || c.includes('home') || c.includes('cooker') || c.includes('pot') || c.includes('kitchen')) return 'Home Accessories';
-  return 'Other Essentials';
-}
-
-let allProducts=[];
-function render(list){
- let grid=document.getElementById('grid');
- if(!list.length){grid.innerHTML='<p style="grid-column:1/-1;text-align:center;padding:30px;color:#888">No products for this category. Try All.</p>';return;}
- grid.innerHTML=list.map((p,i)=>{
-   let realCat = mapCategory(p.category);
-   let isWish = (JSON.parse(localStorage.getItem('wishlist')||'[]')).includes(p.name);
-   return `
- <div class="card">
-   <span class="off">-${p.discount||20}%</span>
-   <span class="pay">Pay 70%</span>
-   <div class="wish" onclick="toggleWish('${p.name.replace(/'/g,"\\'")}')">${isWish?'❤️':'🤍'}</div>
-   <img src="${(p.images||[p.image])[0]}" onerror="this.src='https://via.placeholder.com/200?text=${encodeURIComponent(p.name)}'" onclick="openProd(${allProducts.indexOf(p)})">
-   <div class="info" onclick="openProd(${allProducts.indexOf(p)})">
-     <h3>${p.name}</h3>
-     <div class="price"><b>₦${Number(p.price).toLocaleString()}</b><small>₦${Math.round(p.price*1.25).toLocaleString()}</small></div>
-     <div class="pay70">Pay 70%: ₦${Math.round(p.price*0.7).toLocaleString()}</div>
-     <div style="font-size:9px;color:#ff6a00;margin-top:3px">${realCat}</div>
-   </div>
- </div>`}).join('');
-}
-window.openProd = function(i){
- let p=allProducts[i];
- let msg = `Hello EPHESIANS STORE (RC 9874607), I want to buy:%0A*${p.name}*%0APrice: ₦${Number(p.price).toLocaleString()}%0ACategory: ${mapCategory(p.category)}%0A%0APay 70% Now: ₦${Math.round(p.price*0.7).toLocaleString()}%0A%0AFrom: ${location.origin}`;
- window.open('https://wa.me/2347081632713?text=' + msg, '_blank');
- addToCart(p);
-}
-window.filterCat = function(c){
- document.getElementById('search').value=c;
- doFilter();
- document.getElementById('products').scrollIntoView({behavior:'smooth'});
-}
-function doFilter(){
- let q=document.getElementById('search').value.toLowerCase();
- let f=allProducts.filter(p=>{
-   let realCat = mapCategory(p.category).toLowerCase();
-   return p.name.toLowerCase().includes(q) || realCat.includes(q) || (p.category||'').toLowerCase().includes(q);
- });
- render(f);
-}
-
-// Wishlist + Cart Persistence
-window.toggleWish = function(name){
- let w = JSON.parse(localStorage.getItem('wishlist')||'[]');
- if(w.includes(name)) w = w.filter(x=>x!==name); else w.push(name);
- localStorage.setItem('wishlist', JSON.stringify(w));
- updateBadges();
- doFilter();
-}
-window.addToCart = function(p){
- let c = JSON.parse(localStorage.getItem('cart')||'[]');
- c.push({name:p.name, price:p.price, at:Date.now()});
- localStorage.setItem('cart', JSON.stringify(c));
- updateBadges();
-}
 function updateBadges(){
- let w = JSON.parse(localStorage.getItem('wishlist')||'[]').length;
- let c = JSON.parse(localStorage.getItem('cart')||'[]').length;
- document.getElementById('wishCount').style.display = w?'inline':'none';
- document.getElementById('wishCount').innerText=w;
- document.getElementById('cartCount').style.display = c?'inline':'none';
- document.getElementById('cartCount').innerText=c;
- let mc=document.getElementById('mCartCount'); if(mc) mc.innerText = c?`(${c})`:'';
+ let c=cart.length,w=wishlist.length;
+ document.getElementById('cartBadge').style.display=c?'inline':'none'; document.getElementById('cartBadge').innerText=c;
+ document.getElementById('wishBadge').style.display=w?'inline':'none'; document.getElementById('wishBadge').innerText=w;
+ let mc=document.getElementById('mCart'); if(mc) mc.innerText=c?`(${c})`:'';
 }
-window.showWishlist = function(){ let w=JSON.parse(localStorage.getItem('wishlist')||'[]'); alert('Wishlist ('+w.length+'):\n'+w.join('\n')); }
-window.showCart = function(){ let c=JSON.parse(localStorage.getItem('cart')||'[]'); let total=c.reduce((s,i)=>s+i.price,0); alert('Cart ('+c.length+') - Total ₦'+total.toLocaleString()+'\n'+c.map(i=>i.name).join('\n')+'\n\nTo checkout, message us on WhatsApp 07081632713'); }
-window.doSearch = function(){
-  let input = document.getElementById('search');
-  let q = input.value.toLowerCase().trim();
-  let box = document.getElementById('suggestBox');
-  if(!q){ box.style.display='none'; doFilter(); return; }
-  doFilter();
-  let pageMatches = [{name:"Phone Accessories", url:"#", key:"phone"},{name:"Laptop Accessories", key:"laptop"},{name:"Fashion and wears", key:"fashion"}].filter(p=>p.key.includes(q));
-  let prodMatches = allProducts.filter(p=> p.name.toLowerCase().includes(q)).slice(0,3);
-  let html = '';
-  pageMatches.forEach(p=>{ html+=`<div onclick="filterCat('${p.name}')" style="padding:10px 14px;cursor:pointer;border-bottom:1px solid #f5f5f5"><b style="color:#0f1e42">${p.name}</b> <span style="color:#ff6a00">→</span></div>`; });
-  prodMatches.forEach(p=>{ html+=`<div onclick="openProd(${allProducts.indexOf(p)})" style="padding:10px 14px;cursor:pointer;display:flex;justify-content:space-between;border-bottom:1px solid #f5f5f5"><span><b>${p.name}</b><br><small>₦${Number(p.price).toLocaleString()}</small></span><span>View</span></div>`; });
-  if(html){ box.innerHTML=html; box.style.display='block'; } else { box.style.display='none'; }
+function renderGrids(){
+ let featured=PRODUCTS.slice(0,10);
+ let deals=PRODUCTS.filter(p=>Number(p.discount)>=20).slice(0,10);
+ if(!deals.length) deals=PRODUCTS.slice(0,10);
+ document.getElementById('featured-grid').innerHTML=featured.map(cardHtml).join('');
+ document.getElementById('deals-grid').innerHTML=deals.map(cardHtml).join('');
 }
-document.addEventListener('click',(e)=>{ if(!e.target.closest('.search-wrap')) document.getElementById('suggestBox').style.display='none'; });
-setInterval(()=>{ let h=document.getElementById('h'),m=document.getElementById('m'),s=document.getElementById('s'); if(!h) return; let sec=parseInt(s.innerText); sec--; if(sec<0){sec=59; let min=parseInt(m.innerText)-1; if(min<0){min=59; h.innerText=String(parseInt(h.innerText)-1).padStart(2,'0')} m.innerText=String(min).padStart(2,'0')} s.innerText=String(sec).padStart(2,'0'); },1000);
-
-const q = query(collection(db,"products"), orderBy("createdAt","desc"));
-onSnapshot(q, (snap)=>{
- allProducts=[];
- snap.forEach(d=>{ let data=d.data(); data._id=d.id; allProducts.push(data); });
- render(allProducts);
- updateBadges();
-}, (err)=>{ document.getElementById('grid').innerHTML='<p>Error: '+err.message+'</p>'; });
-
-updateBadges();
-</script>
-
-<script>
-// --- KILL OLD SERVICE WORKER THAT CAUSES CATEGORY REVERT - v2.0 FIX ---
-if('serviceWorker' in navigator){
-  navigator.serviceWorker.getRegistrations().then(regs=>{
-    regs.forEach(r=>r.unregister());
-  });
-  caches.keys().then(keys=>{ keys.forEach(k=>caches.delete(k)); });
-  localStorage.setItem('app_version','2.0');
-  console.log('Ephesian Store v2.0 - Old cache cleared');
+function cardHtml(p){
+ let isOut=Number(p.stock)===0;
+ let img=(p.images||[p.image]||['https://via.placeholder.com/200'])[0];
+ return `<div class="card" onclick="openProduct('${p._id}')">
+  <span class="b-off">-${p.discount||20}%</span>
+  <img src="${img}" onerror="this.src='https://via.placeholder.com/200'">
+  <div class="info"><h3>${p.name}</h3><div class="price">₦${Number(p.price).toLocaleString()}</div><div class="pay70">Pay 70%: ₦${Math.round(p.price*0.7).toLocaleString()}</div><button class="btn-cart" onclick="event.stopPropagation(); addToCart('${p._id}')">${isOut?'Out of Stock':'Add to Cart'}</button></div>
+ </div>`;
 }
+window.addToCart=(id)=>{
+ let p=PRODUCTS.find(x=>x._id===id); if(!p||Number(p.stock)===0){alert('Out of stock');return;}
+ cart.push({id:p._id,name:p.name,price:Number(p.price),image:(p.images||[])[0]||'',qty:1});
+ localStorage.setItem('ephesian_cart_v2',JSON.stringify(cart)); updateBadges(); alert(p.name+' added!');
+}
+window.openProduct=(id)=>{
+ let p=PRODUCTS.find(x=>x._id===id); if(!p) return; currentProduct=p;
+ let imgs=p.images||[p.image]||[];
+ document.getElementById('modalMainImg').src=imgs[0];
+ document.getElementById('modalName').innerText=p.name;
+ document.getElementById('modalPrice').innerText='₦'+Number(p.price).toLocaleString();
+ document.getElementById('modalPay70').innerText='Pay 70% Now: ₦'+Math.round(p.price*0.7).toLocaleString();
+ document.getElementById('modalDesc').innerText=p.desc||p.name+' - Quality product from Ephesian Store.';
+ document.getElementById('modalStock').innerHTML=Number(p.stock)===0?'<b style="color:red">Out of Stock</b>':'<b style="color:green">In Stock</b>';
+ document.getElementById('modalThumbs').innerHTML=imgs.map((im,i)=>`<img src="${im}" class="${i===0?'active':''}" onclick="document.getElementById('modalMainImg').src='${im}';document.querySelectorAll('.modal-thumbs img').forEach(x=>x.classList.remove('active'));this.classList.add('active')">`).join('');
+ document.getElementById('modalAddCart').onclick=()=>addToCart(p._id);
+ document.getElementById('modalWish').onclick=()=>{
+   if(wishlist.includes(p.name)) wishlist=wishlist.filter(x=>x!==p.name); else wishlist.push(p.name);
+   localStorage.setItem('wishlist',JSON.stringify(wishlist)); updateBadges(); updateWishBtn();
+ };
+ updateWishBtn();
+ document.getElementById('productModal').style.display='flex';
+}
+function updateWishBtn(){
+ let btn=document.getElementById('modalWish');
+ if(wishlist.includes(currentProduct.name)) btn.innerText='❤️ Saved in Wishlist'; else btn.innerText='🤍 Add to Wishlist';
+}
+window.closeModal=()=>document.getElementById('productModal').style.display='none';
+document.getElementById('productModal').onclick=(e)=>{ if(e.target.id==='productModal') closeModal(); }
+
+onSnapshot(collection(db,"products"), snap=>{
+ PRODUCTS=[]; snap.forEach(d=>{let data=d.data(); data._id=d.id; PRODUCTS.push(data);});
+ renderGrids(); updateBadges();
+});
 </script>
 </body>
 </html>
