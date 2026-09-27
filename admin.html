@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin v3.0 - THE WONDER GLOBAL CONCEPT</title>
+<title>Admin</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
 body{background:#f5f5f5}
@@ -15,7 +15,6 @@ body{background:#f5f5f5}
 label{font-size:10px;font-weight:700;color:#0f1e42;display:block;margin-bottom:3px;text-transform:uppercase}
 input,select,textarea{width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;font-size:13px}
 .discount-preview{background:#e8f5e9;border:1px solid #a5d6a7;padding:10px;border-radius:8px;text-align:center;margin:10px 0;font-size:12px}
-.discount-preview b{color:#2e7d32;font-size:16px}
 .img-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0}
 .box{border:2px dashed #ff6a00;height:100px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:#fffbf0;cursor:pointer;font-size:28px;color:#ff6a00;font-weight:700;position:relative;overflow:hidden}
 .box img{width:100%;height:100%;object-fit:cover}
@@ -26,22 +25,19 @@ input,select,textarea{width:100%;padding:10px;border:1px solid #ddd;border-radiu
 .tabs{display:flex;gap:8px;margin-bottom:12px}
 .tabs button{padding:8px 16px;border-radius:20px;border:1px solid #ddd;background:#fff;cursor:pointer;font-weight:700;font-size:12px}
 .tabs button.active{background:#0f1e42;color:#fff}
-@media(max-width:900px){.wrap{grid-template-columns:1fr}.row{grid-template-columns:1fr}}
+@media(max-width:900px){.wrap{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <script>
 const ADMIN_PASS="Araoluwa_1";
-let p=prompt("🔒 Admin v3.0 - Password:");
+let p=prompt("🔒 Admin v3.1 - Password:");
 if(p!==ADMIN_PASS){alert("Wrong!"); location.href="index.html";}
 </script>
-<div class="header"><div>THE WONDER GLOBAL - ADMIN v3.0 DISCOUNT + EASY BUY</div><div><a href="index.html">Home</a> | <a href="shop.html">Shop</a> | <a href="easy-buy.html">Easy Buy</a></div></div>
+<div class="header"><div>ADMIN v3.1 - CANCEL FIXED</div><div><a href="index.html">Home</a> | <a href="shop.html">Shop</a> | <a href="easy-buy.html">Easy Buy</a></div></div>
 
 <div style="padding:12px 4%">
-<div class="tabs">
-<button class="active" onclick="showTab('products',this)">📦 Products (<span id="c">0</span>)</button>
-<button onclick="showTab('orders',this)">💳 Orders (<span id="orderCount">0</span>)</button>
-</div>
+<div class="tabs"><button class="active">📦 Products (<span id="c">0</span>)</button></div>
 </div>
 
 <div class="wrap">
@@ -50,40 +46,28 @@ if(p!==ADMIN_PASS){alert("Wrong!"); location.href="index.html";}
 <h3 id="formTitle">Add Product - With Discount Auto</h3>
 <div class="row">
 <div><label>Product Name</label><input id="n" placeholder="Kemei Clipper"></div>
-<div><label>Original Price ₦ (e.g 15000)</label><input id="op" type="number" placeholder="15000" oninput="calcDiscount()"></div>
-<div><label>Selling Price ₦ (e.g 10000)</label><input id="p" type="number" placeholder="10000" oninput="calcDiscount()"></div>
+<div><label>Original Price ₦</label><input id="op" type="number" placeholder="15000" oninput="calcDiscount()"></div>
+<div><label>Selling Price ₦</label><input id="p" type="number" placeholder="10000" oninput="calcDiscount()"></div>
 </div>
 <div class="row">
 <div><label>Stock Qty</label><input id="stock" type="number" value="20"></div>
 <div><label>Discount % (Auto)</label><input id="d" type="number" value="0" readonly style="background:#e8f5e9;font-weight:700"></div>
 <div><label>Category</label><select id="cat"><option>Phone Accessories</option><option>Laptop Accessories</option><option>Fashion and wears</option><option>Home Accessories</option><option>Other Essentials</option></select></div>
 </div>
-
-<div class="discount-preview" id="discountPreview">Enter Original and Selling Price → Auto calculate discount: <b>-0% OFF</b></div>
-
+<div class="discount-preview" id="discountPreview">Enter Original and Selling → Auto -% OFF</div>
 <textarea id="desc" placeholder="Description" style="height:50px;margin-bottom:10px"></textarea>
-
 <label style="display:flex;align-items:center;gap:8px;background:#fff8e1;padding:12px;border-radius:8px;cursor:pointer;border:1px solid #ffcc00">
-<input id="easyBuy" type="checkbox" style="width:18px;height:18px"> 🔥 Add to Easy Buy (Pay 70% Now, 30% Later) - Tick to show in Easy Buy page
+<input id="easyBuy" type="checkbox" style="width:18px;height:18px"> 🔥 Add to Easy Buy
 </label>
-
-<div class="note"><b>v3.0 NEW:</b> ✅ Original + Selling = Auto discount | Easy Buy tick | Image 600px 60% JPEG</div>
 <div class="img-grid" id="grid"></div>
 <input type="file" id="file" accept="image/*" multiple style="display:none">
-<button class="btn" id="pubBtn">Publish Product with Discount v3.0</button>
-<button class="btn btn-edit" id="cancelEdit" style="display:none">Cancel Edit</button>
+<button class="btn" id="pubBtn" type="button">Publish Product v3.1</button>
+<button class="btn btn-edit" id="cancelEdit" type="button" onclick="cancelEditNow()" style="display:none">❌ Cancel Edit - Back to Add</button>
 <p id="ok" style="color:green;font-size:12px;margin-top:10px"></p>
 </div>
-<div class="card" id="productListCard"><h4>Your Products Live - v3.0</h4><div id="list">Loading...</div></div>
+<div class="card"><h4>Your Products Live - v3.1</h4><div id="list">Loading...</div></div>
 </div>
-
-<div>
-<div class="card">
-<h3>💳 Orders</h3>
-<p style="font-size:11px;color:#666;margin:6px 0">Check OPay and click Confirm when you see PAID_TO_CONFIRM</p>
-<div id="ordersList">Loading orders...</div>
-</div>
-</div>
+<div><div class="card"><h3>💳 Orders</h3><div id="ordersList">Loading...</div></div></div>
 </div>
 
 <script type="module">
@@ -95,48 +79,32 @@ const db=getFirestore(initializeApp(firebaseConfig));
 window.calcDiscount=()=>{
  let oldP=Number(document.getElementById('op').value);
  let newP=Number(document.getElementById('p').value);
- let perc=0;
- if(oldP>0 && newP>0 && oldP>newP){
-   perc=Math.round((1-newP/oldP)*100);
- }else if(oldP===0 && newP>0){
-   // if only selling price, no discount
-   perc=0;
- }
+ let perc=(oldP>0 && newP>0 && oldP>newP)?Math.round((1-newP/oldP)*100):0;
  document.getElementById('d').value=perc;
- document.getElementById('discountPreview').innerHTML=`Discount: <b style="font-size:18px;color:#d32f2f">-${perc}% OFF</b> — <b>₦${oldP?oldP.toLocaleString():0} → ₦${newP?newP.toLocaleString():0}</b> | Pay 70%: <b>₦${newP?Math.round(newP*0.7).toLocaleString():0}</b>`;
+ document.getElementById('discountPreview').innerHTML=`Discount: <b style="font-size:18px;color:#d32f2f">-${perc}% OFF</b> — ₦${oldP||0} → ₦${newP||0}`;
 };
 
 let imgs=[], editingId=null;
 const grid=document.getElementById('grid'), fileInput=document.getElementById('file');
 function draw(){grid.innerHTML='';for(let i=0;i<4;i++){let h=imgs[i];grid.innerHTML+=`<div class="box" onclick="document.getElementById('file').click()">${h?`<img src="${h}"><span style="position:absolute;top:2px;right:2px;background:red;color:#fff;width:18px;height:18px;border-radius:50%;font-size:11px;display:flex;align-items:center;justify-content:center" onclick="event.stopPropagation();imgs.splice(${i},1);draw()">x</span>`:`+`}</div>`;}}
-function compressImage(file){
-  return new Promise((resolve)=>{
-    const reader=new FileReader();
-    reader.onload=(e)=>{
-      const img=new Image();
-      img.onload=()=>{
-        const canvas=document.createElement("canvas");
-        let w=img.width,h=img.height; const maxW=600;
-        if(w>maxW){h=h*(maxW/w);w=maxW;}
-        canvas.width=w;canvas.height=h;
-        const ctx=canvas.getContext("2d");
-        ctx.fillStyle="#fff";ctx.fillRect(0,0,w,h);
-        ctx.drawImage(img,0,0,w,h);
-        resolve(canvas.toDataURL("image/jpeg",0.6));
-      };
-      img.src=e.target.result;
-    };
-    reader.readAsDataURL(file);
-  });
-}
-fileInput.onchange=async(e)=>{
-  for(let f of e.target.files){
-    if(imgs.length>=4){alert('Max 4');break;}
-    document.getElementById('ok').innerText='Compressing...';
-    imgs.push(await compressImage(f));
-    draw();
-    document.getElementById('ok').innerText='';
-  }
+function compressImage(file){return new Promise((resolve)=>{const r=new FileReader();r.onload=(e)=>{const img=new Image();img.onload=()=>{const c=document.createElement("canvas");let w=img.width,h=img.height,maxW=600;if(w>maxW){h=h*(maxW/w);w=maxW;}c.width=w;c.height=h;const ctx=c.getContext("2d");ctx.fillStyle="#fff";ctx.fillRect(0,0,w,h);ctx.drawImage(img,0,0,w,h);resolve(c.toDataURL("image/jpeg",0.6));};img.src=e.target.result;};r.readAsDataURL(file);});}
+fileInput.onchange=async(e)=>{for(let f of e.target.files){if(imgs.length>=4){alert('Max 4');break;}document.getElementById('ok').innerText='Compressing...';imgs.push(await compressImage(f));draw();document.getElementById('ok').innerText='';}};
+
+window.cancelEditNow=()=>{
+  editingId=null;
+  document.getElementById('n').value='';
+  document.getElementById('p').value='';
+  document.getElementById('op').value='';
+  document.getElementById('d').value='0';
+  document.getElementById('stock').value='20';
+  document.getElementById('desc').value='';
+  document.getElementById('easyBuy').checked=false;
+  imgs=[]; draw(); calcDiscount();
+  document.getElementById('formTitle').innerText='Add Product - With Discount Auto';
+  document.getElementById('pubBtn').innerText='Publish Product v3.1';
+  document.getElementById('cancelEdit').style.display='none';
+  document.getElementById('ok').innerText='❌ Edit cancelled - Now in Add mode';
+  console.log('Cancelled');
 };
 
 document.getElementById('pubBtn').onclick=async()=>{
@@ -145,83 +113,26 @@ document.getElementById('pubBtn').onclick=async()=>{
  if(!imgs.length){alert('Upload 1 picture');return;}
  document.getElementById('ok').innerText='Saving...';
  try{
-  let data={
-    name, price:Number(price), originalPrice:Number(op||0), discount:Number(document.getElementById('d').value||0),
-    stock:Number(document.getElementById('stock').value), category:document.getElementById('cat').value,
-    desc:document.getElementById('desc').value, images:[...imgs], easyBuy:document.getElementById('easyBuy').checked, updatedAt:serverTimestamp()
-  };
-  if(editingId){
-    await updateDoc(doc(db,"products",editingId),data);
-    document.getElementById('ok').innerText='✅ UPDATED with '+data.discount+'% discount: '+name;
-    editingId=null;
-    document.getElementById('formTitle').innerText='Add Product - v3.0';
-    document.getElementById('pubBtn').innerText='Publish Product with Discount v3.0';
-    document.getElementById('cancelEdit').style.display='none';
-  }else{
-    data.createdAt=serverTimestamp();
-    await addDoc(collection(db,"products"),data);
-    document.getElementById('ok').innerText='✅ Published: '+name+' with -'+data.discount+'%';
-  }
+  let data={name, price:Number(price), originalPrice:Number(op||0), discount:Number(document.getElementById('d').value||0), stock:Number(document.getElementById('stock').value), category:document.getElementById('cat').value, desc:document.getElementById('desc').value, images:[...imgs], easyBuy:document.getElementById('easyBuy').checked, updatedAt:serverTimestamp()};
+  if(editingId){await updateDoc(doc(db,"products",editingId),data);document.getElementById('ok').innerText='✅ UPDATED: '+name;editingId=null;document.getElementById('formTitle').innerText='Add Product - With Discount Auto';document.getElementById('pubBtn').innerText='Publish Product v3.1';document.getElementById('cancelEdit').style.display='none';}
+  else{data.createdAt=serverTimestamp();await addDoc(collection(db,"products"),data);document.getElementById('ok').innerText='✅ Published: '+name;}
   document.getElementById('n').value='';document.getElementById('p').value='';document.getElementById('op').value='';document.getElementById('desc').value='';document.getElementById('d').value='0';document.getElementById('easyBuy').checked=false;imgs=[];draw();calcDiscount();
  }catch(err){document.getElementById('ok').innerText='Error: '+err.message;}
 };
 
-const q=query(collection(db,"products"),orderBy("createdAt","desc"));
-onSnapshot(q,(snap)=>{
+onSnapshot(query(collection(db,"products"),orderBy("createdAt","desc")),(snap)=>{
  document.getElementById('c').innerText=snap.size;
- let html='';
- snap.forEach(d=>{
-  let x=d.data(); let isOut=Number(x.stock)===0;
-  html+=`<div style="display:flex;gap:8px;padding:8px;border-bottom:1px solid #eee;align-items:center"><img src="${x.images?.[0]||''}" style="width:40px;height:40px;object-fit:contain"><div style="flex:1;font-size:11px"><b>${x.name}</b><br>₦${Number(x.price).toLocaleString()} ${x.originalPrice?`<s>₦${Number(x.originalPrice).toLocaleString()}</s> <b style="color:red">-${x.discount||0}%</b>`:''} | ${x.category} ${x.easyBuy?'🔥Easy':''} <br>Stock:<b style="color:${isOut?'red':'green'}">${x.stock}</b></div><button onclick="editProd('${d.id}')" style="background:blue;color:#fff;border:none;padding:5px 8px;border-radius:4px">Edit</button><button onclick="deleteProd('${d.id}')" style="background:red;color:#fff;border:none;padding:5px 8px;border-radius:4px">X</button></div>`;
- });
+ let html='';snap.forEach(d=>{let x=d.data();html+=`<div style="display:flex;gap:8px;padding:8px;border-bottom:1px solid #eee;align-items:center"><img src="${x.images?.[0]||''}" style="width:40px;height:40px;object-fit:contain"><div style="flex:1;font-size:11px"><b>${x.name}</b><br>₦${Number(x.price).toLocaleString()} ${x.originalPrice?`<s>₦${Number(x.originalPrice).toLocaleString()}</s> -${x.discount||0}%`:''} ${x.easyBuy?'🔥':''}</div><button onclick="editProd('${d.id}')" style="background:blue;color:#fff;border:none;padding:5px 8px;border-radius:4px">Edit</button><button onclick="deleteProd('${d.id}')" style="background:red;color:#fff;border:none;padding:5px 8px;border-radius:4px">X</button></div>`;});
  document.getElementById('list').innerHTML=html||'No products';
 });
-
 window.deleteProd=async(id)=>{if(confirm('Delete?')) await deleteDoc(doc(db,"products",id));};
 window.editProd=async(id)=>{
-  let snap=await getDoc(doc(db,"products",id));
-  if(!snap.exists()) return;
-  let x=snap.data();
-  document.getElementById('n').value=x.name;
-  document.getElementById('p').value=x.price;
-  document.getElementById('op').value=x.originalPrice||'';
-  document.getElementById('d').value=x.discount||0;
-  document.getElementById('stock').value=x.stock||0;
-  document.getElementById('cat').value=x.category;
-  document.getElementById('desc').value=x.desc||'';
-  document.getElementById('easyBuy').checked=!!x.easyBuy;
-  imgs=x.images||[];draw();calcDiscount();
-  editingId=id;
-  document.getElementById('formTitle').innerText='EDITING: '+x.name;
-  document.getElementById('pubBtn').innerText='UPDATE PRODUCT v3.0';
-  document.getElementById('cancelEdit').style.display='block';
-  window.scrollTo(0,0);
+  let snap=await getDoc(doc(db,"products",id)); if(!snap.exists()) return; let x=snap.data();
+  document.getElementById('n').value=x.name;document.getElementById('p').value=x.price;document.getElementById('op').value=x.originalPrice||'';document.getElementById('d').value=x.discount||0;document.getElementById('stock').value=x.stock||0;document.getElementById('cat').value=x.category;document.getElementById('desc').value=x.desc||'';document.getElementById('easyBuy').checked=!!x.easyBuy;imgs=x.images||[];draw();calcDiscount();editingId=id;
+  document.getElementById('formTitle').innerText='EDITING: '+x.name;document.getElementById('pubBtn').innerText='UPDATE PRODUCT v3.1';document.getElementById('cancelEdit').style.display='block';window.scrollTo(0,0);
 };
-document.getElementById('cancelEdit').onclick=()=>{
-  editingId=null;document.getElementById('n').value='';document.getElementById('p').value='';document.getElementById('op').value='';document.getElementById('d').value='0';document.getElementById('easyBuy').checked=false;imgs=[];draw();calcDiscount();
-  document.getElementById('formTitle').innerText='Add Product - v3.0';document.getElementById('pubBtn').innerText='Publish Product with Discount v3.0';document.getElementById('cancelEdit').style.display='none';
-};
-
-const qOrders=query(collection(db,"orders"),orderBy("createdAt","desc"));
-onSnapshot(qOrders,(snap)=>{
-  document.getElementById('orderCount').innerText=snap.size;
-  let html='';
-  snap.forEach(d=>{
-    let o=d.data();
-    let statusColor=o.status==='PAID_TO_CONFIRM'?'#ff6a00':o.status==='CONFIRMED'?'green':'#888';
-    html+=`<div class="order-card"><b>${o.customer||'Guest'}</b> - ${o.phone||''}<br>${o.address||''}<br>Total: ₦${(o.total||0).toLocaleString()} | 70%: ₦${(o.pay70||0).toLocaleString()}<br>Pay: <b>${o.paymentMethod}</b> | Status: <b style="color:${statusColor}">${o.status}</b><br><small>${(o.items||[]).map(i=>i.name).join(', ')}</small><br><div style="margin-top:6px;display:flex;gap:6px">${o.status==='PAID_TO_CONFIRM'?`<button onclick="confirmOrder('${d.id}')" style="background:#2a7d2a;color:#fff;border:none;padding:6px 10px;border-radius:6px;font-size:11px">✅ Confirm</button>`:''}<button onclick="deleteOrder('${d.id}')" style="background:red;color:#fff;border:none;padding:6px 10px;border-radius:6px;font-size:11px">Delete</button><a href="https://wa.me/${(o.phone||'2347081632713').replace(/[^0-9]/g,'')}" target="_blank" style="background:#25D366;color:#fff;padding:6px 10px;border-radius:6px;text-decoration:none;font-size:11px">WhatsApp</a></div></div>`;
-  });
-  document.getElementById('ordersList').innerHTML=html||'No orders yet';
-});
-window.confirmOrder=async(id)=>{ if(confirm('Confirm you received transfer?')) await updateDoc(doc(db,"orders",id),{status:"CONFIRMED"}); };
-window.deleteOrder=async(id)=>{ if(confirm('Delete order?')) await deleteDoc(doc(db,"orders",id)); };
-window.showTab=(tab,el)=>{
-  document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));
-  el.classList.add('active');
-  document.getElementById('productListCard').style.display=tab==='products'?'block':'none';
-};
-window.clearCache=async()=>{alert('v3.0 Locked')};
-draw();
+onSnapshot(query(collection(db,"orders"),orderBy("createdAt","desc")),(snap)=>{let h='';snap.forEach(d=>{let o=d.data();h+=`<div class="order-card"><b>${o.customer||'Guest'}</b><br>Total ₦${(o.total||0).toLocaleString()}</div>`;});document.getElementById('ordersList').innerHTML=h||'No orders';});
+draw(); calcDiscount();
 </script>
 </body>
 </html>
