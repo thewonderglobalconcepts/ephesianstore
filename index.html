@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
-body{background:#f5f5f5}
+body{background:#f5f5f5;padding-bottom:70px}
 .top{background:#0f1e42;color:#fff;padding:6px 4%;font-size:11px;display:flex;justify-content:space-between}
 .top b{color:#ffcc00}
 .header{background:#fff;padding:12px 4%;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:1000;box-shadow:0 2px 10px rgba(0,0,0,.07)}
@@ -16,13 +16,18 @@ body{background:#f5f5f5}
 .search{flex:1;max-width:400px;display:flex}
 .search input{flex:1;padding:10px 14px;border:1.5px solid #ddd;border-radius:25px 0 0 25px;outline:none}
 .search button{background:#ff6a00;color:#fff;border:none;padding:10px 16px;border-radius:0 25px 25px 0;font-weight:700}
-.nav{display:flex;gap:16px;align-items:center}
+.nav{display:flex;gap:12px;align-items:center}
 .nav a{text-decoration:none;color:#0f1e42;font-weight:600;font-size:13px;position:relative}
+.easyBtn{background:#ff6a00;color:#fff!important;padding:6px 12px;border-radius:20px;font-size:11px}
 .badge{position:absolute;top:-8px;right:-10px;background:#ff3b30;color:#fff;font-size:9px;padding:2px 6px;border-radius:10px}
 .banner{margin:14px 4%;background:linear-gradient(90deg,#0f1e42 0%, #ff6a00 100%);border-radius:16px;padding:24px 30px;color:#fff;display:flex;justify-content:space-between;align-items:center}
 .banner h1{font-size:24px;line-height:1.2}
 .banner p{font-size:13px;margin:8px 0;opacity:.9}
-.banner .btn{background:#fff;color:#0f1e42;padding:10px 22px;border-radius:25px;border:none;font-weight:700;cursor:pointer;margin-top:10px}
+.banner.btn{background:#fff;color:#0f1e42;padding:10px 22px;border-radius:25px;border:none;font-weight:700;cursor:pointer;margin-top:10px}
+.easy-announce{margin-top:14px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);backdrop-filter:blur(8px);padding:10px 14px;border-radius:12px;display:flex;justify-content:space-between;align-items:center}
+.cats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 4%}
+.cat{background:#fff;border:1px solid #eee;border-radius:12px;padding:14px;text-align:center;font-weight:600;font-size:12px;cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.cat.easy{background:linear-gradient(90deg,#ff6a00,#0f1e42);color:#fff;border:none}
 .section{margin:14px 4%;background:#fff;border-radius:12px;padding:14px}
 .section-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
 .section-head h2{font-size:16px;color:#0f1e42}
@@ -35,7 +40,6 @@ body{background:#f5f5f5}
 .info{padding:8px}
 .info h3{font-size:11px;height:28px;overflow:hidden;color:#333;line-height:1.3}
 .price{font-weight:700;color:#0f1e42;font-size:13px;margin-top:4px}
-.pay70{font-size:9px;background:#e8f5e9;color:#2a7d2a;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:3px}
 .btn-cart{width:100%;padding:8px;border:none;border-radius:8px;background:#0f1e42;color:#fff;font-weight:700;font-size:11px;margin-top:6px;cursor:pointer}
 #productModal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:5000;justify-content:center;align-items:center;padding:12px}
 .modal-content{background:#fff;border-radius:16px;width:100%;max-width:900px;max-height:90vh;overflow:auto;display:grid;grid-template-columns:1fr 1fr;position:relative}
@@ -50,17 +54,18 @@ body{background:#f5f5f5}
 .bottom-nav a{text-decoration:none;color:#888;font-size:10px;text-align:center;font-weight:600}
 .bottom-nav a.active{color:#ff6a00}
 footer{background:#0f1e42;color:#aaa;text-align:center;padding:20px;font-size:11px;margin-top:20px;padding-bottom:70px}
-@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.banner{flex-direction:column;text-align:center}.modal-content{grid-template-columns:1fr}.header{flex-wrap:wrap}}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.cats{grid-template-columns:repeat(3,1fr)}.banner{flex-direction:column;text-align:center}.modal-content{grid-template-columns:1fr}.header{flex-wrap:wrap}}
 </style>
 </head>
 <body>
-<div class="top"><div>📍 Ayegun Olomi, Ibadan | RC:9874607 | Pay 70% Now, Balance Later</div><div>07081632713</div></div>
+<div class="top"><div>📍 Ayegun Olomi, Ibadan | RC:9874607 | Your One Stop Store</div><div>07081632713</div></div>
 <div class="header">
 <div class="logo"><img src="logo.jpg" onerror="this.src='https://via.placeholder.com/38'"> EPHESIAN STORE</div>
 <div class="search"><input id="search" placeholder="Search products..."><button onclick="location.href='shop.html'">SEARCH</button></div>
 <div class="nav">
 <a href="index.html" style="color:#ff6a00">Home</a>
 <a href="shop.html">Shop</a>
+<a href="easy-buy.html" class="easyBtn">🔥 Easy Buy</a>
 <a href="cart.html">🛒<span id="cartBadge" class="badge" style="display:none">0</span></a>
 <a href="wishlist.html">❤️<span id="wishBadge" class="badge" style="display:none;background:#0f1e42">0</span></a>
 </div>
@@ -69,10 +74,24 @@ footer{background:#0f1e42;color:#aaa;text-align:center;padding:20px;font-size:11
 <div class="banner">
 <div>
 <h1>Your One Stop Store<br>Everything You Need</h1>
-<p>Quality Phone, Laptop, Fashion & Home Accessories. Pay 70% now.</p>
+<p>Quality Phone, Laptop, Fashion & Home Accessories - Best Price in Ibadan.</p>
+<div class="easy-announce">
+<div><b>🔥 Easy Buy Available!</b><br><span style="font-size:11px">Pay 70% Now, Balance 30% Later</span></div>
+<button onclick="location.href='easy-buy.html'" style="background:#fff;color:#ff6a00;border:none;padding:8px 14px;border-radius:20px;font-weight:700;font-size:11px;cursor:pointer">Shop Easy Buy →</button>
+</div>
 <button class="btn" onclick="location.href='shop.html'">Shop Now →</button>
 </div>
 <div style="font-size:60px">🛒</div>
+</div>
+
+<!-- CATEGORIES WITH EASY BUY -->
+<div class="cats">
+<div class="cat" onclick="location.href='shop.html?cat=phone'">📱<br>Phone Accessories</div>
+<div class="cat" onclick="location.href='shop.html?cat=laptop'">💻<br>Laptop Accessories</div>
+<div class="cat" onclick="location.href='shop.html?cat=fashion'">👗<br>Fashion</div>
+<div class="cat" onclick="location.href='shop.html?cat=home'">🏠<br>Home Essentials</div>
+<div class="cat" onclick="location.href='shop.html?cat=others'">🛒<br>Others</div>
+<div class="cat easy" onclick="location.href='easy-buy.html'">🔥<br>Easy Buy 70/30</div>
 </div>
 
 <div class="section">
@@ -81,7 +100,7 @@ footer{background:#0f1e42;color:#aaa;text-align:center;padding:20px;font-size:11
 </div>
 
 <div class="section">
-<div class="section-head"><h2>Best Deals - Pay 70% Now</h2><a href="shop.html">See All →</a></div>
+<div class="section-head"><h2>Best Deals</h2><a href="shop.html">See All →</a></div>
 <div class="grid" id="deals-grid"></div>
 </div>
 
@@ -95,12 +114,12 @@ footer{background:#0f1e42;color:#aaa;text-align:center;padding:20px;font-size:11
 <div class="modal-info">
 <h2 id="modalName" style="color:#0f1e42"></h2>
 <div id="modalPrice" style="font-size:22px;font-weight:700;margin:10px 0"></div>
-<div id="modalPay70" style="background:#e8f5e9;color:#2a7d2a;padding:8px 12px;border-radius:8px;font-size:13px;font-weight:600;display:inline-block"></div>
 <p id="modalDesc" style="font-size:13px;color:#444;margin:14px 0;line-height:1.5"></p>
 <div id="modalStock" style="font-size:12px;margin:8px 0"></div>
 <button id="modalAddCart" style="width:100%;padding:14px;background:#0f1e42;color:#fff;border:none;border-radius:10px;font-weight:700;margin-top:12px">Add to Cart 🛒</button>
 <button id="modalWish" style="width:100%;padding:12px;background:#fff;border:1.5px solid #0f1e42;border-radius:10px;font-weight:700;margin-top:8px">🤍 Add to Wishlist</button>
 <button onclick="location.href='shop.html'" style="width:100%;padding:12px;background:#ff6a00;color:#fff;border:none;border-radius:10px;font-weight:700;margin-top:8px">View in Shop →</button>
+<div style="margin-top:12px;background:#fff8e1;padding:10px;border-radius:8px;font-size:11px">Want to pay 70% now? <a href="easy-buy.html" style="color:#ff6a00;font-weight:700">Go to Easy Buy →</a></div>
 </div>
 </div>
 </div>
@@ -108,12 +127,12 @@ footer{background:#0f1e42;color:#aaa;text-align:center;padding:20px;font-size:11
 <div class="bottom-nav">
 <a href="index.html" class="active">🏠<br>Home</a>
 <a href="shop.html">🛍️<br>Shop</a>
+<a href="easy-buy.html">🔥<br>Easy Buy</a>
 <a href="cart.html">🛒<br>Cart <span id="mCart"></span></a>
-<a href="wishlist.html">❤️<br>Wishlist</a>
 <a href="contact.html">👤<br>Account</a>
 </div>
 
-<footer>THE WONDER GLOBAL CONCEPT | EPHESIANS STORE RC:9874607<br>📍 Ayegun Olomi, Ibadan • 07081632713 • Pay 70% Now, Balance on Delivery</footer>
+<footer>THE WONDER GLOBAL CONCEPT | EPHESIAN STORE RC:9874607<br>📍 Ayegun Olomi, Ibadan • 07081632713 • Your One Stop Store</footer>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
@@ -142,7 +161,7 @@ function cardHtml(p){
  return `<div class="card" onclick="openProduct('${p._id}')">
   <span class="b-off">-${p.discount||20}%</span>
   <img src="${img}" onerror="this.src='https://via.placeholder.com/200'">
-  <div class="info"><h3>${p.name}</h3><div class="price">₦${Number(p.price).toLocaleString()}</div><div class="pay70">Pay 70%: ₦${Math.round(p.price*0.7).toLocaleString()}</div><button class="btn-cart" onclick="event.stopPropagation(); addToCart('${p._id}')">${isOut?'Out of Stock':'Add to Cart'}</button></div>
+  <div class="info"><h3>${p.name}</h3><div class="price">₦${Number(p.price).toLocaleString()}</div><button class="btn-cart" onclick="event.stopPropagation(); addToCart('${p._id}')">${isOut?'Out of Stock':'Add to Cart'}</button></div>
  </div>`;
 }
 window.addToCart=(id)=>{
@@ -156,7 +175,6 @@ window.openProduct=(id)=>{
  document.getElementById('modalMainImg').src=imgs[0];
  document.getElementById('modalName').innerText=p.name;
  document.getElementById('modalPrice').innerText='₦'+Number(p.price).toLocaleString();
- document.getElementById('modalPay70').innerText='Pay 70% Now: ₦'+Math.round(p.price*0.7).toLocaleString();
  document.getElementById('modalDesc').innerText=p.desc||p.name+' - Quality product from Ephesian Store.';
  document.getElementById('modalStock').innerHTML=Number(p.stock)===0?'<b style="color:red">Out of Stock</b>':'<b style="color:green">In Stock</b>';
  document.getElementById('modalThumbs').innerHTML=imgs.map((im,i)=>`<img src="${im}" class="${i===0?'active':''}" onclick="document.getElementById('modalMainImg').src='${im}';document.querySelectorAll('.modal-thumbs img').forEach(x=>x.classList.remove('active'));this.classList.add('active')">`).join('');
