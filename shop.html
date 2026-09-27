@@ -2,105 +2,102 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <title>Shop - EPHESIAN STORE</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
-body{background:#f5f5f5;padding-bottom:80px;-webkit-tap-highlight-color:transparent}
-.top{background:#0f1e42;color:#fff;padding:5px 3%;font-size:10px;display:flex;justify-content:space-between}
-.header{background:#fff;padding:10px 3%;display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:1000;border-bottom:1px solid #eee}
-.logo{display:flex;align-items:center;gap:6px;font-weight:700;color:#0f1e42;font-size:14px}
-.logo small{display:block;font-size:9px;color:#888}
-.logo img{width:34px;height:34px;border-radius:50%;border:2px solid #d4af37}
-.search-wrap{flex:1;display:flex;max-width:400px}
-.search-wrap input{flex:1;padding:9px 12px;border:1.5px solid #ddd;border-radius:20px 0 0 20px;outline:none;font-size:13px}
-.search-wrap button{background:#ff6a00;color:#fff;border:none;padding:9px 14px;border-radius:0 20px 20px 0;font-weight:700;font-size:12px}
-.nav{display:flex;gap:12px;align-items:center}
-.nav a{font-size:13px;text-decoration:none;color:#0f1e42;font-weight:600;position:relative}
-.badge{position:absolute;top:-6px;right:-8px;background:#ff3b30;color:#fff;font-size:8px;padding:2px 5px;border-radius:10px}
-.filter{background:#fff;padding:8px 3%;display:flex;gap:8px;overflow-x:auto;white-space:nowrap;position:sticky;top:54px;z-index:900;border-bottom:1px solid #eee;-webkit-overflow-scrolling:touch}
+body{background:#f5f5f5;padding-bottom:68px;-webkit-tap-highlight-color:transparent;overflow-x:hidden}
+.top{background:#0f1e42;color:#fff;padding:4px 3%;font-size:9px;display:flex;justify-content:space-between}
+.header{background:#fff;padding:6px 2%;display:flex;align-items:center;gap:6px;position:sticky;top:0;z-index:1000;border-bottom:1px solid #eee}
+.logo{display:flex;align-items:center;gap:5px;flex:0 0 auto}
+.logo img{width:30px;height:30px;border-radius:50%}
+.logo-txt{font-size:11px;font-weight:700;color:#0f1e42;line-height:1.1}
+.logo-txt small{display:block;font-size:8px;color:#888;font-weight:600}
+.search-wrap{flex:1;display:flex;min-width:0}
+.search-wrap input{flex:1;padding:8px 10px;border:1.5px solid #ddd;border-radius:18px 0 0 18px;outline:none;font-size:12px;width:100%}
+.search-wrap button{background:#ff6a00;color:#fff;border:none;padding:8px 10px;border-radius:0 18px 18px 0;font-weight:700;font-size:11px;flex:0 0 auto}
+.menu-dots{font-size:18px;padding:0 4px;cursor:pointer;position:relative}
+.dropdown{position:absolute;right:0;top:28px;background:#fff;border:1px solid #eee;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.1);display:none;min-width:130px;z-index:2000}
+.dropdown a{display:block;padding:10px 12px;font-size:12px;text-decoration:none;color:#0f1e42;border-bottom:1px solid #f5f5f5}
+.filter{background:#fff;padding:6px 2%;display:flex;gap:6px;overflow-x:auto;white-space:nowrap;position:sticky;top:43px;z-index:900;border-bottom:1px solid #eee;-webkit-overflow-scrolling:touch}
 .filter::-webkit-scrollbar{display:none}
-.filter div{flex:0 0 auto;padding:7px 14px;font-size:11px;border:1px solid #e0e0e0;border-radius:20px;background:#fff;cursor:pointer;font-weight:600}
+.filter div{flex:0 0 auto;padding:6px 12px;font-size:11px;border:1px solid #ddd;border-radius:18px;background:#fff;font-weight:600}
 .filter div.active{background:#0f1e42;color:#fff;border-color:#0f1e42}
-.filter div.easy{background:linear-gradient(90deg,#ff6a00,#0f1e42);color:#fff;border:none}
-.main{padding:10px 3%}
-.main-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
-#shop-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
-.card{background:#fff;border:1px solid #eee;border-radius:10px;overflow:hidden;position:relative}
-.card img{width:100%;height:135px;object-fit:contain;background:#fff;padding:5px}
-.b-off{position:absolute;top:4px;left:4px;background:#ff3b30;color:#fff;font-size:9px;padding:2px 5px;border-radius:4px;font-weight:700;z-index:2}
-.b-out{position:absolute;top:4px;right:4px;background:#000;color:#fff;font-size:8px;padding:2px 5px;border-radius:4px}
-.info{padding:7px}
-.info h3{font-size:11px;height:26px;overflow:hidden;line-height:1.2;color:#222}
-.price-now{color:#0f1e42;font-weight:700;font-size:12px}
-.price-old{color:#888;font-size:10px;text-decoration:line-through;margin-left:4px}
-.btn-cart{width:100%;padding:7px;border:none;border-radius:6px;font-weight:700;font-size:10px;margin-top:5px;background:#0f1e42;color:#fff}
-.btn-wish{width:100%;padding:6px;border:1px solid #ddd;border-radius:6px;font-weight:600;font-size:10px;margin-top:4px;background:#fff;color:#333;display:flex;justify-content:space-between;cursor:pointer}
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:6px 0;border-top:1px solid #eee;z-index:200}
-.bottom-nav a{text-decoration:none;color:#888;font-size:9px;text-align:center;font-weight:600}
+.main{padding:6px 2%}
+.main-head{display:flex;justify-content:space-between;padding:6px 0;font-size:12px}
+#shop-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:6px}
+.card{background:#fff;border:1px solid #eee;border-radius:9px;overflow:hidden;position:relative}
+.card img{width:100%;height:125px;object-fit:contain;padding:4px;display:block}
+.b-off{position:absolute;top:3px;left:3px;background:#ff3b30;color:#fff;font-size:8px;padding:2px 4px;border-radius:3px;font-weight:700}
+.b-out{position:absolute;top:3px;right:3px;background:#000;color:#fff;font-size:7px;padding:2px 4px;border-radius:3px}
+.info{padding:5px}
+.info h3{font-size:10.5px;height:24px;overflow:hidden;line-height:1.2}
+.price-now{font-weight:700;font-size:11px;color:#0f1e42}
+.price-old{font-size:9px;color:#888;text-decoration:line-through;margin-left:3px}
+.btn-cart{width:100%;padding:6px;border:none;border-radius:5px;font-weight:700;font-size:10px;margin-top:4px;background:#0f1e42;color:#fff}
+.btn-wish{width:100%;padding:5px;border:1px solid #ddd;border-radius:5px;font-size:9px;margin-top:3px;background:#fff;display:flex;justify-content:space-between}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:4px 0 2px;border-top:1px solid #eee;z-index:200}
+.bottom-nav a{flex:1;text-decoration:none;color:#888;font-size:8.5px;text-align:center;font-weight:600;line-height:1.1;padding:2px}
 .bottom-nav a.active{color:#ff6a00}
-#productModal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:5000;justify-content:center;align-items:center;padding:10px}
-.modal-content{background:#fff;border-radius:14px;width:100%;max-width:900px;max-height:90vh;overflow:auto;display:grid;grid-template-columns:1fr 1fr;position:relative}
-.modal-img{padding:12px;text-align:center}
-.modal-img img{width:100%;max-height:300px;object-fit:contain}
-.modal-thumbs{display:flex;gap:5px;margin-top:8px;flex-wrap:wrap;justify-content:center}
-.modal-thumbs img{width:45px;height:45px;object-fit:contain;border:1.5px solid #eee;border-radius:6px}
+#productModal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:5000;justify-content:center;align-items:center;padding:8px}
+.modal-content{background:#fff;border-radius:12px;width:100%;max-width:900px;max-height:90vh;overflow:auto;display:grid;grid-template-columns:1fr 1fr;position:relative}
+.modal-img{padding:10px;text-align:center}
+.modal-img img{width:100%;max-height:280px;object-fit:contain}
+.modal-thumbs{display:flex;gap:4px;margin-top:6px;flex-wrap:wrap;justify-content:center}
+.modal-thumbs img{width:40px;height:40px;border:1px solid #eee;border-radius:5px}
 .modal-thumbs img.active{border-color:#ff6a00}
-.modal-info{padding:16px}
-.close-modal{position:absolute;top:8px;right:10px;font-size:24px;cursor:pointer;background:#eee;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center}
-@media(min-width:700px){#shop-grid{grid-template-columns:repeat(4,1fr)}}
-@media(max-width:700px){.modal-content{grid-template-columns:1fr}.nav{display:none}}
+.modal-info{padding:12px}
+.close-modal{position:absolute;top:6px;right:8px;font-size:22px;background:#eee;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer}
+@media(max-width:700px){.modal-content{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<div class="top"><div>📍 Ayegun Olomi, Ibadan | RC:9874607</div><div>07081632713</div></div>
+<div class="top"><span>📍 Ayegun Olomi, Ibadan | RC:9874607</span><span>07081632713</span></div>
 <div class="header">
-<div class="logo"><img src="logo.jpg"><div>THE WONDER GLOBAL CONCEPTS<br><small>EPHESIAN STORE</small></div></div>
+<div class="logo"><img src="logo.jpg" onerror="this.src='https://via.placeholder.com/30'"><div class="logo-txt">THE WONDER<small>EPHESIAN STORE</small></div></div>
 <div class="search-wrap"><input id="search" placeholder="Search..." oninput="applyFilter()"><button onclick="applyFilter()">SEARCH</button></div>
-<div class="nav">
-<a href="index.html">Home</a><a href="shop.html" style="color:#ff6a00">Shop</a>
-<a href="cart.html" style="position:relative">🛒<span id="cartBadge" class="badge" style="display:none">0</span></a>
-<a href="wishlist.html" style="position:relative">❤️<span id="wishBadge" class="badge" style="display:none;background:#0f1e42">0</span></a>
-</div>
+<div style="position:relative"><div class="menu-dots" onclick="document.getElementById('drop').style.display=document.getElementById('drop').style.display==='block'?'none':'block'">⋮</div><div id="drop" class="dropdown"><a href="contact.html">📞 Contact Us</a><a href="about.html">ℹ️ About Us</a><a href="wishlist.html">❤️ Wishlist (<span id="dWish">0</span>)</a><a href="cart.html">🛒 Cart (<span id="dCart">0</span>)</a></div></div>
 </div>
 
 <div class="filter" id="catFilter">
 <div class="active" data-cat="all" onclick="setCat('all',this)">All</div>
-<div data-cat="Phone" onclick="setCat('Phone',this)">📱 Phone</div>
-<div data-cat="Laptop" onclick="setCat('Laptop',this)">💻 Laptop</div>
-<div data-cat="Phone Accessories" onclick="setCat('Phone Accessories',this)">Phone Accessories</div>
-<div data-cat="Laptop Accessories" onclick="setCat('Laptop Accessories',this)">Laptop Accessories</div>
+<div data-cat="Phone" onclick="setCat('Phone',this)">📱Phone</div>
+<div data-cat="Laptop" onclick="setCat('Laptop',this)">💻Laptop</div>
+<div data-cat="Phone Accessories" onclick="setCat('Phone Accessories',this)">Phone Acc</div>
+<div data-cat="Laptop Accessories" onclick="setCat('Laptop Accessories',this)">Laptop Acc</div>
 <div data-cat="Fashion and wears" onclick="setCat('Fashion and wears',this)">Fashion</div>
 <div data-cat="Home Accessories" onclick="setCat('Home Accessories',this)">Home</div>
 <div data-cat="Other Essentials" onclick="setCat('Other Essentials',this)">Others</div>
-<div class="easy" onclick="location.href='easy-buy.html'">🔥 Easy Buy</div>
 </div>
 
 <div class="main">
-<div class="main-head"><h2 id="headTitle" style="font-size:16px">All Products</h2><span id="headCount" style="font-size:12px;color:#888">Loading...</span></div>
+<div class="main-head"><b id="headTitle">All Products</b><span id="headCount">Loading...</span></div>
 <div id="shop-grid"></div>
 </div>
 
 <div id="productModal">
-<div class="modal-content">
-<span class="close-modal" onclick="closeProductModal()">×</span>
+<div class="modal-content"><span class="close-modal" onclick="closeProductModal()">×</span>
 <div class="modal-img"><img id="modalMainImg" src="" loading="lazy"><div class="modal-thumbs" id="modalThumbs"></div></div>
 <div class="modal-info">
-<h2 id="modalName" style="font-size:16px;color:#0f1e42"></h2>
-<p id="modalCat" style="font-size:10px;color:#888;margin:4px 0"></p>
-<div id="modalPrice" style="margin:8px 0"></div>
-<p id="modalDesc" style="font-size:12px;color:#444;margin:10px 0;line-height:1.4"></p>
+<h2 id="modalName" style="font-size:14px;color:#0f1e42"></h2>
+<p id="modalCat" style="font-size:10px;color:#888"></p>
+<div id="modalPrice" style="margin:6px 0"></div>
+<p id="modalDesc" style="font-size:11px;color:#444;line-height:1.3"></p>
 <div style="font-size:11px"><b>Stock:</b> <span id="modalStock"></span></div>
-<button id="modalAddCart" style="width:100%;padding:12px;background:#0f1e42;color:#fff;border:none;border-radius:8px;font-weight:700;margin-top:10px">Add to Cart 🛒</button>
-<button id="modalWish" style="width:100%;padding:10px;background:#fff;border:1.5px solid #0f1e42;border-radius:8px;font-weight:700;margin-top:6px">🤍 Add to Wishlist</button>
-<button onclick="orderWhatsApp()" style="width:100%;padding:10px;background:#25D366;color:#fff;border:none;border-radius:8px;font-weight:700;margin-top:6px">WhatsApp 📲</button>
-</div>
-</div>
+<button id="modalAddCart" style="width:100%;padding:10px;background:#0f1e42;color:#fff;border:none;border-radius:6px;font-weight:700;margin-top:8px">Add to Cart 🛒</button>
+<button id="modalWish" style="width:100%;padding:9px;background:#fff;border:1.5px solid #0f1e42;border-radius:6px;font-weight:700;margin-top:5px">🤍 Wishlist</button>
+<button onclick="orderWhatsApp()" style="width:100%;padding:9px;background:#25D366;color:#fff;border:none;border-radius:6px;font-weight:700;margin-top:5px">WhatsApp 📲</button>
+<div style="display:flex;gap:6px;margin-top:8px"><a href="contact.html" style="flex:1;text-align:center;padding:8px;background:#eee;border-radius:6px;font-size:11px;text-decoration:none;color:#0f1e42">Contact</a><a href="about.html" style="flex:1;text-align:center;padding:8px;background:#eee;border-radius:6px;font-size:11px;text-decoration:none;color:#0f1e42">About Us</a></div>
+</div></div>
 </div>
 
 <div class="bottom-nav">
-<a href="index.html">🏠<br>Home</a><a href="shop.html" class="active">🛍️<br>Shop</a><a href="easy-buy.html">🔥<br>Easy Buy</a><a href="cart.html">🛒<br>Cart <span id="mCart"></span></a><a href="wishlist.html">❤️<br>Wish <span id="mWish"></span></a>
+<a href="index.html">🏠<br>Home</a>
+<a href="shop.html" class="active">🛍️<br>Shop</a>
+<a href="easy-buy.html">🔥<br>Easy Buy</a>
+<a href="cart.html">🛒<br>Cart <span id="mCart"></span></a>
+<a href="wishlist.html">❤️<br>Wish <span id="mWish"></span></a>
 </div>
 
 <script type="module">
@@ -108,24 +105,24 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebas
 import { getFirestore, collection, onSnapshot } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 const firebaseConfig={apiKey:"AIzaSyBjR6WNrd8ziXnegOXZv_RJtGFVbZJN8",authDomain:"ephesian-store.firebaseapp.com",projectId:"ephesian-store",storageBucket:"ephesian-store.firebasestorage.app",messagingSenderId:"109847556546",appId:"1:109847556546:web:5c7f8a9b0c1d2e3f"};
 const db=getFirestore(initializeApp(firebaseConfig));
-const ALLOWED_CATS=["Phone","Laptop","Phone Accessories","Laptop Accessories","Fashion and wears","Home Accessories","Other Essentials"];
-function mapCategory(oldCat){if(!oldCat) return 'Other Essentials';if(ALLOWED_CATS.includes(oldCat)) return oldCat;let c=oldCat.toLowerCase();if(c==='phone') return 'Phone';if(c==='laptop') return 'Laptop';if(c.includes('phone')) return 'Phone Accessories';if(c.includes('laptop')) return 'Laptop Accessories';if(c.includes('fashion')||c.includes('wear')) return 'Fashion and wears';if(c.includes('home')||c.includes('gas')) return 'Home Accessories';return 'Other Essentials';}
-function getDiscountData(p){let now=Number(p.price),old=Number(p.originalPrice||0);if(!old||old<=now){let d=Number(p.discount||0);if(d>0)old=Math.round(now/(1-d/100));else old=now;}let perc=old>now?Math.round((1-now/old)*100):(p.discount||0);return {nowPrice:now,oldPrice:old,perc};}
-let PRODUCTS=[],currentCat='all',currentProduct=null,cart=JSON.parse(localStorage.getItem('ephesian_cart_v2')||'[]'),wishlist=JSON.parse(localStorage.getItem('wishlist')||'[]');
-function saveCart(){localStorage.setItem('ephesian_cart_v2',JSON.stringify(cart));updateBadges();}
-function updateBadges(){let c=cart.length,w=wishlist.length;document.getElementById('cartBadge').style.display=c?'inline':'none';document.getElementById('cartBadge').innerText=c;document.getElementById('wishBadge').style.display=w?'inline':'none';document.getElementById('wishBadge').innerText=w;let mc=document.getElementById('mCart');if(mc)mc.innerText=c?`(${c})`:'';let mw=document.getElementById('mWish');if(mw)mw.innerText=w?`(${w})`:'';}
-function render(list){let grid=document.getElementById('shop-grid');document.getElementById('headCount').innerText=list.length+' Products';if(!list.length){grid.innerHTML='<p style="grid-column:1/-1;text-align:center;padding:20px;font-size:12px">No products</p>';return;}grid.innerHTML=list.map(p=>{let isOut=Number(p.stock)===0;let imgs=p.images||['https://via.placeholder.com/200'];let {nowPrice,oldPrice,perc}=getDiscountData(p);let isWish=wishlist.includes(p.name);return `<div class="card" onclick="openProduct('${p._id}')">${perc>0?`<span class="b-off">-${perc}%</span>`:''}${isOut?'<span class="b-out">OUT</span>':''}<img loading="lazy" decoding="async" src="${imgs[0]}"><div class="info"><h3>${p.name}</h3><div><span class="price-now">₦${nowPrice.toLocaleString()}</span>${oldPrice>nowPrice?`<span class="price-old">₦${oldPrice.toLocaleString()}</span>`:''}</div><button class="btn-cart" onclick="event.stopPropagation();addToCartById('${p._id}')">${isOut?'Out of Stock':'Add to Cart'}</button><button class="btn-wish" onclick="event.stopPropagation();toggleWish('${p.name.replace(/'/g,"\\'")}')"><span>${isWish?'❤️ Saved':'🤍 Wishlist'}</span><span>👁 View</span></button></div></div>`}).join('');}
-window.setCat=(cat,el)=>{currentCat=cat;document.querySelectorAll('#catFilter div').forEach(d=>d.classList.remove('active'));el.classList.add('active');document.getElementById('headTitle').innerText=cat==='all'?'All Products':cat;applyFilter();}
-window.applyFilter=()=>{let q=document.getElementById('search').value.toLowerCase().trim();let f=PRODUCTS.filter(p=>{let mapped=mapCategory(p.category);let catOk=currentCat==='all'||mapped===currentCat;let qOk=!q||p.name.toLowerCase().includes(q)||mapped.toLowerCase().includes(q);return catOk&&qOk;});render(f);}
-window.addToCartById=(id)=>{let p=PRODUCTS.find(x=>x._id===id);if(!p||Number(p.stock)===0){alert('Out of stock');return;}cart.push({id:p._id,name:p.name,price:Number(p.price),image:(p.images||[])[0]||'',qty:1});saveCart();alert(p.name+' added!');}
-window.toggleWish=(name)=>{if(wishlist.includes(name)) wishlist=wishlist.filter(x=>x!==name);else wishlist.push(name);localStorage.setItem('wishlist',JSON.stringify(wishlist));updateBadges();applyFilter();if(currentProduct&&currentProduct.name===name) updateWishBtn();}
-function updateWishBtn(){let btn=document.getElementById('modalWish');if(!currentProduct) return;btn.innerText=wishlist.includes(currentProduct.name)?'❤️ Saved in Wishlist':'🤍 Add to Wishlist';}
-window.openProduct=(id)=>{let p=PRODUCTS.find(x=>x._id===id);if(!p) return;currentProduct=p;let imgs=p.images||[];let {nowPrice,oldPrice,perc}=getDiscountData(p);document.getElementById('modalMainImg').src=imgs[0];document.getElementById('modalName').innerText=p.name;document.getElementById('modalCat').innerText=mapCategory(p.category);document.getElementById('modalPrice').innerHTML=`<span style="font-size:18px;font-weight:700;color:#0f1e42">₦${nowPrice.toLocaleString()}</span> ${oldPrice>nowPrice?`<span style="font-size:12px;color:#888;text-decoration:line-through;margin-left:6px">₦${oldPrice.toLocaleString()}</span> <span style="background:#ff3b30;color:#fff;font-size:10px;padding:2px 5px;border-radius:4px;margin-left:4px">-${perc}%</span>`:''}`;document.getElementById('modalDesc').innerText=p.desc||'';document.getElementById('modalStock').innerText=p.stock||0;document.getElementById('modalThumbs').innerHTML=imgs.map((im,i)=>`<img loading="lazy" src="${im}" class="${i===0?'active':''}" onclick="document.getElementById('modalMainImg').src='${im}';document.querySelectorAll('.modal-thumbs img').forEach(x=>x.classList.remove('active'));this.classList.add('active')">`).join('');document.getElementById('modalAddCart').onclick=()=>addToCartById(p._id);document.getElementById('modalWish').onclick=()=>toggleWish(p.name);updateWishBtn();document.getElementById('productModal').style.display='flex';}
+const ALLOWED=["Phone","Laptop","Phone Accessories","Laptop Accessories","Fashion and wears","Home Accessories","Other Essentials"];
+function mapCat(c){if(!c) return 'Other Essentials';if(ALLOWED.includes(c)) return c;let l=c.toLowerCase();if(l==='phone')return 'Phone';if(l==='laptop')return 'Laptop';if(l.includes('phone'))return 'Phone Accessories';if(l.includes('laptop'))return 'Laptop Accessories';if(l.includes('fashion')||l.includes('wear'))return 'Fashion and wears';if(l.includes('home')||l.includes('gas'))return 'Home Accessories';return 'Other Essentials';}
+function getDisc(p){let now=Number(p.price),old=Number(p.originalPrice||0);if(!old||old<=now){let d=Number(p.discount||0);if(d>0)old=Math.round(now/(1-d/100));else old=now;}let perc=old>now?Math.round((1-now/old)*100):(p.discount||0);return{now,old,perc};}
+let PRODUCTS=[],cur='all',curProd=null,cart=JSON.parse(localStorage.getItem('ephesian_cart_v2')||'[]'),wish=JSON.parse(localStorage.getItem('wishlist')||'[]');
+function updateBadges(){let c=cart.length,w=wish.length;document.getElementById('mCart').innerText=c?`(${c})`:'';document.getElementById('mWish').innerText=w?`(${w})`:'';document.getElementById('dCart').innerText=c;document.getElementById('dWish').innerText=w;}
+function render(list){let g=document.getElementById('shop-grid');document.getElementById('headCount').innerText=list.length+' Products';if(!list.length){g.innerHTML='<p style="grid-column:1/-1;text-align:center;padding:20px;font-size:11px">No product</p>';return;}g.innerHTML=list.map(p=>{let out=Number(p.stock)===0;let imgs=p.images||['https://via.placeholder.com/200'];let {now,old,perc}=getDisc(p);let isW=wish.includes(p.name);return `<div class="card" onclick="openProd('${p._id}')">${perc>0?`<span class="b-off">-${perc}%</span>`:''}${out?'<span class="b-out">OUT</span>':''}<img loading="lazy" src="${imgs[0]}"><div class="info"><h3>${p.name}</h3><div><span class="price-now">₦${now.toLocaleString()}</span>${old>now?`<span class="price-old">₦${old.toLocaleString()}</span>`:''}</div><button class="btn-cart" onclick="event.stopPropagation();addCart('${p._id}')">${out?'Out of Stock':'Add to Cart'}</button><button class="btn-wish" onclick="event.stopPropagation();toggleWish('${p.name.replace(/'/g,"\\'")}')"><span>${isW?'❤️ Saved':'🤍 Wishlist'}</span><span>👁 View</span></button></div></div>`}).join('');}
+window.setCat=(cat,el)=>{cur=cat;document.querySelectorAll('#catFilter div').forEach(d=>d.classList.remove('active'));el.classList.add('active');document.getElementById('headTitle').innerText=cat==='all'?'All Products':cat;applyFilter();}
+window.applyFilter=()=>{let q=document.getElementById('search').value.toLowerCase().trim();let f=PRODUCTS.filter(p=>{let m=mapCat(p.category);let ok=cur==='all'||m===cur;let qok=!q||p.name.toLowerCase().includes(q)||m.toLowerCase().includes(q);return ok&&qok;});render(f);}
+window.addCart=(id)=>{let p=PRODUCTS.find(x=>x._id===id);if(!p||Number(p.stock)===0){alert('Out of stock');return;}cart.push({id:p._id,name:p.name,price:Number(p.price),image:(p.images||[])[0],qty:1});localStorage.setItem('ephesian_cart_v2',JSON.stringify(cart));updateBadges();alert(p.name+' added');}
+window.toggleWish=(name)=>{if(wish.includes(name)) wish=wish.filter(x=>x!==name);else wish.push(name);localStorage.setItem('wishlist',JSON.stringify(wish));updateBadges();applyFilter();if(curProd&&curProd.name===name) updWish();}
+function updWish(){let b=document.getElementById('modalWish');if(!curProd) return;b.innerText=wish.includes(curProd.name)?'❤️ Saved':'🤍 Wishlist';}
+window.openProd=(id)=>{let p=PRODUCTS.find(x=>x._id===id);if(!p) return;curProd=p;let imgs=p.images||[];let {now,old,perc}=getDisc(p);document.getElementById('modalMainImg').src=imgs[0];document.getElementById('modalName').innerText=p.name;document.getElementById('modalCat').innerText=mapCat(p.category);document.getElementById('modalPrice').innerHTML=`<span style="font-size:16px;font-weight:700;color:#0f1e42">₦${now.toLocaleString()}</span> ${old>now?`<span style="font-size:11px;text-decoration:line-through;color:#888;margin-left:4px">₦${old.toLocaleString()}</span><span style="background:#ff3b30;color:#fff;font-size:9px;padding:2px 4px;border-radius:3px;margin-left:4px">-${perc}%</span>`:''}`;document.getElementById('modalDesc').innerText=p.desc||'';document.getElementById('modalStock').innerText=p.stock||0;document.getElementById('modalThumbs').innerHTML=imgs.map((im,i)=>`<img src="${im}" class="${i===0?'active':''}" onclick="document.getElementById('modalMainImg').src='${im}'">`).join('');document.getElementById('modalAddCart').onclick=()=>addCart(p._id);document.getElementById('modalWish').onclick=()=>toggleWish(p.name);updWish();document.getElementById('productModal').style.display='flex';}
 window.closeProductModal=()=>document.getElementById('productModal').style.display='none';
-window.orderWhatsApp=()=>{if(!currentProduct) return;window.open('https://wa.me/2347081632713?text=I want '+encodeURIComponent(currentProduct.name),'_blank');}
-document.getElementById('productModal').onclick=(e)=>{if(e.target.id==='productModal')closeProductModal();}
-const urlParams=new URLSearchParams(window.location.search);let catParam=urlParams.get('cat');if(catParam){if(catParam.toLowerCase()==='phone')currentCat='Phone';else if(catParam.toLowerCase()==='laptop')currentCat='Laptop';else currentCat=catParam;}
-onSnapshot(collection(db,"products"),snap=>{PRODUCTS=[];snap.forEach(d=>{let data=d.data();data._id=d.id;PRODUCTS.push(data);});if(catParam){document.querySelectorAll('#catFilter div').forEach(el=>{if(el.dataset.cat===currentCat){document.querySelectorAll('#catFilter div').forEach(x=>x.classList.remove('active'));el.classList.add('active');document.getElementById('headTitle').innerText=currentCat;}});}applyFilter();updateBadges();});
+window.orderWhatsApp=()=>{if(!curProd) return;window.open('https://wa.me/2347081632713?text=I want '+encodeURIComponent(curProd.name),'_blank');}
+document.getElementById('productModal').onclick=(e)=>{if(e.target.id==='productModal') closeProductModal();}
+const params=new URLSearchParams(location.search);let cp=params.get('cat');if(cp){if(cp.toLowerCase()==='phone')cur='Phone';else if(cp.toLowerCase()==='laptop')cur='Laptop';else cur=cp;}
+onSnapshot(collection(db,"products"),snap=>{PRODUCTS=[];snap.forEach(d=>{let x=d.data();x._id=d.id;PRODUCTS.push(x);});if(cp){document.querySelectorAll('#catFilter div').forEach(el=>{if(el.dataset.cat===cur){document.querySelectorAll('#catFilter div').forEach(a=>a.classList.remove('active'));el.classList.add('active');document.getElementById('headTitle').innerText=cur;}});}applyFilter();updateBadges();});
+document.addEventListener('click',e=>{if(!e.target.closest('.menu-dots')&&!e.target.closest('#drop')) document.getElementById('drop').style.display='none';});
 </script>
 </body>
 </html>
