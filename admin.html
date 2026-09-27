@@ -3,59 +3,99 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ephesian Store - Admin FIXED</title>
+<title>Admin v2.0 - Ephesian Store RC 9874607</title>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
 body{background:#f5f5f5}
-.header{background:#0f1e42;color:#fff;padding:12px 4%;display:flex;justify-content:space-between;align-items:center}
-.header a{color:#d4af37;text-decoration:none;font-weight:700}
-.wrap{padding:20px 4%}
-.card{background:#fff;padding:20px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.08);margin-bottom:15px}
+.header{background:#0f1e42;color:#fff;padding:12px 4%;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100}
+.header a{color:#ffcc00;text-decoration:none;font-weight:700;font-size:12px}
+.wrap{padding:16px 4%;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.card{background:#fff;padding:18px;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.08);margin-bottom:15px}
 .row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:8px;margin-bottom:10px}
-label{font-size:11px;font-weight:700;color:#0f1e42;display:block;margin-bottom:3px}
-input,select,textarea{width:100%;padding:11px;border:1px solid #ddd;border-radius:6px}
-.img-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:15px 0}
-.box{border:2px dashed #d4af37;height:100px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:#fffbf0;cursor:pointer;font-size:28px;color:#d4af37;font-weight:700;position:relative;overflow:hidden}
+label{font-size:10px;font-weight:700;color:#0f1e42;display:block;margin-bottom:3px;text-transform:uppercase}
+input,select,textarea{width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;font-size:13px}
+.img-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0}
+.box{border:2px dashed #ff6a00;height:100px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:#fffbf0;cursor:pointer;font-size:28px;color:#ff6a00;font-weight:700;position:relative;overflow:hidden}
 .box img{width:100%;height:100%;object-fit:cover}
-.btn{width:100%;padding:14px;background:#ff6a00;color:#fff;border:none;border-radius:8px;font-weight:700;cursor:pointer;margin-top:10px}
+.btn{width:100%;padding:13px;background:#ff6a00;color:#fff;border:none;border-radius:10px;font-weight:700;cursor:pointer;margin-top:10px}
 .btn-edit{background:#0f1e42!important}
-.note{background:#fff3cd;padding:10px;border-radius:6px;font-size:12px;margin:10px 0;border-left:4px solid #ff6a00}
-@media(max-width:700px){.row{grid-template-columns:1fr 1fr}}
+.note{background:#e8f5e9;padding:10px;border-radius:8px;font-size:11px;margin:10px 0;border-left:4px solid #2a7d2a}
+.order-card{background:#fff8e1;border:1px solid #ffcc00;padding:10px;border-radius:8px;margin-bottom:8px;font-size:11px}
+.tabs{display:flex;gap:8px;margin-bottom:12px}
+.tabs button{padding:8px 16px;border-radius:20px;border:1px solid #ddd;background:#fff;cursor:pointer;font-weight:700;font-size:12px}
+.tabs button.active{background:#0f1e42;color:#fff}
+@media(max-width:900px){.wrap{grid-template-columns:1fr}.row{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
 <script>
-const ADMIN_PASS = "Araoluwa_1";
-let p = prompt("🔒 Admin Password:");
-if(p!== ADMIN_PASS){ alert("Wrong!"); window.location.href="/index.html"; }
+const ADMIN_PASS="Araoluwa_1";
+let p=prompt("🔒 Admin v2.0 - Password:");
+if(p!==ADMIN_PASS){alert("Wrong!"); location.href="index.html";}
 </script>
-<div class="header"><div>Ephesian Store - Admin</div><a href="shop.html">Back to Shop</a></div>
+<div class="header"><div>EPHESIAN STORE - ADMIN v2.0 LOCKED</div><div><a href="index.html">Home</a> | <a href="shop.html">Shop</a></div></div>
+
+<div style="padding:12px 4%">
+<div class="tabs">
+<button class="active" onclick="showTab('products',this)">📦 Products (<span id="c">0</span>)</button>
+<button onclick="showTab('orders',this)">💳 Orders (<span id="orderCount">0</span>) - Pay with Transfer</button>
+</div>
+</div>
+
 <div class="wrap">
+<!-- LEFT: ADD PRODUCT -->
+<div>
 <div class="card">
-<h3 id="formTitle">Add Product - Now saves to ALL phones!</h3>
+<h3 id="formTitle">Add Product - v2.0 Locked Categories</h3>
 <div class="row">
-<div><label>Product Name</label><input id="n" placeholder="e.g Easypie Powerbank"></div>
+<div><label>Product Name</label><input id="n" placeholder="Easypie Powerbank"></div>
 <div><label>Price ₦</label><input id="p" type="number" placeholder="17000"></div>
-<div><label>Stock Qty (0=Out of Stock)</label><input id="stock" type="number" value="20"></div>
+<div><label>Stock Qty</label><input id="stock" type="number" value="20"></div>
 <div><label>Discount %</label><input id="d" type="number" value="20"></div>
 </div>
 <textarea id="desc" placeholder="Description" style="height:50px;margin-bottom:10px"></textarea>
-<label>Category</label>
-<select id="cat" style="margin-bottom:15px">
+<label>Category - LOCKED TO 5 ONLY (v2.0 FIX)</label>
+<select id="cat" style="margin-bottom:12px">
 <option>Phone Accessories</option>
 <option>Laptop Accessories</option>
 <option>Fashion and wears</option>
 <option>Home Accessories</option>
 <option>Other Essentials</option>
 </select>
-<div class="note"><b>FIXED:</b> Pictures now auto-compress! No more 1MB error. You fit upload 4 pictures.</div>
+<div class="note"><b>v2.0 FIXED:</b> ✅ Auto-compress 600px JPEG 60% quality - No 1MB error, No rainbow, Categories locked forever!</div>
 <div class="img-grid" id="grid"></div>
 <input type="file" id="file" accept="image/*" multiple style="display:none">
-<button class="btn" id="pubBtn">Publish Product - Show for Everyone</button>
-<button class="btn btn-edit" id="cancelEdit" style="display:none;background:#666">Cancel Edit</button>
+<button class="btn" id="pubBtn">Publish Product - Show for Everyone v2.0</button>
+<button class="btn btn-edit" id="cancelEdit" style="display:none">Cancel Edit</button>
 <p id="ok" style="color:green;font-size:12px;margin-top:10px"></p>
 </div>
-<div class="card"><h4>Your Products (From Internet): <span id="c">0</span></h4><div id="list">Loading...</div></div>
+<div class="card" id="productListCard"><h4>Your Products Live - v2.0</h4><div id="list">Loading...</div></div>
+</div>
+
+<!-- RIGHT: ORDERS -->
+<div>
+<div class="card">
+<h3>💳 Orders - Pay with Transfer Confirmation</h3>
+<p style="font-size:11px;color:#666;margin:6px 0">When customer pays with transfer, you will see <b>PAID_TO_CONFIRM</b> - Check your OPay/Moniepoint and click Confirm.</p>
+<div id="ordersList">Loading orders...</div>
+</div>
+<div class="card">
+<h4>⚙️ v2.0 System Status</h4>
+<div style="font-size:11px;line-height:1.8">
+✅ Categories: 5 Locked (No revert)<br>
+✅ Image Compression: 600px, 60% JPEG<br>
+✅ Cache Killer: Old SW unregistered<br>
+✅ Cart: ephesian_cart_v2 (Persistent)<br>
+✅ Wishlist: Active<br>
+✅ Pay with Transfer: Enabled<br>
+✅ Guest Checkout: No login required<br>
+Version: <b>2.0 FINAL - 27 Sept 2026</b><br>
+RC: 9874607
+</div>
+<button onclick="clearCache()" style="margin-top:10px;background:#000;color:#fff;padding:8px 14px;border-radius:6px;border:none;font-size:11px">Clear All Cache (Fix Revert)</button>
+</div>
+</div>
 </div>
 
 <script type="module">
@@ -70,110 +110,155 @@ const firebaseConfig = {
   messagingSenderId: "109847556546",
   appId: "1:109847556546:web:5c7f8a9b0c1d2e3f"
 };
-
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 let imgs=[], editingId=null;
-const grid=document.getElementById('grid'), file=document.getElementById('file');
+const grid=document.getElementById('grid'), fileInput=document.getElementById('file');
 
 function draw(){grid.innerHTML='';for(let i=0;i<4;i++){let h=imgs[i];grid.innerHTML+=`<div class="box" onclick="document.getElementById('file').click()">${h?`<img src="${h}"><span style="position:absolute;top:2px;right:2px;background:red;color:#fff;width:18px;height:18px;border-radius:50%;font-size:11px;display:flex;align-items:center;justify-content:center" onclick="event.stopPropagation();imgs.splice(${i},1);draw()">x</span>`:`+`}</div>`;}}
-
 function compressImage(file){
   return new Promise((resolve)=>{
-    const reader = new FileReader();
-    reader.onload = (e)=>{
-      const img = new Image();
-      img.onload = ()=>{
-        const canvas = document.createElement("canvas");
-        let w = img.width, h = img.height;
-        const maxWidth = 600;
-        if(w > maxWidth){ h = h*(maxWidth/w); w = maxWidth; }
-        canvas.width = w; canvas.height = h;
-        canvas.getContext("2d").drawImage(img,0,0,w,h);
-        resolve(canvas.toDataURL("image/jpeg", 0.6));
+    const reader=new FileReader();
+    reader.onload=(e)=>{
+      const img=new Image();
+      img.onload=()=>{
+        const canvas=document.createElement("canvas");
+        let w=img.width,h=img.height; const maxW=600;
+        if(w>maxW){h=h*(maxW/w);w=maxW;}
+        canvas.width=w;canvas.height=h;
+        const ctx=canvas.getContext("2d");
+        ctx.fillStyle="#fff";ctx.fillRect(0,0,w,h);
+        ctx.drawImage(img,0,0,w,h);
+        resolve(canvas.toDataURL("image/jpeg",0.6));
       };
-      img.src = e.target.result;
+      img.src=e.target.result;
     };
     reader.readAsDataURL(file);
   });
 }
-
-file.onchange = async (e)=>{
+fileInput.onchange=async(e)=>{
   for(let f of e.target.files){
     if(imgs.length>=4){alert('Max 4');break;}
     document.getElementById('ok').innerText='Compressing...';
-    let compressed = await compressImage(f);
-    imgs.push(compressed);
+    imgs.push(await compressImage(f));
     draw();
     document.getElementById('ok').innerText='';
   }
 };
 
-document.getElementById('pubBtn').onclick = async ()=>{
+document.getElementById('pubBtn').onclick=async()=>{
  let name=document.getElementById('n').value.trim(), price=document.getElementById('p').value.trim();
- if(!name||!price){alert('Enter Name and Price');return;} if(!imgs.length){alert('Upload at least 1 picture');return;}
- document.getElementById('ok').innerText='Saving to internet...';
+ if(!name||!price){alert('Name and Price needed');return;}
+ if(!imgs.length){alert('Upload 1 picture');return;}
+ document.getElementById('ok').innerText='Saving...';
  try{
-  let data = {
+  let data={
     name, price:Number(price), discount:Number(document.getElementById('d').value||20),
     stock:Number(document.getElementById('stock').value), category:document.getElementById('cat').value,
     desc:document.getElementById('desc').value, images:[...imgs], updatedAt:serverTimestamp()
   };
   if(editingId){
-    await updateDoc(doc(db,"products",editingId), data);
+    await updateDoc(doc(db,"products",editingId),data);
     document.getElementById('ok').innerText='✅ UPDATED: '+name;
     editingId=null;
-    document.getElementById('formTitle').innerText='Add Product';
-    document.getElementById('pubBtn').innerText='Publish Product - Show for Everyone';
+    document.getElementById('formTitle').innerText='Add Product - v2.0';
+    document.getElementById('pubBtn').innerText='Publish Product v2.0';
     document.getElementById('cancelEdit').style.display='none';
   }else{
     data.createdAt=serverTimestamp();
-    await addDoc(collection(db,"products"), data);
-    document.getElementById('ok').innerText='✅ Published to internet! '+name;
+    await addDoc(collection(db,"products"),data);
+    document.getElementById('ok').innerText='✅ Published v2.0: '+name;
   }
   document.getElementById('n').value='';document.getElementById('p').value='';document.getElementById('desc').value='';imgs=[];draw();
- }catch(err){document.getElementById('ok').innerText='Error: '+err.message; alert(err.message);}
+ }catch(err){document.getElementById('ok').innerText='Error: '+err.message;}
 };
 
-const q = query(collection(db,"products"), orderBy("createdAt","desc"));
+const q=query(collection(db,"products"),orderBy("createdAt","desc"));
 onSnapshot(q,(snap)=>{
  document.getElementById('c').innerText=snap.size;
  let html='';
  snap.forEach(d=>{
   let x=d.data(); let isOut=Number(x.stock)===0;
-  html+=`<div style="display:flex;gap:8px;padding:8px;border-bottom:1px solid #eee;align-items:center"><img src="${x.images[0]}" style="width:40px;height:40px;object-fit:contain"><div style="flex:1;font-size:11px"><b>${x.name}</b><br>₦${x.price} | Stock:<b style="color:${isOut?'red':'green'}">${x.stock}</b></div><button onclick="editProd('${d.id}')" style="background:blue;color:#fff;border:none;padding:5px 8px;border-radius:4px;margin-right:3px">Edit</button><button onclick="deleteProd('${d.id}')" style="background:red;color:#fff;border:none;padding:5px 8px;border-radius:4px">X</button></div>`;
+  html+=`<div style="display:flex;gap:8px;padding:8px;border-bottom:1px solid #eee;align-items:center"><img src="${x.images[0]}" style="width:40px;height:40px;object-fit:contain"><div style="flex:1;font-size:11px"><b>${x.name}</b><br>₦${x.price} | Stock:<b style="color:${isOut?'red':'green'}">${x.stock}</b> | ${x.category}</div><button onclick="editProd('${d.id}')" style="background:blue;color:#fff;border:none;padding:5px 8px;border-radius:4px">Edit</button><button onclick="deleteProd('${d.id}')" style="background:red;color:#fff;border:none;padding:5px 8px;border-radius:4px">X</button></div>`;
  });
- document.getElementById('list').innerHTML=html||'No products yet';
+ document.getElementById('list').innerHTML=html||'No products';
 });
 
-window.deleteProd = async (id)=>{ if(confirm('Delete this product?')){ await deleteDoc(doc(db,"products",id)); } };
-
-window.editProd = async (id)=>{
-  let snap = await getDoc(doc(db,"products",id));
+window.deleteProd=async(id)=>{if(confirm('Delete?')) await deleteDoc(doc(db,"products",id));};
+window.editProd=async(id)=>{
+  let snap=await getDoc(doc(db,"products",id));
   if(!snap.exists()) return;
-  let x = snap.data();
-  document.getElementById('n').value = x.name;
-  document.getElementById('p').value = x.price;
-  document.getElementById('d').value = x.discount||20;
-  document.getElementById('stock').value = x.stock||0;
-  document.getElementById('cat').value = x.category;
-  document.getElementById('desc').value = x.desc||'';
-  imgs = x.images||[];
-  draw();
-  editingId = id;
-  document.getElementById('formTitle').innerText = 'EDITING: '+x.name;
-  document.getElementById('pubBtn').innerText = 'UPDATE PRODUCT';
+  let x=snap.data();
+  document.getElementById('n').value=x.name;
+  document.getElementById('p').value=x.price;
+  document.getElementById('d').value=x.discount||20;
+  document.getElementById('stock').value=x.stock||0;
+  document.getElementById('cat').value=x.category;
+  document.getElementById('desc').value=x.desc||'';
+  imgs=x.images||[];draw();
+  editingId=id;
+  document.getElementById('formTitle').innerText='EDITING: '+x.name;
+  document.getElementById('pubBtn').innerText='UPDATE PRODUCT v2.0';
   document.getElementById('cancelEdit').style.display='block';
   window.scrollTo(0,0);
 };
+document.getElementById('cancelEdit').onclick=()=>{
+  editingId=null;document.getElementById('n').value='';document.getElementById('p').value='';imgs=[];draw();
+  document.getElementById('formTitle').innerText='Add Product - v2.0';document.getElementById('pubBtn').innerText='Publish Product v2.0';document.getElementById('cancelEdit').style.display='none';
+};
 
-document.getElementById('cancelEdit').onclick = ()=>{
-  editingId=null; document.getElementById('n').value='';document.getElementById('p').value='';imgs=[];draw();
-  document.getElementById('formTitle').innerText='Add Product'; document.getElementById('pubBtn').innerText='Publish Product'; document.getElementById('cancelEdit').style.display='none';
+// ORDERS - Pay with Transfer
+const qOrders=query(collection(db,"orders"),orderBy("createdAt","desc"));
+onSnapshot(qOrders,(snap)=>{
+  document.getElementById('orderCount').innerText=snap.size;
+  let html='';
+  snap.forEach(d=>{
+    let o=d.data();
+    let statusColor=o.status==='PAID_TO_CONFIRM'?'#ff6a00':o.status==='CONFIRMED'?'green':'#888';
+    html+=`<div class="order-card">
+      <b>${o.customer||'Guest'}</b> - ${o.phone||''}<br>
+      ${o.address||''}<br>
+      Total: ₦${(o.total||0).toLocaleString()} | 70%: ₦${(o.pay70||0).toLocaleString()}<br>
+      Pay: <b>${o.paymentMethod}</b> | Status: <b style="color:${statusColor}">${o.status}</b><br>
+      <small>${(o.items||[]).map(i=>i.name).join(', ')}</small><br>
+      <div style="margin-top:6px;display:flex;gap:6px">
+        ${o.status==='PAID_TO_CONFIRM'?`<button onclick="confirmOrder('${d.id}')" style="background:#2a7d2a;color:#fff;border:none;padding:6px 10px;border-radius:6px;font-size:11px">✅ Confirm Payment Received</button>`:''}
+        <button onclick="deleteOrder('${d.id}')" style="background:red;color:#fff;border:none;padding:6px 10px;border-radius:6px;font-size:11px">Delete</button>
+        <a href="https://wa.me/${(o.phone||'2347081632713').replace(/[^0-9]/g,'')}" target="_blank" style="background:#25D366;color:#fff;padding:6px 10px;border-radius:6px;text-decoration:none;font-size:11px">WhatsApp</a>
+      </div>
+    </div>`;
+  });
+  document.getElementById('ordersList').innerHTML=html||'No orders yet - Orders from shop.html will appear here';
+});
+
+window.confirmOrder=async(id)=>{ if(confirm('Confirm you received transfer?')) await updateDoc(doc(db,"orders",id),{status:"CONFIRMED"}); };
+window.deleteOrder=async(id)=>{ if(confirm('Delete order?')) await deleteDoc(doc(db,"orders",id)); };
+
+window.showTab=(tab,el)=>{
+  document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('productListCard').style.display=tab==='products'?'block':'none';
+  document.getElementById('ordersList').parentElement.style.display=tab==='orders'?'block':'none';
+  if(tab==='orders') document.getElementById('productListCard').style.display='none';
+  else document.getElementById('ordersList').parentElement.parentElement.children[0].style.display='block';
+};
+
+window.clearCache=async()=>{
+  if('serviceWorker' in navigator){
+    let regs=await navigator.serviceWorker.getRegistrations();
+    regs.forEach(r=>r.unregister());
+  }
+  let keys=await caches.keys(); keys.forEach(k=>caches.delete(k));
+  localStorage.setItem('app_version','2.0');
+  alert('Cache cleared! v2.0 Locked - No more revert');
 };
 
 draw();
+if('serviceWorker' in navigator){
+  navigator.serviceWorker.getRegistrations().then(r=>r.forEach(x=>x.unregister()));
+  caches.keys().then(k=>k.forEach(x=>caches.delete(x)));
+}
 </script>
 </body>
 </html>
