@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wishlist - EPHESIANS STORE v2.0</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+body{background:#f2f2f2;padding-bottom:70px}
+.top-bar{background:#fff;padding:10px 4%;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:100;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.back{font-size:20px;text-decoration:none;color:#000}
+.search{flex:1;background:#f1f1f1;border-radius:20px;padding:8px 14px;display:flex;align-items:center;gap:8px;color:#777;font-size:13px}
+.search input{border:none;background:transparent;outline:none;flex:1}
+.cart-icon{position:relative;font-size:22px}
+.badge{position:absolute;top:-6px;right:-8px;background:#ff6a00;color:#fff;font-size:10px;padding:1px 6px;border-radius:10px}
+.title{padding:14px 4%;font-size:18px;font-weight:700;background:#fff;margin-bottom:2px}
+.card{background:#fff;padding:12px 4%;display:flex;gap:12px;border-bottom:8px solid #f2f2f2;flex-direction:column}
+.row{display:flex;gap:12px}
+.card img{width:80px;height:80px;object-fit:contain;background:#fff;border:1px solid #eee;border-radius:6px}
+.info{flex:1}
+.info h3{font-size:13px;line-height:1.3;height:36px;overflow:hidden;color:#000;font-weight:400}
+.price{font-weight:700;margin-top:4px;font-size:15px}
+.old{font-size:11px;color:#888;text-decoration:line-through;margin-left:6px}
+.disc{background:#feefde;color:#ff6a00;font-size:11px;padding:2px 6px;border-radius:4px;font-weight:700;margin-left:6px}
+.stock{font-size:11px;color:#2a7d2a;margin-top:2px}
+.actions{display:flex;justify-content:space-between;align-items:center;padding-top:10px;border-top:1px solid #f1f1f1;margin-top:8px}
+.remove{color:#ff6a00;font-size:13px;font-weight:600;background:none;border:none;cursor:pointer}
+.add{background:#ff6a00;color:#fff;border:none;padding:8px 18px;border-radius:6px;font-weight:700;font-size:13px;cursor:pointer;box-shadow:0 2px 6px rgba(255,106,0,.3)}
+.add.gray{background:#888;box-shadow:none}
+.pay70{font-size:10px;color:#2a7d2a;background:#e8f5e9;padding:2px 6px;border-radius:4px;display:inline-block;margin-top:4px}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:8px 0;box-shadow:0 -2px 8px rgba(0,0,0,.08);z-index:200}
+.bottom-nav a{text-decoration:none;color:#888;font-size:10px;text-align:center}
+.bottom-nav a.active{color:#ff6a00}
+.empty{text-align:center;padding:60px 20px;background:#fff}
+</style>
+</head>
+<body>
+<div class="top-bar">
+<a href="shop.html" class="back">←</a>
+<div class="search">🔍 <input id="s" placeholder="Search on EPHESIANS" oninput="filterWish()"></div>
+<a href="cart.html" class="cart-icon">🛒<span id="cartCount" class="badge">0</span></a>
+</div>
+<div class="title">Wishlist (<span id="wishCount">0</span>)</div>
+<div id="list"></div>
+
+<div class="bottom-nav">
+<a href="index.html">🏠<br>Home</a>
+<a href="shop.html">🛍️<br>Categories</a>
+<a href="cart.html">🛒<br>Cart <span id="mCart"></span></a>
+<a href="wishlist.html" class="active">❤️<br>Wishlist</a>
+<a href="contact.html">👤<br>Account</a>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getFirestore, collection, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+const firebaseConfig={apiKey:"AIzaSyBjR6WNrd8ziXnegOXZv_RJtGFVbZJN8",authDomain:"ephesian-store.firebaseapp.com",projectId:"ephesian-store",storageBucket:"ephesian-store.firebasestorage.app",messagingSenderId:"109847556546",appId:"1:109847556546:web:5c7f8a9b0c1d2e3f"};
+const app=initializeApp(firebaseConfig); const db=getFirestore(app);
+
+let PRODUCTS=[], wishlist=JSON.parse(localStorage.getItem('wishlist')||'[]');
+let cart=JSON.parse(localStorage.getItem('ephesian_cart_v2')||'[]');
+
+function updateBadges(){
+  document.getElementById('cartCount').innerText=cart.length;
+  document.getElementById('mCart').innerText=cart.length?`(${cart.length})`:'';
+  document.getElementById('wishCount').innerText=wishlist.length;
+}
+
+function render(){
+ let q=document.getElementById('s').value.toLowerCase();
+ let items=PRODUCTS.filter(p=>wishlist.includes(p.name) && p.name.toLowerCase().includes(q));
+ let div=document.getElementById('list');
+ if(!items.length){div.innerHTML=`<div class="empty">💔<br><br>Wishlist empty<br><small>Add products from shop</small><br><br><a href="shop.html" style="background:#ff6a00;color:#fff;padding:10px 20px;border-radius:6px;text-decoration:none">Continue Shopping</a></div>`;return;}
+ div.innerHTML=items.map(p=>{
+   let isOut=Number(p.stock)===0;
+   let img=(p.images||[p.image])[0];
+   return `<div class="card">
+     <div class="row">
+       <img src="${img}" onerror="this.src='https://via.placeholder.com/80'">
+       <div class="info">
+         <h3>${p.name}</h3>
+         <div class="price">₦${Number(p.price).toLocaleString()} <span class="old">₦${Math.round(p.price*1.25).toLocaleString()}</span> <span class="disc">-${p.discount||20}%</span></div>
+         <div class="pay70">Pay 70%: ₦${Math.round(p.price*0.7).toLocaleString()}</div>
+         <div class="stock">${isOut?'Out Of Stock':'In Stock'}</div>
+       </div>
+     </div>
+     <div class="actions">
+       <button class="remove" onclick="removeWish('${p.name.replace(/'/g,"\\'")}')">Remove</button>
+       <button class="${isOut?'add gray':'add'}" ${isOut?'disabled':''} onclick="addToCart('${p._id}')">${isOut?'Out Of Stock':'Add To Cart'}</button>
+     </div>
+   </div>`;
+ }).join('');
+}
+
+window.removeWish=(name)=>{wishlist=wishlist.filter(x=>x!==name); localStorage.setItem('wishlist',JSON.stringify(wishlist)); updateBadges(); render();}
+window.addToCart=(id)=>{
+ let p=PRODUCTS.find(x=>x._id===id); if(!p) return;
+ cart.push({id:p._id,name:p.name,price:Number(p.price),image:(p.images||[p.image])[0],qty:1});
+ localStorage.setItem('ephesian_cart_v2',JSON.stringify(cart));
+ updateBadges();
+ alert(p.name+' added to cart!');
+}
+window.filterWish=()=>render();
+
+const q=query(collection(db,"products"),orderBy("createdAt","desc"));
+onSnapshot(q,snap=>{PRODUCTS=[]; snap.forEach(d=>{let data=d.data(); data._id=d.id; PRODUCTS.push(data);}); render(); updateBadges();});
+</script>
+</body>
+</html>
