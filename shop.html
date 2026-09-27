@@ -3,8 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shop v2.0 - Ephesians Store RC:9874607</title>
+<title>Shop v2.1 FIXED - Ephesians Store RC:9874607</title>
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
@@ -27,7 +29,7 @@ body{background:#f5f5f5;padding-bottom:80px}
 .filter div{padding:9px 8px;font-size:12px;cursor:pointer;border-radius:8px;display:flex;justify-content:space-between;transition:.2s}
 .filter div:hover{background:#fff3e0}
 .filter div.active{background:#0f1e42;color:#fff}
-.main{background:#fff;border-radius:12px;padding:12px}
+.main{background:#fff;border-radius:12px;padding:12px;min-height:300px}
 .main-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px}
 #shop-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
 .card{background:#fff;border:1px solid #f0f0f0;border-radius:12px;overflow:hidden;position:relative;transition:.2s}
@@ -45,7 +47,6 @@ body{background:#f5f5f5;padding-bottom:80px}
 .bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:8px 0;box-shadow:0 -2px 10px rgba(0,0,0,.08);z-index:200}
 .bottom-nav a{text-decoration:none;color:#888;font-size:10px;text-align:center;font-weight:600}
 .bottom-nav a.active{color:#ff6a00}
-/* Checkout modal */
 .modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:5000;padding:12px}
 .modal-box{background:#fff;border-radius:16px;width:100%;max-width:420px;padding:20px;max-height:90vh;overflow:auto}
 footer{background:#0f1e42;color:#aaa;text-align:center;padding:18px;font-size:11px;margin-top:20px}
@@ -53,21 +54,21 @@ footer{background:#0f1e42;color:#aaa;text-align:center;padding:18px;font-size:11
 </style>
 </head>
 <body>
-<div class="top"><div>📍 Ayegun Olomi | RC:9874607 | <b>Pay 70% Now</b></div><div>v2.0 No Revert</div></div>
+<div class="top"><div>📍 Ayegun Olomi | RC:9874607 | <b>Pay 70% Now</b></div><div>v2.1 FIXED - No Loading Bug</div></div>
 <div class="header">
 <div class="logo"><img src="logo.jpg" onerror="this.src='https://via.placeholder.com/38?text=W'">EPHESIAN STORE</div>
 <div class="search-wrap"><input id="search" placeholder="Search products..." oninput="applyFilter()" autocomplete="off"><button onclick="applyFilter()">SEARCH</button><div id="suggestBox"></div></div>
 <div class="nav">
 <a href="index.html">Home</a>
 <a href="shop.html" style="color:#ff6a00">Shop</a>
-<a href="#" onclick="openCart()">🛒<span id="cartBadge" class="badge" style="display:none">0</span></a>
-<a href="#" onclick="showWishlist()">❤️<span id="wishBadge" class="badge" style="display:none;background:#0f1e42">0</span></a>
+<a href="cart.html">🛒<span id="cartBadge" class="badge" style="display:none">0</span></a>
+<a href="wishlist.html">❤️<span id="wishBadge" class="badge" style="display:none;background:#0f1e42">0</span></a>
 </div>
 </div>
 
 <div class="layout">
 <div class="filter">
-<h4>📦 CATEGORIES (5) LOCKED</h4>
+<h4>📦 CATEGORIES (5) LOCKED v2.1</h4>
 <div class="active" data-cat="all" onclick="setCat('all',this)">All Products</div>
 <div data-cat="Phone Accessories" onclick="setCat('Phone Accessories',this)">📱 Phone Accessories</div>
 <div data-cat="Laptop Accessories" onclick="setCat('Laptop Accessories',this)">💻 Laptop Accessories</div>
@@ -77,16 +78,16 @@ footer{background:#0f1e42;color:#aaa;text-align:center;padding:18px;font-size:11
 <div style="margin-top:14px"><h4>💰 MAX PRICE</h4><input type="range" id="priceRange" min="1000" max="100000" value="100000" style="width:100%" oninput="applyFilter()"><div style="font-size:11px">Up to ₦<span id="priceVal">100,000</span></div></div>
 </div>
 <div class="main">
-<div class="main-head"><h2 id="headTitle">All Products - v2.0</h2><span id="headCount">Loading...</span></div>
-<div id="shop-grid"></div>
+<div class="main-head"><h2 id="headTitle">All Products - v2.1 FIXED</h2><span id="headCount">Loading from Firebase...</span></div>
+<div id="shop-grid"><p style="text-align:center;padding:40px;color:#888">Connecting to Firebase... If this stays, check internet</p></div>
 </div>
 </div>
 
 <div class="bottom-nav">
 <a href="index.html">🏠<br>Home</a>
 <a href="shop.html" class="active">🛍️<br>Shop</a>
-<a href="#" onclick="openCart()">🛒<br>Cart <span id="mCart"></span></a>
-<a href="#" onclick="showWishlist()">❤️<br>Wishlist</a>
+<a href="cart.html">🛒<br>Cart <span id="mCart"></span></a>
+<a href="wishlist.html">❤️<br>Wishlist</a>
 <a href="contact.html">👤<br>Account</a>
 </div>
 
@@ -97,7 +98,7 @@ footer{background:#0f1e42;color:#aaa;text-align:center;padding:18px;font-size:11
 <hr style="margin:10px 0">
 <h4 id="cart-total">Total: ₦0</h4>
 <p style="font-size:11px;color:#2a7d2a;margin-top:4px">Pay 70% Now: <b id="cart-pay70">₦0</b> • Balance Later</p>
-<input id="custName" placeholder="Full Name (Guest - No login)" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;margin-top:10px">
+<input id="custName" placeholder="Full Name (Guest)" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;margin-top:10px">
 <input id="custPhone" placeholder="Phone 080..." style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;margin-top:8px">
 <input id="custAddr" placeholder="Address - Ayegun Olomi..." style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;margin-top:8px">
 <div style="margin-top:10px">
@@ -112,11 +113,11 @@ footer{background:#0f1e42;color:#aaa;text-align:center;padding:18px;font-size:11
 </div>
 </div>
 
-<footer>THE WONDER GLOBAL CONCEPT | EPHESIANS STORE RC:9874607<br>v2.0 - Categories Locked, No More Revert, Pay with Transfer Enabled</footer>
+<footer>THE WONDER GLOBAL CONCEPT | EPHESIANS STORE RC:9874607<br>v2.1 FIXED - No more Loading bug, Categories Locked</footer>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getFirestore, collection, onSnapshot, query, orderBy, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getFirestore, collection, onSnapshot, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBjR6WNrd8ziXnegOXZv_RJtGFVbZJN8",
@@ -155,16 +156,16 @@ function updateBadges(){
 
 function render(list){
  let grid=document.getElementById('shop-grid');
- document.getElementById('headCount').innerText=list.length+' Products - v2.0 Locked';
- if(!list.length){grid.innerHTML='<p style="grid-column:1/-1;text-align:center;padding:30px">No products for this filter</p>';return;}
+ document.getElementById('headCount').innerText=list.length+' Products Found - v2.1 Live';
+ if(!list.length){grid.innerHTML='<p style="grid-column:1/-1;text-align:center;padding:30px;color:#888">No products for this filter. Try All Products.</p>';return;}
  grid.innerHTML=list.map(p=>{
   let isOut=Number(p.stock)===0;
-  let imgs=p.images||[p.image]||[];
+  let imgs=p.images||[p.image]||['https://via.placeholder.com/200'];
   let isWish=wishlist.includes(p.name);
   return `
-  <div class="card ${isOut?'out':''}">
+  <div class="card">
    <span class="b-off">-${p.discount||20}%</span><span class="b-pay">Pay 70%</span>${isOut?'<span class="b-out">OUT</span>':''}
-   <img src="${imgs[0]}" onerror="this.src='https://via.placeholder.com/200?text=${p.name}'" onclick="addToCartById('${p._id}')">
+   <img src="${imgs[0]}" onerror="this.src='https://via.placeholder.com/200?text=${encodeURIComponent(p.name)}'" onclick="addToCartById('${p._id}')">
    <div class="info">
     <h3>${p.name}</h3>
     <div class="price">₦${Number(p.price).toLocaleString()} <small style="text-decoration:line-through;color:#888;font-size:10px">₦${Math.round(p.price*1.25).toLocaleString()}</small></div>
@@ -179,7 +180,7 @@ window.setCat=(cat,el)=>{
   currentCat=cat;
   document.querySelectorAll('.filter div').forEach(d=>d.classList.remove('active'));
   el.classList.add('active');
-  document.getElementById('headTitle').innerText=cat==='all'?'All Products':cat;
+  document.getElementById('headTitle').innerText=cat==='all'?'All Products - v2.1':cat;
   applyFilter();
 }
 window.applyFilter=()=>{
@@ -195,12 +196,12 @@ window.applyFilter=()=>{
   });
   render(f);
   let box=document.getElementById('suggestBox');
-  if(q){let m=PRODUCTS.filter(p=>p.name.toLowerCase().includes(q)).slice(0,4); if(m.length){box.innerHTML=m.map(x=>`<div onclick="document.getElementById('search').value='${x.name}';applyFilter();suggestBox.style.display='none'" style="padding:10px;border-bottom:1px solid #eee;cursor:pointer"><b>${x.name}</b> - ₦${x.price}</div>`).join(''); box.style.display='block';} else box.style.display='none';
+  if(q){let m=PRODUCTS.filter(p=>p.name.toLowerCase().includes(q)).slice(0,4); if(m.length){box.innerHTML=m.map(x=>`<div onclick="document.getElementById('search').value='${x.name}';applyFilter();suggestBox.style.display='none'" style="padding:10px;border-bottom:1px solid #eee;cursor:pointer"><b>${x.name}</b> - ₦${x.price}</div>`).join(''); box.style.display='block';} else box.style.display='none';} else box.style.display='none';
 }
 window.addToCartById=(id)=>{
   let p=PRODUCTS.find(x=>x._id===id);
   if(!p||Number(p.stock)===0){alert('Out of stock');return;}
-  cart.push({id:p._id,name:p.name,price:Number(p.price)});
+  cart.push({id:p._id,name:p.name,price:Number(p.price),image:(p.images||[])[0]||'',qty:1});
   saveCart();
   if(confirm(p.name+' added! Open cart?')) openCart();
 }
@@ -209,17 +210,8 @@ window.toggleWish=(name)=>{
   localStorage.setItem('wishlist',JSON.stringify(wishlist));
   updateBadges(); applyFilter();
 }
-window.showWishlist=()=>{ if(!wishlist.length) alert('Wishlist empty'); else alert('Wishlist:\n'+wishlist.join('\n')); }
-window.openCart=()=>{
-  if(!cart.length){alert('Cart empty');return;}
-  let total=cart.reduce((s,i)=>s+i.price,0);
-  let pay70=Math.round(total*0.7);
-  document.getElementById('cart-items').innerHTML=cart.map((it,i)=>`<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #eee;font-size:12px"><span>${it.name} - ₦${it.price.toLocaleString()}</span><span onclick="cart.splice(${i},1);saveCart();openCart()" style="color:red;cursor:pointer">X</span></div>`).join('');
-  document.getElementById('cart-total').innerText='Total: ₦'+total.toLocaleString();
-  document.getElementById('cart-pay70').innerText='₦'+pay70.toLocaleString();
-  document.getElementById('transferAmt').innerText='₦'+pay70.toLocaleString();
-  document.getElementById('cartModal').style.display='flex';
-}
+window.showWishlist=()=>{ location.href='wishlist.html'; }
+window.openCart=()=>{ location.href='cart.html'; }
 window.closeCart=()=>document.getElementById('cartModal').style.display='none';
 window.clearCart=()=>{cart=[];saveCart();closeCart();};
 window.togglePay=()=>{
@@ -235,18 +227,33 @@ window.checkout=async()=>{
   let total=cart.reduce((s,i)=>s+i.price,0);
   try{
     await addDoc(collection(db,'orders'),{customer:name,phone,address:addr,items:cart,total,pay70:Math.round(total*0.7),paymentMethod:pay,status:pay==='transfer'?'PAID_TO_CONFIRM':'PENDING',createdAt:serverTimestamp()});
-    let msg=`NEW ORDER v2.0 RC9874607%0AName:${name}%0APhone:${phone}%0AAddr:${addr}%0APay:${pay}%0ATotal:₦${total}%0AItems:${cart.map(i=>i.name).join(', ')}`;
+    let msg=`NEW ORDER v2.1 RC9874607%0AName:${name}%0APhone:${phone}%0AAddr:${addr}%0APay:${pay}%0ATotal:₦${total}%0AItems:${cart.map(i=>i.name).join(', ')}`;
     window.open('https://wa.me/2347081632713?text='+msg,'_blank');
     cart=[];saveCart();closeCart();alert('Order placed! We will confirm on WhatsApp');
   }catch(e){alert(e.message)}
 }
 
-const q=query(collection(db,'products'),orderBy('createdAt','desc'));
-onSnapshot(q,snap=>{
-  PRODUCTS=[]; snap.forEach(d=>{let data=d.data(); data._id=d.id; PRODUCTS.push(data);});
-  applyFilter(); updateBadges();
+// FIXED LOADING - v2.1 NO ORDERBY BUG
+console.log("v2.1 Loading products without orderBy...");
+const colRef = collection(db,"products");
+onSnapshot(colRef, (snap)=>{
+  console.log("Firebase snapshot size:", snap.size);
+  PRODUCTS=[];
+  snap.forEach(d=>{
+    let data=d.data();
+    data._id=d.id;
+    PRODUCTS.push(data);
+  });
+  document.getElementById('headCount').innerText = PRODUCTS.length + ' Products Found - v2.1 Live';
+  applyFilter();
+  updateBadges();
+}, (error)=>{
+  console.error("Firebase error:", error);
+  document.getElementById('headCount').innerText = 'Error: '+error.message;
+  document.getElementById('shop-grid').innerHTML = `<p style="color:red;padding:20px;text-align:center">Firebase Error: ${error.message}<br><br>Check Firestore Rules - must allow read</p>`;
 });
 
+// Kill old Service Workers & Cache - FIX REVERT
 if('serviceWorker' in navigator){
   navigator.serviceWorker.getRegistrations().then(r=>r.forEach(x=>x.unregister()));
   caches.keys().then(k=>k.forEach(x=>caches.delete(x)));
