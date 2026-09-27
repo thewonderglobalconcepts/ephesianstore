@@ -2,23 +2,23 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <title>THE WONDER GLOBAL CONCEPT - EPHESIAN STORE RC:9874607</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
-body{background:#f5f5f5;padding-bottom:70px}
-.top{background:#0f1e42;color:#fff;padding:6px 4%;font-size:11px;display:flex;justify-content:space-between}
+body{background:#f5f5f5;padding-bottom:70px;overflow-x:hidden;-webkit-tap-highlight-color:transparent}
+.top{background:#0f1e42;color:#fff;padding:6px 4%;font-size:11px;display:flex;justify-content:space-between;gap:6px}
 .header{background:#fff;padding:10px 4%;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:1000;box-shadow:0 2px 10px rgba(0,0,0,.07)}
-.logo{display:flex;align-items:center;gap:10px}
+.logo{display:flex;align-items:center;gap:10px;flex:0 0 auto}
 .logo img{width:42px;height:42px;border-radius:50%;border:2px solid #d4af37}
 .logo-text{line-height:1.1}
 .logo-text .wonder{font-size:10px;color:#888;font-weight:600;letter-spacing:0.5px}
 .logo-text .ephesian{font-size:16px;font-weight:700;color:#0f1e42}
 .logo-text .ephesian span{color:#ff6a00}
-.search{flex:1;max-width:400px;display:flex}
-.search input{flex:1;padding:10px 14px;border:1.5px solid #ddd;border-radius:25px 0 0 25px;outline:none}
-.search button{background:#ff6a00;color:#fff;border:none;padding:10px 16px;border-radius:0 25px 25px 0;font-weight:700}
+.search{flex:1;max-width:400px;display:flex;min-width:0}
+.search input{flex:1;padding:10px 14px;border:1.5px solid #ddd;border-radius:25px 0 0 25px;outline:none;width:100%;font-size:13px}
+.search button{background:#ff6a00;color:#fff;border:none;padding:10px 16px;border-radius:0 25px 25px 0;font-weight:700;flex:0 0 auto}
 .nav{display:flex;gap:12px;align-items:center}
 .nav a{text-decoration:none;color:#0f1e42;font-weight:600;font-size:13px;position:relative}
 .easyBtn{background:#ff6a00;color:#fff!important;padding:6px 12px;border-radius:20px;font-size:11px}
@@ -55,10 +55,33 @@ body{background:#f5f5f5;padding-bottom:70px}
 .modal-info{padding:20px}
 .close-modal{position:absolute;top:10px;right:14px;font-size:28px;cursor:pointer;background:#eee;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center}
 .bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:8px 0;box-shadow:0 -2px 10px rgba(0,0,0,.08);z-index:200}
-.bottom-nav a{text-decoration:none;color:#888;font-size:10px;text-align:center;font-weight:600}
+.bottom-nav a{flex:1;text-decoration:none;color:#888;font-size:10px;text-align:center;font-weight:600;line-height:1.1}
 .bottom-nav a.active{color:#ff6a00}
 footer{background:#0f1e42;color:#aaa;text-align:center;padding:20px;font-size:11px;margin-top:20px;padding-bottom:70px}
-@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.cats{grid-template-columns:repeat(3,1fr)}.banner{flex-direction:column;text-align:center}.modal-content{grid-template-columns:1fr}.header{flex-wrap:wrap}}
+
+/* --- ONLY FIT FIX FOR PHONE - NO STYLE CHANGE --- */
+@media(max-width:900px){
+.grid{grid-template-columns:repeat(2,1fr);gap:8px}
+.cats{grid-template-columns:repeat(3,1fr);gap:8px}
+.banner{flex-direction:column;text-align:center;padding:18px 14px;gap:12px}
+.banner h1{font-size:18px}
+.banner p{font-size:12px}
+.modal-content{grid-template-columns:1fr}
+.header{flex-wrap:wrap;gap:8px;padding:8px 3%}
+.logo img{width:32px;height:32px}
+.logo-text .wonder{font-size:8px}
+.logo-text .ephesian{font-size:13px}
+.search{max-width:100%;order:3;flex:1 1 100%}
+.top{font-size:9px;padding:5px 3%;white-space:nowrap;overflow:hidden}
+.cat{padding:10px 4px;font-size:11px}
+.section{margin:10px 2%;padding:10px}
+.card img{height:125px}
+}
+@media(max-width:380px){
+.cats{grid-template-columns:repeat(3,1fr)}
+.banner h1{font-size:16px}
+.search input{font-size:12px;padding:8px 10px}
+}
 </style>
 </head>
 <body>
@@ -109,7 +132,7 @@ footer{background:#0f1e42;color:#aaa;text-align:center;padding:20px;font-size:11
 <div id="productModal">
 <div class="modal-content">
 <span class="close-modal" onclick="closeModal()">×</span>
-<div class="modal-img"><img id="modalMainImg" src=""><div class="modal-thumbs" id="modalThumbs"></div></div>
+<div class="modal-img"><img id="modalMainImg" src="" loading="lazy"><div class="modal-thumbs" id="modalThumbs"></div></div>
 <div class="modal-info">
 <h2 id="modalName" style="color:#0f1e42"></h2>
 <div id="modalPrice" style="margin:10px 0"></div>
@@ -141,9 +164,9 @@ let PRODUCTS=[], cart=JSON.parse(localStorage.getItem('ephesian_cart_v2')||'[]')
 function updateBadges(){let c=cart.length,w=wishlist.length;document.getElementById('cartBadge').style.display=c?'inline':'none';document.getElementById('cartBadge').innerText=c;document.getElementById('wishBadge').style.display=w?'inline':'none';document.getElementById('wishBadge').innerText=w;let mc=document.getElementById('mCart');if(mc) mc.innerText=c?`(${c})`:'';}
 function renderGrids(){let featured=PRODUCTS.slice(0,10);let deals=PRODUCTS.filter(p=>Number(p.discount)>=20).slice(0,10);if(!deals.length) deals=PRODUCTS.slice(0,10);document.getElementById('featured-grid').innerHTML=featured.map(cardHtml).join('');document.getElementById('deals-grid').innerHTML=deals.map(cardHtml).join('');}
 function getDiscountData(p){let nowPrice=Number(p.price);let oldPrice=Number(p.originalPrice||0);if(!oldPrice||oldPrice<=nowPrice){let disc=Number(p.discount||20);oldPrice=Math.round(nowPrice/(1-disc/100));}let perc=oldPrice>0?Math.round((1-nowPrice/oldPrice)*100):(p.discount||20);return {nowPrice,oldPrice,perc};}
-function cardHtml(p){let isOut=Number(p.stock)===0;let img=(p.images||[p.image]||['https://via.placeholder.com/200'])[0];let {nowPrice,oldPrice,perc}=getDiscountData(p);return `<div class="card" onclick="openProduct('${p._id}')"><span class="b-off">-${perc}%</span><img src="${img}"><div class="info"><h3>${p.name}</h3><div class="price-row"><span class="price-now">₦${nowPrice.toLocaleString()}</span><span class="price-old">₦${oldPrice.toLocaleString()}</span></div><button class="btn-cart" onclick="event.stopPropagation(); addToCart('${p._id}')">${isOut?'Out of Stock':'Add to Cart'}</button></div></div>`;}
+function cardHtml(p){let isOut=Number(p.stock)===0;let img=(p.images||[p.image]||['https://via.placeholder.com/200'])[0];let {nowPrice,oldPrice,perc}=getDiscountData(p);return `<div class="card" onclick="openProduct('${p._id}')"><span class="b-off">-${perc}%</span><img loading="lazy" src="${img}"><div class="info"><h3>${p.name}</h3><div class="price-row"><span class="price-now">₦${nowPrice.toLocaleString()}</span><span class="price-old">₦${oldPrice.toLocaleString()}</span></div><button class="btn-cart" onclick="event.stopPropagation(); addToCart('${p._id}')">${isOut?'Out of Stock':'Add to Cart'}</button></div></div>`;}
 window.addToCart=(id)=>{let p=PRODUCTS.find(x=>x._id===id);if(!p||Number(p.stock)===0){alert('Out of stock');return;}cart.push({id:p._id,name:p.name,price:Number(p.price),image:(p.images||[])[0]||'',qty:1});localStorage.setItem('ephesian_cart_v2',JSON.stringify(cart));updateBadges();alert(p.name+' added!');}
-window.openProduct=(id)=>{let p=PRODUCTS.find(x=>x._id===id);if(!p) return;currentProduct=p;let imgs=p.images||[];let {nowPrice,oldPrice,perc}=getDiscountData(p);document.getElementById('modalMainImg').src=imgs[0];document.getElementById('modalName').innerText=p.name;document.getElementById('modalPrice').innerHTML=`<span style="font-size:22px;font-weight:700;color:#0f1e42">₦${nowPrice.toLocaleString()}</span> <span style="font-size:13px;color:#888;text-decoration:line-through;margin-left:8px">₦${oldPrice.toLocaleString()}</span> <span style="background:#ff3b30;color:#fff;font-size:11px;padding:3px 6px;border-radius:4px;margin-left:6px">-${perc}% OFF</span>`;document.getElementById('modalDesc').innerText=p.desc||'';document.getElementById('modalStock').innerHTML=Number(p.stock)===0?'<b style="color:red">Out of Stock</b>':'<b style="color:green">In Stock</b>';document.getElementById('modalThumbs').innerHTML=imgs.map((im,i)=>`<img src="${im}" class="${i===0?'active':''}" onclick="document.getElementById('modalMainImg').src='${im}'">`).join('');document.getElementById('modalAddCart').onclick=()=>addToCart(p._id);document.getElementById('productModal').style.display='flex';}
+window.openProduct=(id)=>{let p=PRODUCTS.find(x=>x._id===id);if(!p) return;currentProduct=p;let imgs=p.images||[];let {nowPrice,oldPrice,perc}=getDiscountData(p);document.getElementById('modalMainImg').src=imgs[0];document.getElementById('modalName').innerText=p.name;document.getElementById('modalPrice').innerHTML=`<span style="font-size:22px;font-weight:700;color:#0f1e42">₦${nowPrice.toLocaleString()}</span> <span style="font-size:13px;color:#888;text-decoration:line-through;margin-left:8px">₦${oldPrice.toLocaleString()}</span> <span style="background:#ff3b30;color:#fff;font-size:11px;padding:3px 6px;border-radius:4px;margin-left:6px">-${perc}% OFF</span>`;document.getElementById('modalDesc').innerText=p.desc||'';document.getElementById('modalStock').innerHTML=Number(p.stock)===0?'<b style="color:red">Out of Stock</b>':'<b style="color:green">In Stock</b>';document.getElementById('modalThumbs').innerHTML=imgs.map((im,i)=>`<img loading="lazy" src="${im}" class="${i===0?'active':''}" onclick="document.getElementById('modalMainImg').src='${im}'">`).join('');document.getElementById('modalAddCart').onclick=()=>addToCart(p._id);document.getElementById('productModal').style.display='flex';}
 window.closeModal=()=>document.getElementById('productModal').style.display='none';
 onSnapshot(collection(db,"products"), snap=>{PRODUCTS=[];snap.forEach(d=>{let data=d.data();data._id=d.id;PRODUCTS.push(data);});renderGrids();updateBadges();});
 </script>
