@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Shop - EPHESIAN STORE - Fast</title>
+<title>Shop - EPHESIAN STORE</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
@@ -16,9 +16,9 @@ body{background:#f5f5f5;padding-bottom:80px;-webkit-tap-highlight-color:transpar
 .search-wrap{flex:1;display:flex;max-width:400px}
 .search-wrap input{flex:1;padding:9px 12px;border:1.5px solid #ddd;border-radius:20px 0 0 20px;outline:none;font-size:13px}
 .search-wrap button{background:#ff6a00;color:#fff;border:none;padding:9px 14px;border-radius:0 20px 20px 0;font-weight:700;font-size:12px}
-.nav{display:none}
+.nav{display:flex;gap:12px;align-items:center}
+.nav a{font-size:13px;text-decoration:none;color:#0f1e42;font-weight:600;position:relative}
 .badge{position:absolute;top:-6px;right:-8px;background:#ff3b30;color:#fff;font-size:8px;padding:2px 5px;border-radius:10px}
-.layout{padding:0}
 .filter{background:#fff;padding:8px 3%;display:flex;gap:8px;overflow-x:auto;white-space:nowrap;position:sticky;top:54px;z-index:900;border-bottom:1px solid #eee;-webkit-overflow-scrolling:touch}
 .filter::-webkit-scrollbar{display:none}
 .filter div{flex:0 0 auto;padding:7px 14px;font-size:11px;border:1px solid #e0e0e0;border-radius:20px;background:#fff;cursor:pointer;font-weight:600}
@@ -36,6 +36,7 @@ body{background:#f5f5f5;padding-bottom:80px;-webkit-tap-highlight-color:transpar
 .price-now{color:#0f1e42;font-weight:700;font-size:12px}
 .price-old{color:#888;font-size:10px;text-decoration:line-through;margin-left:4px}
 .btn-cart{width:100%;padding:7px;border:none;border-radius:6px;font-weight:700;font-size:10px;margin-top:5px;background:#0f1e42;color:#fff}
+.btn-wish{width:100%;padding:6px;border:1px solid #ddd;border-radius:6px;font-weight:600;font-size:10px;margin-top:4px;background:#fff;color:#333;display:flex;justify-content:space-between;cursor:pointer}
 .bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:6px 0;border-top:1px solid #eee;z-index:200}
 .bottom-nav a{text-decoration:none;color:#888;font-size:9px;text-align:center;font-weight:600}
 .bottom-nav a.active{color:#ff6a00}
@@ -48,19 +49,19 @@ body{background:#f5f5f5;padding-bottom:80px;-webkit-tap-highlight-color:transpar
 .modal-thumbs img.active{border-color:#ff6a00}
 .modal-info{padding:16px}
 .close-modal{position:absolute;top:8px;right:10px;font-size:24px;cursor:pointer;background:#eee;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center}
-@media(min-width:700px){#shop-grid{grid-template-columns:repeat(4,1fr)}.nav{display:flex;gap:10px}.filter{top:58px}.modal-content{grid-template-columns:1fr 1fr}}
-@media(max-width:700px){.modal-content{grid-template-columns:1fr}.header{flex-wrap:wrap}}
+@media(min-width:700px){#shop-grid{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:700px){.modal-content{grid-template-columns:1fr}.nav{display:none}}
 </style>
 </head>
 <body>
 <div class="top"><div>📍 Ayegun Olomi, Ibadan | RC:9874607</div><div>07081632713</div></div>
 <div class="header">
-<div class="logo"><img src="logo.jpg" onerror="this.src='https://via.placeholder.com/34'"><div>THE WONDER GLOBAL CONCEPTS<br><small>EPHESIAN STORE</small></div></div>
+<div class="logo"><img src="logo.jpg"><div>THE WONDER GLOBAL CONCEPTS<br><small>EPHESIAN STORE</small></div></div>
 <div class="search-wrap"><input id="search" placeholder="Search..." oninput="applyFilter()"><button onclick="applyFilter()">SEARCH</button></div>
 <div class="nav">
 <a href="index.html">Home</a><a href="shop.html" style="color:#ff6a00">Shop</a>
-<a href="easy-buy.html" style="background:#ff6a00;color:#fff;padding:5px 10px;border-radius:15px;font-size:11px;text-decoration:none">🔥 Easy Buy</a>
 <a href="cart.html" style="position:relative">🛒<span id="cartBadge" class="badge" style="display:none">0</span></a>
+<a href="wishlist.html" style="position:relative">❤️<span id="wishBadge" class="badge" style="display:none;background:#0f1e42">0</span></a>
 </div>
 </div>
 
@@ -92,13 +93,14 @@ body{background:#f5f5f5;padding-bottom:80px;-webkit-tap-highlight-color:transpar
 <p id="modalDesc" style="font-size:12px;color:#444;margin:10px 0;line-height:1.4"></p>
 <div style="font-size:11px"><b>Stock:</b> <span id="modalStock"></span></div>
 <button id="modalAddCart" style="width:100%;padding:12px;background:#0f1e42;color:#fff;border:none;border-radius:8px;font-weight:700;margin-top:10px">Add to Cart 🛒</button>
+<button id="modalWish" style="width:100%;padding:10px;background:#fff;border:1.5px solid #0f1e42;border-radius:8px;font-weight:700;margin-top:6px">🤍 Add to Wishlist</button>
 <button onclick="orderWhatsApp()" style="width:100%;padding:10px;background:#25D366;color:#fff;border:none;border-radius:8px;font-weight:700;margin-top:6px">WhatsApp 📲</button>
 </div>
 </div>
 </div>
 
 <div class="bottom-nav">
-<a href="index.html">🏠<br>Home</a><a href="shop.html" class="active">🛍️<br>Shop</a><a href="easy-buy.html">🔥<br>Easy Buy</a><a href="cart.html">🛒<br>Cart <span id="mCart"></span></a><a href="contact.html">👤<br>Account</a>
+<a href="index.html">🏠<br>Home</a><a href="shop.html" class="active">🛍️<br>Shop</a><a href="easy-buy.html">🔥<br>Easy Buy</a><a href="cart.html">🛒<br>Cart <span id="mCart"></span></a><a href="wishlist.html">❤️<br>Wish <span id="mWish"></span></a>
 </div>
 
 <script type="module">
@@ -111,12 +113,14 @@ function mapCategory(oldCat){if(!oldCat) return 'Other Essentials';if(ALLOWED_CA
 function getDiscountData(p){let now=Number(p.price),old=Number(p.originalPrice||0);if(!old||old<=now){let d=Number(p.discount||0);if(d>0)old=Math.round(now/(1-d/100));else old=now;}let perc=old>now?Math.round((1-now/old)*100):(p.discount||0);return {nowPrice:now,oldPrice:old,perc};}
 let PRODUCTS=[],currentCat='all',currentProduct=null,cart=JSON.parse(localStorage.getItem('ephesian_cart_v2')||'[]'),wishlist=JSON.parse(localStorage.getItem('wishlist')||'[]');
 function saveCart(){localStorage.setItem('ephesian_cart_v2',JSON.stringify(cart));updateBadges();}
-function updateBadges(){let c=cart.length;document.getElementById('cartBadge').style.display=c?'inline':'none';document.getElementById('cartBadge').innerText=c;let mc=document.getElementById('mCart');if(mc)mc.innerText=c?`(${c})`:'';}
-function render(list){let grid=document.getElementById('shop-grid');document.getElementById('headCount').innerText=list.length+' Products';if(!list.length){grid.innerHTML='<p style="grid-column:1/-1;text-align:center;padding:20px;font-size:12px">No products</p>';return;}grid.innerHTML=list.map(p=>{let isOut=Number(p.stock)===0;let imgs=p.images||['https://via.placeholder.com/200'];let {nowPrice,oldPrice,perc}=getDiscountData(p);return `<div class="card" onclick="openProduct('${p._id}')">${perc>0?`<span class="b-off">-${perc}%</span>`:''}${isOut?'<span class="b-out">OUT</span>':''}<img loading="lazy" decoding="async" src="${imgs[0]}" alt="${p.name}"><div class="info"><h3>${p.name}</h3><div><span class="price-now">₦${nowPrice.toLocaleString()}</span>${oldPrice>nowPrice?`<span class="price-old">₦${oldPrice.toLocaleString()}</span>`:''}</div><button class="btn-cart" onclick="event.stopPropagation();addToCartById('${p._id}')">${isOut?'Out of Stock':'Add to Cart'}</button></div></div>`}).join('');}
+function updateBadges(){let c=cart.length,w=wishlist.length;document.getElementById('cartBadge').style.display=c?'inline':'none';document.getElementById('cartBadge').innerText=c;document.getElementById('wishBadge').style.display=w?'inline':'none';document.getElementById('wishBadge').innerText=w;let mc=document.getElementById('mCart');if(mc)mc.innerText=c?`(${c})`:'';let mw=document.getElementById('mWish');if(mw)mw.innerText=w?`(${w})`:'';}
+function render(list){let grid=document.getElementById('shop-grid');document.getElementById('headCount').innerText=list.length+' Products';if(!list.length){grid.innerHTML='<p style="grid-column:1/-1;text-align:center;padding:20px;font-size:12px">No products</p>';return;}grid.innerHTML=list.map(p=>{let isOut=Number(p.stock)===0;let imgs=p.images||['https://via.placeholder.com/200'];let {nowPrice,oldPrice,perc}=getDiscountData(p);let isWish=wishlist.includes(p.name);return `<div class="card" onclick="openProduct('${p._id}')">${perc>0?`<span class="b-off">-${perc}%</span>`:''}${isOut?'<span class="b-out">OUT</span>':''}<img loading="lazy" decoding="async" src="${imgs[0]}"><div class="info"><h3>${p.name}</h3><div><span class="price-now">₦${nowPrice.toLocaleString()}</span>${oldPrice>nowPrice?`<span class="price-old">₦${oldPrice.toLocaleString()}</span>`:''}</div><button class="btn-cart" onclick="event.stopPropagation();addToCartById('${p._id}')">${isOut?'Out of Stock':'Add to Cart'}</button><button class="btn-wish" onclick="event.stopPropagation();toggleWish('${p.name.replace(/'/g,"\\'")}')"><span>${isWish?'❤️ Saved':'🤍 Wishlist'}</span><span>👁 View</span></button></div></div>`}).join('');}
 window.setCat=(cat,el)=>{currentCat=cat;document.querySelectorAll('#catFilter div').forEach(d=>d.classList.remove('active'));el.classList.add('active');document.getElementById('headTitle').innerText=cat==='all'?'All Products':cat;applyFilter();}
 window.applyFilter=()=>{let q=document.getElementById('search').value.toLowerCase().trim();let f=PRODUCTS.filter(p=>{let mapped=mapCategory(p.category);let catOk=currentCat==='all'||mapped===currentCat;let qOk=!q||p.name.toLowerCase().includes(q)||mapped.toLowerCase().includes(q);return catOk&&qOk;});render(f);}
 window.addToCartById=(id)=>{let p=PRODUCTS.find(x=>x._id===id);if(!p||Number(p.stock)===0){alert('Out of stock');return;}cart.push({id:p._id,name:p.name,price:Number(p.price),image:(p.images||[])[0]||'',qty:1});saveCart();alert(p.name+' added!');}
-window.openProduct=(id)=>{let p=PRODUCTS.find(x=>x._id===id);if(!p) return;currentProduct=p;let imgs=p.images||[];let {nowPrice,oldPrice,perc}=getDiscountData(p);document.getElementById('modalMainImg').src=imgs[0];document.getElementById('modalName').innerText=p.name;document.getElementById('modalCat').innerText=mapCategory(p.category);document.getElementById('modalPrice').innerHTML=`<span style="font-size:18px;font-weight:700;color:#0f1e42">₦${nowPrice.toLocaleString()}</span> ${oldPrice>nowPrice?`<span style="font-size:12px;color:#888;text-decoration:line-through;margin-left:6px">₦${oldPrice.toLocaleString()}</span> <span style="background:#ff3b30;color:#fff;font-size:10px;padding:2px 5px;border-radius:4px;margin-left:4px">-${perc}%</span>`:''}`;document.getElementById('modalDesc').innerText=p.desc||'';document.getElementById('modalStock').innerText=p.stock||0;document.getElementById('modalThumbs').innerHTML=imgs.map((im,i)=>`<img loading="lazy" src="${im}" class="${i===0?'active':''}" onclick="document.getElementById('modalMainImg').src='${im}';document.querySelectorAll('.modal-thumbs img').forEach(x=>x.classList.remove('active'));this.classList.add('active')">`).join('');document.getElementById('modalAddCart').onclick=()=>addToCartById(p._id);document.getElementById('productModal').style.display='flex';}
+window.toggleWish=(name)=>{if(wishlist.includes(name)) wishlist=wishlist.filter(x=>x!==name);else wishlist.push(name);localStorage.setItem('wishlist',JSON.stringify(wishlist));updateBadges();applyFilter();if(currentProduct&&currentProduct.name===name) updateWishBtn();}
+function updateWishBtn(){let btn=document.getElementById('modalWish');if(!currentProduct) return;btn.innerText=wishlist.includes(currentProduct.name)?'❤️ Saved in Wishlist':'🤍 Add to Wishlist';}
+window.openProduct=(id)=>{let p=PRODUCTS.find(x=>x._id===id);if(!p) return;currentProduct=p;let imgs=p.images||[];let {nowPrice,oldPrice,perc}=getDiscountData(p);document.getElementById('modalMainImg').src=imgs[0];document.getElementById('modalName').innerText=p.name;document.getElementById('modalCat').innerText=mapCategory(p.category);document.getElementById('modalPrice').innerHTML=`<span style="font-size:18px;font-weight:700;color:#0f1e42">₦${nowPrice.toLocaleString()}</span> ${oldPrice>nowPrice?`<span style="font-size:12px;color:#888;text-decoration:line-through;margin-left:6px">₦${oldPrice.toLocaleString()}</span> <span style="background:#ff3b30;color:#fff;font-size:10px;padding:2px 5px;border-radius:4px;margin-left:4px">-${perc}%</span>`:''}`;document.getElementById('modalDesc').innerText=p.desc||'';document.getElementById('modalStock').innerText=p.stock||0;document.getElementById('modalThumbs').innerHTML=imgs.map((im,i)=>`<img loading="lazy" src="${im}" class="${i===0?'active':''}" onclick="document.getElementById('modalMainImg').src='${im}';document.querySelectorAll('.modal-thumbs img').forEach(x=>x.classList.remove('active'));this.classList.add('active')">`).join('');document.getElementById('modalAddCart').onclick=()=>addToCartById(p._id);document.getElementById('modalWish').onclick=()=>toggleWish(p.name);updateWishBtn();document.getElementById('productModal').style.display='flex';}
 window.closeProductModal=()=>document.getElementById('productModal').style.display='none';
 window.orderWhatsApp=()=>{if(!currentProduct) return;window.open('https://wa.me/2347081632713?text=I want '+encodeURIComponent(currentProduct.name),'_blank');}
 document.getElementById('productModal').onclick=(e)=>{if(e.target.id==='productModal')closeProductModal();}
